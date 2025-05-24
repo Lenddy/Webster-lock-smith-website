@@ -1,0 +1,27 @@
+1  for the translation  use i18next (and put the json files on the public folder)
+ and see if you need import React, { Suspense } from "react";
+this goes on the main.jsx files 
+reference : go to your porfolio project and you can see how to use it 
+
+2 you can copy and past the scroll to function from the coin-mania project
+
+find out if you will need to use a db for the careers page
+
+
+make the nav bab the body and the footer
+Make a skeleton with the functionality
+
+    1 Nav bar should have 
+        1the logo
+        2 buttons to navegante to the sections 
+        3 should be at the top or in a burger menu
+        transparent and then change colors when scroll (or make it  still to the top and only when yo hover your mouse or scroll down it will show)
+
+    2 Body should have 
+        1 a banner (image or video)
+        2 about section 
+        3 products and services (should have a description of them, have all product and services (on click they should open up(dorp down))) 
+        4 section for pictures
+        5 button to go back to the top (should be fix to the bottom left of the page)
+
+    3 Footer should
