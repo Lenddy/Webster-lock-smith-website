@@ -19,6 +19,9 @@ function App() {
 							<Banner />
 							<Product_services />
 							<Gallery />
+
+							{/* about */}
+							{/* footer */}
 						</>
 					}
 				/>

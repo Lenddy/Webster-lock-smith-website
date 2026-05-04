@@ -1,0 +1,137 @@
+/*? nav container */
+.nav-container {
+	display: flex;
+	background-color: var(--cg);
+	justify-content: space-around;
+	align-items: center;
+	z-index: 99999999999;
+	width: 100%;
+	height: 100px;
+	position: fixed;
+	top: 0;
+}
+
+.nav-item {
+	/* border: solid red 1px; */
+	flex: 1;
+}
+
+.nav-item-center {
+	/* border: solid red 1px; */
+	flex: 4;
+}
+
+/*? nav left */
+/* .nav-container-left {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav-left {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 100px;
+} */
+
+.logo-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 100px;
+}
+
+.logo {
+	height: 95%;
+}
+
+/* .nav-left:hover {
+	cursor: pointer;
+} */
+
+/*? nav center */
+/* .nav-container-center { */
+.nav-items {
+	background-color: var(--cr);
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: solid var(--cw) 1px;
+}
+
+.nav-items ul {
+	width: 90%;
+	background-color: blue;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.nav-items ul,
+li,
+h4 {
+	margin: 0px;
+	padding: 0px;
+}
+
+.nav-items ul li {
+	list-style: none;
+	width: 100px;
+}
+
+.nav-items li:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.nav-container-center li:active {
+	/* color: var(--cg); */
+}
+
+/*? nav right */
+.nav-container-right {
+	/* display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	height: 100%;
+	border: var(--cw) solid 1px; */
+}
+
+.nav-right {
+	/* display: flex;
+	justify-content: space-around;
+	align-items: center;
+	border: var(--cw) solid 1px;
+	width: 70%;
+	border-radius: 20px; */
+}
+
+.LanguageIcon {
+	/* color: yellow; */
+	height: 50px;
+	width: 50px;
+}
+
+.LanguageIcon:hover {
+	cursor: pointer;
+}
+
+.nav-btn {
+	/* width: 100px;
+	height: 40px;
+	border-radius: 15px;
+	border: none;
+	background: var(--cr); */
+}
+
+.nav-btn:active {
+	/* background-color: var(--co); */
+}
