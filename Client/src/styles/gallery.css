@@ -1,0 +1,40 @@
+.gallery-container {
+	width: 100%;
+	background-color: cornflowerblue;
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.gallery-expanded-container {
+	width: 98%;
+	background-color: burlywood;
+}
+
+.section-row {
+	display: grid;
+	grid-template-columns: 260px 1fr; /* fixed label col + flexible images col */
+	border: 0.2px solid white;
+	/* gap: 5px; */
+}
+
+.column {
+	/* border: solid 1px white; */
+}
+
+.images-area {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 300px)); /* responsive image cols */
+	/* gap: 10px; */
+	/* padding: 12px; */
+	justify-items: center;
+	align-items: center;
+	/* background-color: white; */
+	border: solid 1px white;
+}
+
+.images-area img {
+	width: 250px;
+	height: 150px;
+	border: solid 1px white;
+}

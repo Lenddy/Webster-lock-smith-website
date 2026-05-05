@@ -18,17 +18,14 @@ function Navbar() {
 
 	the idea is that the nav bar is going to nothing then the  logo start getting bigger (scaling) then have the Twinkle Smile then get smaller to fit in the nav bar  then the other elements will start showing the ends will start showing  from  both sides (from the left and righty to the center )
 
-	 or another option is to show the the remaining elements from the center to the out side they would have a smaller  scale (they would be come bigger and then shrink to their normal size )
+	or another option is to show the the remaining elements from the center to the out side they would have a smaller  scale (they would be come bigger and then shrink to their normal size )
 
-	 or have the other element render first  from the out side to the center  (growing and shrinking or moving from the out side to the inside ) then showing the logo with the effect
+	or have the other element render first  from the out side to the center  (growing and shrinking or moving from the out side to the inside ) then showing the logo with the effect
 
-	 this effect would only happen only if the users if at the top of the page 
+	this effect would only happen only if the users if at the top of the page 
 
-	 in mobile view have the effect for the logo be the same but for the other elements  be a menu that would drop down from the top  and also have the translation logo be combine with a gear wheel  so that you can put  a reduce animations so that the user does not have to see the animation every time  if they dont want to  translated site ]english and Spanish (and also dark /light theme) 
+	in mobile view have the effect for the logo be the same but for the other elements  be a menu that would drop down from the top  and also have the translation logo be combine with a gear wheel  so that you can put  a reduce animations so that the user does not have to see the animation every time  if they dont want to  translated site ]english and Spanish (and also dark /light theme) 
 
-
-
-		 
 	*/
 
 	return (
