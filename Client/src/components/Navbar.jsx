@@ -28,6 +28,20 @@ function Navbar() {
 
 	*/
 
+	/* TODO
+
+	make the dropdown  for the element s of the navbar
+	1 when user is at the top of the page the nav bar is taller and the back ground color should be --ch
+	2 after scroll make the nab bar be shorter (and maybe make the nab bar items smaller ? ) and the color should  be -lb
+	
+	3 home  ,product,  services and translate should be drop down (change the logo of the translation icon to a translation icon that has a gear well)
+
+
+
+
+
+*/
+
 	return (
 		<div className="nav-container">
 			{/* <div className="nav-container-left nav-item">

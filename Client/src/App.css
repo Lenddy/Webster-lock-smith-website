@@ -7,12 +7,15 @@
 /** Global styles */
 
 :root {
-	--cg: #2f4f4f; /* Green */
-	--co: #e9967a; /* darkorange */
-	--cw: #f8f8ff; /* ghostwhite */
-	--cr: #8b0000; /* darkred */
-	--cy: #bdb76b; /* darkyellow */
-	--bs: 0 2px 4px rgba(0, 0, 0, 0.1);
+	--lr: #c8102e; /* logo-red*/
+	--dr: #8c0c1f; /* Deep-Red */
+	--kg: #d4a843; /* key-gold */
+	--dg: #b8922a; /* dark-gold */
+	--lb: #1a1a1a; /* logo-black */
+	--ch: #2b2b2b; /* Charcoal*/
+	--mg: #3d3d3d; /* mid-gray*/
+	--lg: ##f5f5f5; /* Light-Gray*/
+	--wh: ##ffffff; /* white-*/
 }
 
 * {
