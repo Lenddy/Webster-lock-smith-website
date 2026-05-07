@@ -25,7 +25,7 @@ html,
 body {
 	width: 100%;
 	max-width: 2540px;
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 }
 
 html {
@@ -38,4 +38,26 @@ body {
 	margin: auto;
 	min-height: 100%;
 	height: 100vh;
+	scroll-behavior: smooth;
+}
+
+/* Thin scrollbar starting below the navbar */
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+	margin-top: 200px; /* matches nav height */
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--mg);
+	border-radius: 10px;
+}
+
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--mg) transparent;
 }

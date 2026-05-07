@@ -6,7 +6,18 @@ import Product_services from "./components/Product_services";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 
+import { useEffect, useState } from "react";
 function App() {
+	const [scrolled, setScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setScrolled(window.scrollY > 0);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
 	return (
 		<>
 			<Routes>
@@ -16,14 +27,11 @@ function App() {
 					path="*"
 					element={
 						<>
-							<Navbar />
+							<Navbar scrolled={scrolled} />
 							<Banner />
 							<Product_services />
 							<Gallery />
 							<Footer />
-
-							{/* about */}
-							{/* footer */}
 						</>
 					}
 				/>

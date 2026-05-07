@@ -18,6 +18,18 @@
 	--wh: ##ffffff; /* white-*/
 }
 
+.light-theme {
+	--lr: #3810c8; /* logo-red*/
+	--dr: #320c8c; /* Deep-Red */
+	--kg: #735206; /* key-gold */
+	--dg: #443409; /* dark-gold */
+	--lb: #1a1a1a; /* logo-black */
+	--ch: #cfcdcd; /* Charcoal*/
+	--mg: #7d7979; /* mid-gray*/
+	--lg: ##000009; /* Light-Gray*/
+	--wh: ##000000; /* white-*/
+}
+
 * {
 	/* Reset some default styles */
 	margin: 0;
