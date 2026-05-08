@@ -26,19 +26,23 @@ body {
 	width: 100%;
 	max-width: 2540px;
 	/* overflow-x: hidden; */
+	scroll-behavior: smooth;
 }
 
 html {
-	scroll-behavior: smooth;
+	/* scroll-behavior: smooth; */
 	min-width: 100vw;
 	/* overflow: hidden; */
+	overflow-x: hidden;
 }
 
 body {
 	margin: auto;
 	min-height: 100%;
 	height: 100vh;
-	scroll-behavior: smooth;
+	/* scroll-behavior: smooth; */
+	/* overflow: hidden; */
+	/* overflow-x: hidden; */
 }
 
 /* Thin scrollbar starting below the navbar */

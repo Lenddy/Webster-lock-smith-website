@@ -1,13 +1,16 @@
 import "../styles/navbar.css";
 import Logo from "../assets/WebsterSiteLogo.png";
+import video from "../assets/logo.mp4";
+import { useEffect, useState } from "react";
 
-function Navbar({ scrolled }) {
+function Navbar({ scrolled, onHomeClick, onProductsClick, onServicesClick, onAboutClick }) {
 	/*
 		//TODO - 
 		make the nav bar  be 20-30px taler and a different color
 			once user scroll down the navbar becomes 20-30 px shorter and changes color and maintains that height and color  
 			if users scroll up pass a point i will  become taller and change color again 
 
+			
 
 
 
@@ -30,12 +33,33 @@ function Navbar({ scrolled }) {
 
 	/* TODO
 
-	make the dropdown  for the element s of the navbar
-	1 when user is at the top of the page the nav bar is taller and the back ground color should be --ch
-	2 after scroll make the nav bar be shorter (and maybe make the nab bar items smaller ? ) and the color should  be -lb
-	
-	3 home  ,product,  services and translate should be drop down (change the logo of the translation icon to a translation icon that has a gear wheel)
+	make the nav bar a little taller 
+	so the nav bar is a litle bigger over all 
 	*/
+
+	// function ScrollToTopBtn() {
+	const [showBtn, setShowBtn] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setShowBtn(window.scrollY > 0);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+	};
+
+	// if (!showBtn) return null;
+
+	// return (
+	// 	<button onClick={scrollToTop} style={{ position: "fixed", bottom: "20px", right: "20px" }}>
+	// 		Back to Top
+	// 	</button>
+	// );
+	// }
 
 	return (
 		<div className={`nav-container  expand  ${scrolled ? "nav-scrolled" : ""}`}>
@@ -49,7 +73,7 @@ function Navbar({ scrolled }) {
 			<div className="nav-items">
 				<ul>
 					<li>
-						<h4>
+						<h4 onClick={onHomeClick}>
 							Home <span className="chevron">▾</span>
 						</h4>
 						<div className="nav-dropdown-menu">
@@ -60,7 +84,7 @@ function Navbar({ scrolled }) {
 					</li>
 
 					<li>
-						<h4>
+						<h4 onClick={onProductsClick}>
 							Products
 							<span className="chevron">▾</span>
 						</h4>
@@ -72,7 +96,10 @@ function Navbar({ scrolled }) {
 					</li>
 
 					<li>
-						<h4>
+						<h4
+							onClick={onServicesClick}
+							// onClick={onProductsClick}
+						>
 							Services
 							<span className="chevron">▾</span>
 						</h4>
@@ -83,12 +110,20 @@ function Navbar({ scrolled }) {
 						</div>
 					</li>
 					<li>
-						<div className="logo-container">
-							<img src={Logo} alt="" className="logo" />
+						<div className="logo-container" onClick={scrollToTop}>
+							{/* <img src={Logo} alt="" className="logo" /> */}
+							<video
+								src={video}
+								autoPlay
+								muted
+								playsInline
+								// className="test-video"
+								className="logo"
+							/>
 						</div>
 					</li>
 					<li>
-						<h4>About</h4>
+						<h4 onClick={onAboutClick}>About</h4>
 					</li>
 
 					<li>

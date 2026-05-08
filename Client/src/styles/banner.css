@@ -1,13 +1,13 @@
 /* container */
 .banner-container {
 	margin-top: 100px;
-	background-color: blue;
+	background-color: var(--dr);
 	display: flex;
 	justify-content: start;
 	align-items: center;
 	flex-direction: column;
-	height: 800px;
-	min-height: 800px;
+	height: 1500px;
+	min-height: 1500px;
 }
 
 /* title */
@@ -24,10 +24,11 @@
 /* image container  */
 
 .banner-image-container {
-	width: 90%;
-	height: 90%;
-	max-height: 450px;
-	background-color: red;
+	width: 98%;
+	/* height: 98%; */
+	height: 700px;
+	/* max-height: 450px; */
+	background-color: var(--lb);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -37,11 +38,20 @@
 .banner-image {
 	width: 99%;
 	height: 98%;
-	border: solid white 1px;
+	border: solid var(--kg) 1px;
 	border-radius: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.banner-image img {
+	/* width: 1500px; */
+	/* height: 800px; */
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	object-fit: cover;
 }
 
 .banner-about-container {

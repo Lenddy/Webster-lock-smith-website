@@ -1,4 +1,5 @@
 import "../styles/banner.css";
+import front from "../assets/Webster-Front.jpg";
 
 function Banner() {
 	/*
@@ -34,7 +35,7 @@ function Banner() {
 			</div>
 			<div className="banner-image-container">
 				<div className="banner-image">
-					<img src="path/to/your/image.jpg" alt="Banner" />
+					<img src={front} alt="Banner" />
 				</div>
 			</div>
 

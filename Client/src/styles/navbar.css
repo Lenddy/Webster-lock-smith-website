@@ -22,6 +22,8 @@
 	color: var(--wh);
 	max-width: 2540px;
 	animation: expand-2 4000ms ease-out;
+	border-top: solid var(--kg) 1px;
+	border-bottom: solid var(--kg) 1px;
 }
 
 .logo-container {
@@ -63,6 +65,11 @@
 
 .logo {
 	height: 95%;
+	border-radius: 100px;
+	border: 1px solid var(--kg);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom: none;
 }
 
 /*? nav center */
@@ -73,10 +80,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: solid var(--cw) 1px;
 	transition:
-		width 300ms ease,
-		height 300ms ease;
+		width 300ms ease-in,
+		height 300ms ease-in;
 }
 
 .nav-items ul {
@@ -257,8 +263,8 @@ h4 {
 	width: 60px;
 	height: 60px;
 	transition:
-		width 500ms ease,
-		height 200ms ease;
+		width 250ms ease-in,
+		height 200ms ease-in;
 }
 
 /* .nav-container {
