@@ -29,14 +29,29 @@ function App() {
 		ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 	};
 
+	// function ScrollToTopBtn() {
+	const [showBtn, setShowBtn] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setShowBtn(window.scrollY > 0);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+	};
+
 	return (
 		<>
 			<Routes>
 				<Route
 					path="*"
 					element={
-						<>
-							<Navbar scrolled={scrolled} onHomeClick={() => scrollTo(homeRef)} onProductsClick={() => scrollTo(productsRef)} onServicesClick={() => scrollTo(servicesRef)} onAboutClick={() => scrollTo(aboutRef)} />
+						<div className="app-wrapper">
+							<Navbar scrolled={scrolled} onHomeClick={() => scrollTo(homeRef)} onProductsClick={() => scrollTo(productsRef)} onServicesClick={() => scrollTo(servicesRef)} onAboutClick={() => scrollTo(aboutRef)} scrollToTop={scrollToTop} />
 
 							{/* attach refs to a wrapper div on each component */}
 							<div ref={homeRef}>
@@ -56,7 +71,7 @@ function App() {
 							</div>
 
 							<Test />
-						</>
+						</div>
 					}
 				/>
 			</Routes>

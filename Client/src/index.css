@@ -26,14 +26,14 @@ body {
 	width: 100%;
 	max-width: 2540px;
 	/* overflow-x: hidden; */
-	scroll-behavior: smooth;
+	/* scroll-behavior: smooth; */
 }
 
 html {
 	/* scroll-behavior: smooth; */
 	min-width: 100vw;
 	/* overflow: hidden; */
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 }
 
 body {

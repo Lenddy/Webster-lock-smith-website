@@ -1,6 +1,8 @@
 import "../styles/banner.css";
 import front from "../assets/Webster-Front.jpg";
 
+import { useState } from "react";
+
 function Banner() {
 	/*
 	//TODO - 
@@ -26,6 +28,8 @@ function Banner() {
 
 	*/
 
+	const [expanded, setExpanded] = useState(false);
+
 	return (
 		<div className="banner-container">
 			<div className="banner-title">
@@ -40,10 +44,19 @@ function Banner() {
 			</div>
 
 			<div className="banner-about-container">
-				<div className="banner-about-inner-container">
-					<div className="banner-description-container">
-						<div className="banner-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos veritatis blanditiis similique nobis est, harum cupiditate! Fugit fuga dicta blanditiis error, praesentium voluptatibus rerum quaerat sit accusamus. In laboriosam cumque, ex facere incidunt dolor itaque dolorem repudiandae iusto similique est natus sunt nulla possimus obcaecati consequuntur veniam, explicabo impedit. Tenetur quas, excepturi qui perferendis natus rerum dolor veniam, eius rem in alias, omnis aut beatae cumque quam. Dicta, obcaecati totam placeat quis optio, aut ab unde necessitatibus quod cupiditate aliquam vero sapiente delectus, praesentium tempore facilis nulla quos? Veritatis facere iure ipsum, at odit nobis dolorem. Labore veritatis iste ea?</div>
+				<div className="banner-about-wrapper-container">
+					<div className="banner-description-wrapper">
+						{/* THE BOX THAT COLLAPSES — this one gets max-height */}
+						<div className={`banner-description-container ${expanded ? "expanded" : ""}`}>
+							<div className="banner-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nulla magni fugit eum nesciunt, et dolores corrupti! Voluptatem molestias distinctio itaque. Dolorem, quaerat laboriosam aspernatur illum officia cumque quia nisi voluptatum cum doloribus dignissimos adipisci minus, tempora assumenda aliquam inventore sunt! Quos inventore incidunt recusandae blanditiis qui deleniti. Esse, cupiditate saepe natus officiis obcaecati a nulla fuga soluta. Sint facilis dolore tempore deserunt cum hic doloremque laboriosam dolorem quisquam quaerat aspernatur fuga repellendus voluptatibus, dolor, pariatur doloribus quasi laborum veniam delectus corporis expedita, itaque eius. Aut distinctio asperiores adipisci, sed soluta doloremque consectetur accusamus ab incidunt nam cum molestiae repellendus hic perferendis non, tenetur a veritatis dicta deserunt laborum! Ab veniam officiis consequuntur incidunt vero dolore, molestiae veritatis architecto consectetur laborum, debitis quibusdam sit animi facilis ex impedit excepturi natus doloremque fugit itaque. Quam nulla officia maiores autem quod doloribus porro quia obcaecati recusandae quaerat suscipit laboriosam, placeat voluptates accusantium laudantium magni saepe labore dicta culpa fuga sit quasi optio. Accusamus odit dignissimos, vitae sunt aliquid veritatis, at deleniti voluptate quam veniam modi laudantium saepe sit, quia perferendis eaque! Dolor reprehenderit, porro dolorem molestias fugit recusandae cumque autem repellendus minus, excepturi hic consequatur vero nostrum quos cum veritatis repellat quibusdam</div>
+						</div>
+
+						{/* BUTTON sits outside the collapsing box */}
+						<button className="banner-expand-btn" onClick={() => setExpanded(!expanded)}>
+							{expanded ? "🔓 Show less" : "🔒 Read more about us"}
+						</button>
 					</div>
+
 					<div className="banner-about-image-container">
 						<div className="banner-about-image">
 							<img src="path/to/your/image.jpg" alt="about-Banner" />
@@ -56,3 +69,11 @@ function Banner() {
 }
 
 export default Banner;
+<div className="banner-description-container">
+	{/* expanded class goes HERE on the text div */}
+	<div className={`banner-description ${expanded ? "expanded" : ""}`}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nulla magni fugit eum nesciunt, et dolores corrupti! Voluptatem molestias distinctio itaque. Dolorem, quaerat laboriosam aspernatur illum officia cumque quia nisi voluptatum cum doloribus dignissimos adipisci minus, tempora assumenda aliquam inventore sunt! Quos inventore incidunt recusandae blanditiis qui deleniti. Esse, cupiditate saepe natus officiis obcaecati a nulla fuga soluta. Sint facilis dolore tempore deserunt cum hic doloremque laboriosam dolorem quisquam quaerat aspernatur fuga repellendus voluptatibus, dolor, pariatur doloribus quasi laborum veniam delectus corporis expedita, itaque eius. Aut distinctio asperiores adipisci, sed soluta doloremque consectetur accusamus ab incidunt nam cum molestiae repellendus hic perferendis non, tenetur a veritatis dicta deserunt laborum! Ab veniam officiis consequuntur incidunt vero dolore, molestiae veritatis architecto consectetur laborum, debitis quibusdam sit animi facilis ex impedit excepturi natus doloremque fugit itaque. Quam nulla officia maiores autem quod doloribus porro quia obcaecati recusandae quaerat suscipit laboriosam, placeat voluptates accusantium laudantium magni saepe labore dicta culpa fuga sit quasi optio. Accusamus odit dignissimos, vitae sunt aliquid veritatis, at deleniti voluptate quam veniam modi laudantium saepe sit, quia perferendis eaque! Dolor reprehenderit, porro dolorem molestias fugit recusandae cumque autem repellendus minus, excepturi hic consequatur vero nostrum quos cum veritatis repellat quibusdam. </div>
+
+	<button className="banner-expand-btn" onClick={() => setExpanded(!expanded)}>
+		{expanded ? "🔓 Show less" : "🔒 Read more about us"}
+	</button>
+</div>;

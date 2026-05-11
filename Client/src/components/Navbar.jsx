@@ -3,21 +3,14 @@ import Logo from "../assets/WebsterSiteLogo.png";
 import video from "../assets/logo.mp4";
 import { useEffect, useState } from "react";
 
-function Navbar({ scrolled, onHomeClick, onProductsClick, onServicesClick, onAboutClick }) {
+function Navbar({ scrolled, scrollToTop, onHomeClick, onProductsClick, onServicesClick, onAboutClick }) {
 	/*
 		//TODO - 
-		make the nav bar  be 20-30px taler and a different color
-			once user scroll down the navbar becomes 20-30 px shorter and changes color and maintains that height and color  
-			if users scroll up pass a point i will  become taller and change color again 
-
-			
-
-
 
 		products , services and translate will have drop downs (will about have one ? to go there and open the collapse section ?  )
 
 
-	see if you some how can make the logo  have a animation where the teeth glow (Twinkle Smile)  when first loading the page  
+	// see if you some how can make the logo  have a animation where the teeth glow (Twinkle Smile)  when first loading the page  
 
 	the idea is that the nav bar is going to nothing then the  logo start getting bigger (scaling) then have the Twinkle Smile then get smaller to fit in the nav bar  then the other elements will start showing the ends will start showing  from  both sides (from the left and righty to the center )
 
@@ -32,25 +25,25 @@ function Navbar({ scrolled, onHomeClick, onProductsClick, onServicesClick, onAbo
 	*/
 
 	/* TODO
+	figure out if you can make the scroll to top work with the  overflow-x: hidden;
 
-	make the nav bar a little taller 
-	so the nav bar is a litle bigger over all 
+
 	*/
 
 	// function ScrollToTopBtn() {
-	const [showBtn, setShowBtn] = useState(false);
+	// const [showBtn, setShowBtn] = useState(false);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			setShowBtn(window.scrollY > 0);
-		};
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	// useEffect(() => {
+	// 	const handleScroll = () => {
+	// 		setShowBtn(window.scrollY > 0);
+	// 	};
+	// 	window.addEventListener("scroll", handleScroll);
+	// 	return () => window.removeEventListener("scroll", handleScroll);
+	// }, []);
 
-	const scrollToTop = () => {
-		window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-	};
+	// const scrollToTop = () => {
+	// 	window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+	// };
 
 	// if (!showBtn) return null;
 

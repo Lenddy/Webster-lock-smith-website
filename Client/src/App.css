@@ -40,6 +40,12 @@ body {
 	/* background-color: red; */
 }
 
+.app-wrapper {
+	width: 100%;
+	overflow-x: hidden; /* overflow lives HERE, not on body */
+	position: relative;
+}
+
 /* 
 **********************************************************************
 **********************************************************************
