@@ -1,5 +1,10 @@
 import "../styles/banner.css";
-import front from "../assets/Webster-Front.jpg";
+import front from "../assets/banner/Webster-Front.jpg";
+import banner from "../assets/banner/banner-services.png";
+import general from "../assets/general/general-1.png";
+// import general from "../assets/general/general-1.webp";
+// import blankkeys from "../assets/general/blank-keys-on-wall.png";
+import blankkeys from "../assets/general/blank-keys-on-wall.webp";
 
 import { useState } from "react";
 
@@ -40,26 +45,34 @@ function Banner() {
 			<div className="banner-image-container">
 				<div className="banner-image">
 					<img src={front} alt="Banner" />
+					{/* <img src={banner} alt="Banner" /> */}
 				</div>
 			</div>
 
 			<div className="banner-about-container">
 				<div className="banner-about-wrapper-container">
-					<div className="banner-description-wrapper">
-						{/* THE BOX THAT COLLAPSES — this one gets max-height */}
-						<div className={`banner-description-container ${expanded ? "expanded" : ""}`}>
-							<div className="banner-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nulla magni fugit eum nesciunt, et dolores corrupti! Voluptatem molestias distinctio itaque. Dolorem, quaerat laboriosam aspernatur illum officia cumque quia nisi voluptatum cum doloribus dignissimos adipisci minus, tempora assumenda aliquam inventore sunt! Quos inventore incidunt recusandae blanditiis qui deleniti. Esse, cupiditate saepe natus officiis obcaecati a nulla fuga soluta. Sint facilis dolore tempore deserunt cum hic doloremque laboriosam dolorem quisquam quaerat aspernatur fuga repellendus voluptatibus, dolor, pariatur doloribus quasi laborum veniam delectus corporis expedita, itaque eius. Aut distinctio asperiores adipisci, sed soluta doloremque consectetur accusamus ab incidunt nam cum molestiae repellendus hic perferendis non, tenetur a veritatis dicta deserunt laborum! Ab veniam officiis consequuntur incidunt vero dolore, molestiae veritatis architecto consectetur laborum, debitis quibusdam sit animi facilis ex impedit excepturi natus doloremque fugit itaque. Quam nulla officia maiores autem quod doloribus porro quia obcaecati recusandae quaerat suscipit laboriosam, placeat voluptates accusantium laudantium magni saepe labore dicta culpa fuga sit quasi optio. Accusamus odit dignissimos, vitae sunt aliquid veritatis, at deleniti voluptate quam veniam modi laudantium saepe sit, quia perferendis eaque! Dolor reprehenderit, porro dolorem molestias fugit recusandae cumque autem repellendus minus, excepturi hic consequatur vero nostrum quos cum veritatis repellat quibusdam</div>
-						</div>
+					<div className="banner-description-container">
+						<div className={`banner-description ${expanded ? "expanded" : ""}`}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nulla magni fugit eum nesciunt, et dolores corrupti! Voluptatem molestias distinctio itaque. Dolorem, quaerat laboriosam aspernatur illum officia cumque quia nisi voluptatum cum doloribus dignissimos adipisci minus, tempora assumenda aliquam inventore sunt! Quos inventore incidunt recusandae blanditiis qui deleniti. Esse, cupiditate saepe natus officiis obcaecati a nulla fuga soluta. Sint facilis dolore tempore deserunt cum hic doloremque laboriosam dolorem quisquam quaerat aspernatur fuga repellendus voluptatibus, dolor, pariatur doloribus quasi laborum veniam delectus corporis expedita, itaque eius. Aut distinctio asperiores adipisci, sed soluta doloremque consectetur accusamus ab incidunt nam cum molestiae repellendus hic perferendis non, tenetur a veritatis dicta deserunt laborum! Ab veniam officiis consequuntur incidunt vero dolore, molestiae veritatis architecto consectetur laborum, debitis quibusdam sit animi facilis ex impedit excepturi natus doloremque fugit itaque. Quam nulla officia maiores autem quod doloribus porro quia obcaecati recusandae quaerat suscipit laboriosam, placeat voluptates accusantium laudantium magni saepe labore dicta culpa fuga sit quasi optio. Accusamus odit dignissimos, vitae sunt aliquid veritatis, at deleniti voluptate quam veniam modi laudantium saepe sit, quia perferendis eaque! Dolor reprehenderit, porro dolorem molestias fugit recusandae cumque autem repellendus minus, excepturi hic consequatur vero nostrum quos cum veritatis repellat quibusdam.</div>
+						<div className="banner-about-expand-btn-container">
+							{/*
+								 add litle pictures (icons) keys , locks other similitar thinks 
+								 and make them move around  like butmp into each other
+									the banner-description and the btn will be on to op it (z index)
+								*/}
 
-						{/* BUTTON sits outside the collapsing box */}
-						<button className="banner-expand-btn" onClick={() => setExpanded(!expanded)}>
-							{expanded ? "🔓 Show less" : "🔒 Read more about us"}
-						</button>
+							<button className="banner-about-expand-btn" onClick={() => setExpanded(!expanded)}>
+								{expanded ? "🔓 Show less" : "🔒 Read more about us"}
+							</button>
+						</div>
 					</div>
 
 					<div className="banner-about-image-container">
 						<div className="banner-about-image">
-							<img src="path/to/your/image.jpg" alt="about-Banner" />
+							{/* {general} */}
+							{/* <img src={general} alt="Banner" /> */}
+
+							{/* <img src={banner} alt="Banner" /> */}
+							<img src={blankkeys} alt="Banner" />
 						</div>
 					</div>
 				</div>
@@ -69,11 +82,3 @@ function Banner() {
 }
 
 export default Banner;
-<div className="banner-description-container">
-	{/* expanded class goes HERE on the text div */}
-	<div className={`banner-description ${expanded ? "expanded" : ""}`}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nulla magni fugit eum nesciunt, et dolores corrupti! Voluptatem molestias distinctio itaque. Dolorem, quaerat laboriosam aspernatur illum officia cumque quia nisi voluptatum cum doloribus dignissimos adipisci minus, tempora assumenda aliquam inventore sunt! Quos inventore incidunt recusandae blanditiis qui deleniti. Esse, cupiditate saepe natus officiis obcaecati a nulla fuga soluta. Sint facilis dolore tempore deserunt cum hic doloremque laboriosam dolorem quisquam quaerat aspernatur fuga repellendus voluptatibus, dolor, pariatur doloribus quasi laborum veniam delectus corporis expedita, itaque eius. Aut distinctio asperiores adipisci, sed soluta doloremque consectetur accusamus ab incidunt nam cum molestiae repellendus hic perferendis non, tenetur a veritatis dicta deserunt laborum! Ab veniam officiis consequuntur incidunt vero dolore, molestiae veritatis architecto consectetur laborum, debitis quibusdam sit animi facilis ex impedit excepturi natus doloremque fugit itaque. Quam nulla officia maiores autem quod doloribus porro quia obcaecati recusandae quaerat suscipit laboriosam, placeat voluptates accusantium laudantium magni saepe labore dicta culpa fuga sit quasi optio. Accusamus odit dignissimos, vitae sunt aliquid veritatis, at deleniti voluptate quam veniam modi laudantium saepe sit, quia perferendis eaque! Dolor reprehenderit, porro dolorem molestias fugit recusandae cumque autem repellendus minus, excepturi hic consequatur vero nostrum quos cum veritatis repellat quibusdam. </div>
-
-	<button className="banner-expand-btn" onClick={() => setExpanded(!expanded)}>
-		{expanded ? "🔓 Show less" : "🔒 Read more about us"}
-	</button>
-</div>;
