@@ -1,0 +1,30 @@
+make side bar like MongoDB  and decide what nav bar to use (  allow the users  to select the position of the nab var top ,down, left or right ) also add a pop up in the setting in nav bar to let the users know that they can change the nav bar position as well  as theme and language
+
+
+
+make the products and services into one tab in the navbar
+
+
+
+
+
+
+
+get a list of client (management companies that we manage) and make a way to get there from the nav bar 
+
+
+
+
+
+make the scroll to top btn at the bottom right of the page 
+
+
+
+
+
+
+
+
+
+
+use a lightbulb svg and use gradient color  with blur to simulate the light turning on and of  

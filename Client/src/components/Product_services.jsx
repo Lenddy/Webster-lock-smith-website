@@ -1,5 +1,7 @@
-import React from "react";
 import "../styles/products-services.css";
+import { useState } from "react";
+import { products } from "../utilities/products-services";
+import { services } from "../utilities/products-services";
 
 //! in the title make an animation that change products and services (our Products ===> Services)
 
@@ -14,12 +16,25 @@ import "../styles/products-services.css";
 }
 
 function Product_services() {
+	const [expanded, setExpanded] = useState(false);
+
+	const [openProduct, setOpenProduct] = useState(null);
+	const [openService, setOpenService] = useState(null);
+
+	const toggleProduct = (index) => {
+		setOpenProduct(openProduct === index ? null : index);
+	};
+
+	const toggleService = (index) => {
+		setOpenService(openService === index ? null : index);
+	};
+
 	return (
 		<div className="product-services-container">
 			<div className="products-services-title">
-				<h1>Products and Services</h1>
+				<h1>Our Products And Services</h1>
 			</div>
-			<div className="products-services-bottom-container">
+			<div className="products-services-wrapper">
 				<div className="products-container">
 					<div className="products-title">
 						<h2>Products</h2>
@@ -30,18 +45,17 @@ function Product_services() {
 
 					<div className="products">
 						<ul>
-							<li>
-								<h3>product name</h3>
-							</li>
-							<li>
-								<h3>product name</h3>
-							</li>
-							<li>
-								<h3>product name</h3>
-							</li>
-							<li>
-								<h3>product name</h3>
-							</li>
+							{products.map((product, index) => (
+								<li key={index} className={openProduct === index ? "expanded" : ""} onClick={() => toggleProduct(index)}>
+									<div className="item-header">
+										<h3>{product.name}</h3>
+										<span className="item-chevron">{openProduct === index ? "🔓" : "🔒"}</span>
+									</div>
+									<div className="item-body">
+										<p>{product.description}</p>
+									</div>
+								</li>
+							))}
 						</ul>
 					</div>
 				</div>
@@ -56,18 +70,17 @@ function Product_services() {
 					</div>
 					<div className="services">
 						<ul>
-							<li>
-								<h3>services</h3>
-							</li>
-							<li>
-								<h3>services</h3>
-							</li>
-							<li>
-								<h3>services</h3>
-							</li>
-							<li>
-								<h3>services</h3>
-							</li>
+							{services.map((service, index) => (
+								<li key={index} className={openService === index ? "expanded" : ""} onClick={() => toggleService(index)}>
+									<div className="item-header">
+										<h3>{service.name}</h3>
+										<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
+									</div>
+									<div className="item-body">
+										<p>{service.description}</p>
+									</div>
+								</li>
+							))}
 						</ul>
 					</div>
 				</div>

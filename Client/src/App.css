@@ -37,7 +37,7 @@
 }
 
 body {
-	/* background-color: red; */
+	background-color: var(--lb);
 }
 
 .app-wrapper {

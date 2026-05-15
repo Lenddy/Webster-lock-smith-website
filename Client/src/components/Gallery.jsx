@@ -34,120 +34,19 @@ function Gallery() {
 						<h3 className="column">{section.name}</h3>
 						<div className="images-area">
 							{section.images.map((img, i) => (
-								<img key={i} src={img.src} alt={img.alt} />
+								<div className="image-wrapper" key={i}>
+									<img key={i} src={img.src} alt={img.alt} />
+									{/* <img src={Hes} alt="test" /> */}
+									{/* <img src={Falcon} alt="test" /> */}
+									{/* <img src={Folger} alt="test" /> */}
+								</div>
 							))}
 						</div>
 					</section>
 				))}
-
-				{/* <section className="section-row">
-					<h3 className="column">section title 1</h3>
-					<div className="images-area">
-						<img src={Logo} alt="test image 1" />
-						<img src={Hes} alt="test image 2" />
-						<img src={Falcon} alt="test image 3" />
-						<img src={Folger} alt="test image 4" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-						<img src="" alt="test image 5" />
-					</div>
-				</section>
-
-				<section className="section-row">
-					<h3 className="column">section title 2</h3>
-					<div className="images-area">
-						<img src="" alt="test image 1" />
-						<img src="" alt="test image 2" />
-						<img src="" alt="test image 3" />
-						<img src="" alt="test image 4" />
-						<img src="" alt="test image 5" />
-					</div>
-				</section> */}
 			</div>
 		</div>
 	);
 }
 
 export default Gallery;
-
-// <ul>
-// 					{/* {gallery(50)} */}
-// 					<li className="column">col</li>
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-
-// 					<li className="row">
-// 						<img src="" alt="gallery image" />
-// 					</li>
-// 				</ul>

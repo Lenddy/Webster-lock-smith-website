@@ -15,30 +15,34 @@ function Footer() {
 			<div className="footer-content-container">
 				<div className="useful-links-container">
 					<div className="links-container">
-						<h4>title</h4>
+						<h4>Home</h4>
+						<ul>
+							<li></li>
+							<li>link 2 </li>
+							<li>link 3</li>
+							<li>link 4</li>
+						</ul>
+					</div>
+					<div className="links-container">
+						<h4>Areas we service</h4>
+						<ul>
+							<li>Bx</li>
+							<li>um</li>
+							<li>bk</li>
+							<li>qns</li>
+							<li>lm</li>
+						</ul>
+					</div>
+					<div className="links-container">
+						<h4>social media</h4>
 						<ul>
 							<li>link 1</li>
 							<li>link 2 </li>
 							<li>link 3</li>
-							<li>link 4</li>
-							<li>link 5 </li>
-							<li>link 6</li>
-							<li>link 7</li>
 						</ul>
 					</div>
-					<div className="links-container">
-						<h4>title</h4>
-						<ul>
-							<li>link 1</li>
-							<li>link 2 </li>
-							<li>link 3</li>
-							<li>link 4</li>
-							<li>link 5 </li>
-							<li>link 6</li>
-							<li>link 7</li>
-						</ul>
-					</div>
-					<div className="links-container">
+
+					{/* <div className="links-container">
 						<h4>social media</h4>
 						<ul>
 							<li>link 1</li>
@@ -49,7 +53,7 @@ function Footer() {
 							<li>link 6</li>
 							<li>link 7</li>
 						</ul>
-					</div>
+					</div> */}
 				</div>
 
 				<div className="schedule-container">

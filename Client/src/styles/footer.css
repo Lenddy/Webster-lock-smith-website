@@ -1,28 +1,42 @@
+/*--lr: #c8102e;  logo-red*
+--dr: #8c0c1f;  Deep-Red *
+--kg: #d4a843;  key-gold *
+--dg: #b8922a;  dark-gold *
+--lb: #1a1a1a;  logo-black *
+--ch: #2b2b2b;  Charcoal*
+--mg: #3d3d3d;  mid-gray*
+--lg: ##f5f5f5;  Light-Gray*
+--wh: ##ffffff; /* white-*/
+
 .footer-container {
-	background-color: red;
+	/* background-color: var(--dr); */
+	background-color: var(--lb);
 	width: 100%;
-	height: 400px;
+	height: 500px;
+	/* margin-top: 25px; */
 	display: flex;
-	justify-content: center;
+	justify-content: end;
 	align-items: center;
 	flex-direction: column;
 }
 
 .footer-content-container {
-	background-color: darkgreen;
-	width: 80%;
-	height: 90%;
+	/* background-color: darkgreen; */
+	width: 90%;
+	height: 60%;
+	max-height: 400px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	border-radius: 10px;
+	/* border: solid 1px var(--kg); */
 }
 
 /* useful-links-container */
 
 .useful-links-container {
 	width: 60%;
-	background-color: aquamarine;
+	/* background-color: aquamarine; */
 	height: 100%;
 	display: flex;
 	justify-content: space-around;
@@ -40,7 +54,7 @@
 
 .schedule-container {
 	width: 25%;
-	background-color: blanchedalmond;
+	/* background-color: blanchedalmond; */
 	height: 100%;
 	border: solid white 1px;
 	border-radius: 10px;
@@ -54,5 +68,5 @@
 	height: 90%;
 	border: solid white 1px;
 	border-radius: 10%;
-	background-color: blue;
+	/* background-color: blue; */
 }

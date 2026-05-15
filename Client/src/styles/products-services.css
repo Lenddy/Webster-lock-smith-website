@@ -1,68 +1,110 @@
+/*--lr: #c8102e;  logo-red*
+--dr: #8c0c1f;  Deep-Red *
+--kg: #d4a843;  key-gold *
+--dg: #b8922a;  dark-gold *
+--lb: #1a1a1a;  logo-black *
+--ch: #2b2b2b;  Charcoal*
+--mg: #3d3d3d;  mid-gray*
+--lg: ##f5f5f5;  Light-Gray*
+--wh: ##ffffff; /* white-*/
+
 .product-services-container {
-	background-color: purple;
-	margin-top: 50px;
+	/* background-color: var(--ch); */
+	background-color: var(--lb);
+	/* margin-top: 50px; */
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: start;
 	align-items: center;
+	min-height: 600px;
 }
+/* products-services-wrapper */
 
-.products-services-bottom-container {
-	background-color: green;
+.products-services-wrapper {
+	/* background-color: red; */
 	display: flex;
-	width: 95%;
-	gap: 5px;
+	justify-content: space-around;
+	width: 98%;
+	/* height: 700px; */
+	/* max-height: 100%; */
+	gap: 10px;
+	/* border: solid 1px var(--lg); */
+	/* border: solid 1px white; */
+
+	border-radius: 10px;
 }
 
 .products-container,
 .services-container {
-	background-color: blue;
-	border: solid 1px white;
+	/* flex: 1;  */
+	width: 50%;
+	/* background-color: blue; */
+	/* border: solid 1px white; */
 	border-radius: 10px;
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
+	padding: 10px;
+	/* border: solid 1px var(--wh); */
 }
 
 .services-container {
-	background-color: green;
-}
-
-.products-description,
-.services-description {
-	/* width: 60%; */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.products-description p,
-.services-description p {
-	width: 80%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.products,
-.services {
-	list-style-type: none;
-	background-color: red;
+	/* background-color: green; */
 }
 
 .products ul,
 .services ul {
 	list-style-type: none;
-	background-color: darkkhaki;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
+/* each collapsible item */
 .products ul li,
 .services ul li {
-	border: solid white 1px;
+	max-height: 50px; /* collapsed — just shows the header */
+	overflow: hidden;
+	transition: max-height 0.4s ease;
+	background-color: var(--mg);
+	border-radius: 10px;
+	cursor: pointer;
+	border: solid 1px var(--kg);
 }
 
-.products ul li h3,
-.services ul li h3 {
-	text-align: left;
+.products ul li.expanded,
+.services ul li.expanded {
+	max-height: 500px;
+}
+
+/* header row — always visible */
+.item-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 14px;
+	color: var(--wh);
+}
+
+.item-header h3 {
+	margin: 0;
+	font-size: 16px;
+}
+
+.item-chevron {
+	font-size: 16px;
+}
+
+/* body — hidden until expanded */
+.item-body {
+	padding: 0 14px 12px;
+	color: var(--lg);
+	line-height: 1.7;
+	font-size: 14px;
+}
+
+.item-body p {
+	margin: 0;
 }
