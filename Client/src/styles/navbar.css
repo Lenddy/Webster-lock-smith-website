@@ -21,9 +21,33 @@
 	top: 0;
 	color: var(--wh);
 	max-width: 2540px;
-	animation: expand-2 4000ms ease-out;
+	animation: expand-1 1200ms ease-out;
 	border-top: solid var(--kg) 1px;
 	border-bottom: solid var(--kg) 1px;
+}
+
+/* @keyframes expand- {
+	0% {
+		scale: 1;
+	}
+	50% {
+		scale: 1.5;
+	}
+	100% {
+		scale: 1;
+	}
+} */
+
+@keyframes expand-1 {
+	0% {
+		height: 100px;
+	}
+	50% {
+		height: 150px;
+	}
+	100% {
+		height: 100px;
+	}
 }
 
 .logo-container {
@@ -32,11 +56,9 @@
 	align-items: center;
 	width: 100px;
 	height: 100px;
-	/* background-color: var(--kg); */
-	/* background-color: var(--dg); */
-	/* border: solid 0.5px var(--kg); */
 	border-radius: 50px;
-	animation: expand 4000ms ease-out;
+	/* this is the animation that the timing needs to change  */
+	/* animation: expand 900ms ease-out; */
 }
 
 .logo {
@@ -247,71 +269,38 @@ h4 {
 		height 200ms ease-in;
 }
 
-/* .nav-container {
-	height: 60px; 
-	background-color: var(--lb);
+/* Apply to logo container */
+.logo-animate {
+	animation: logo-entrance 1200ms ease-out forwards;
 }
 
-.logo-container {
-	width: 60px;
-	height: 60px;
-	transition:
-		width 300ms ease,
-		height 300ms ease;
-} */
-
-@keyframes expand-3 {
-	0% {
-		scale: 1;
-	}
-	50% {
-		scale: 1.5;
-	}
-	100% {
-		scale: 1;
-	}
+/* Left side items — start hidden */
+.nav-left-1,
+.nav-left-2,
+.nav-right-1,
+.nav-right-2 {
+	opacity: 0; /* hidden until animation fires */
 }
 
-@keyframes expand-4 {
-	0% {
-		height: 100px;
-	}
-	50% {
-		height: 150px;
-	}
-	100% {
-		height: 100px;
-	}
+/* Left item 1 — closest to logo, fires first */
+.nav-left-1 {
+	animation: slide-from-center-left 400ms ease-out 700ms forwards; /* starts as logo begins shrinking */
 }
 
-/* .top-left-to-center {
-	animation: top-left-to-center 500ms linear;
+/* Left item 2 — furthest left, fires second */
+.nav-left-2 {
+	animation: slide-from-center-left 400ms ease-out 900ms forwards;
 }
 
-.top-right-to-center {
-	animation: top-right-to-center 500ms linear;
+/* Right item 1 — closest to logo */
+.nav-right-1 {
+	animation: slide-from-center-right 400ms ease-out 700ms forwards;
 }
 
-@keyframes top-left-to-center {
-	0% {
-		transform: translate(-100px, 0px);
-	}
-
-	100% {
-		transform: translate(0, 0);
-	}
+/* Right item 2 — furthest right */
+.nav-right-2 {
+	animation: slide-from-center-right 400ms ease-out 900ms forwards;
 }
-
-@keyframes top-right-to-center {
-	0% {
-		transform: translate(100px, 0px);
-	}
-
-	100% {
-		transform: translate(0, 0);
-	}
-}
- */
 
 /* Logo: scale up then back down */
 @keyframes logo-entrance {
@@ -351,45 +340,9 @@ h4 {
 		transform: translateX(-100%);
 		opacity: 0;
 	}
+
 	100% {
 		transform: translateX(0);
 		opacity: 1;
 	}
-}
-
-/* Apply to logo container */
-.logo-animate {
-	animation: logo-entrance 1200ms ease-out forwards;
-}
-
-/* Left side items — start hidden */
-.nav-left-1,
-.nav-left-2,
-.nav-right-1,
-.nav-right-2 {
-	opacity: 0; /* hidden until animation fires */
-}
-
-/* Left item 1 — closest to logo, fires first */
-.nav-left-1 {
-	animation: slide-from-center-left 400ms ease-out forwards;
-	animation-delay: 700ms; /* starts as logo begins shrinking */
-}
-
-/* Left item 2 — furthest left, fires second */
-.nav-left-2 {
-	animation: slide-from-center-left 400ms ease-out forwards;
-	animation-delay: 900ms;
-}
-
-/* Right item 1 — closest to logo */
-.nav-right-1 {
-	animation: slide-from-center-right 400ms ease-out forwards;
-	animation-delay: 700ms;
-}
-
-/* Right item 2 — furthest right */
-.nav-right-2 {
-	animation: slide-from-center-right 400ms ease-out forwards;
-	animation-delay: 900ms;
 }

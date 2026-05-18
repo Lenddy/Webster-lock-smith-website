@@ -38,6 +38,7 @@
 	justify-content: center;
 	align-items: center;
 	border-radius: 10px;
+	animation: slide-from-bottom 1200ms ease-out forwards;
 }
 
 .banner-image {
@@ -48,6 +49,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	/* animation: slide-from-top 1000ms ease-out forwards; */
 }
 
 .banner-image img {
@@ -115,6 +117,7 @@
 	align-items: start;
 	/* background-color: darkslategrey; */
 	padding: 10px 0px;
+	animation: slide-from-right 1200ms ease-out forwards;
 }
 
 .banner-description,
@@ -138,29 +141,12 @@
 	line-height: 1.7;
 	color: var(--wh);
 	/* remove: height: 70%  ← fixed height breaks the collapse */
+	z-index: 3;
+	animation: slide-from-left 1200ms ease-out forwards;
 }
 
 .banner-description.expanded {
 	max-height: 500px;
-}
-
-.banner-about-image {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 90%;
-	height: 90%;
-	max-height: 450px;
-}
-
-.banner-about-image img {
-	width: 100%;
-	height: 100%;
-	max-height: 450px;
-	border-radius: 10px;
-	object-fit: cover;
-
-	/* background-color: green; */
 }
 
 /* expand button */
@@ -171,6 +157,8 @@
 	width: 100%;
 	/* background-color: brown; */
 	height: 50px;
+	opacity: 0;
+	animation: slide-from-top 1200ms ease-out 1000ms forwards;
 }
 
 .banner-about-expand-btn {
@@ -191,4 +179,211 @@
 .banner-about-expand-btn:hover {
 	background: var(--kg);
 	color: var(--lb);
+}
+
+.banner-about-image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	height: 90%;
+	max-height: 450px;
+}
+
+.banner-about-image img {
+	width: 100%;
+	height: 100%;
+	max-height: 450px;
+	border-radius: 10px;
+	object-fit: cover;
+	opacity: 0;
+	/* background-color: green; */
+	animation: slide-from-bottom 1000ms ease-out 1150ms forwards; /* starts as logo begins shrinking */
+}
+
+@keyframes slide-from-bottom {
+	0% {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slide-from-top {
+	0% {
+		transform: translateY(-400px);
+		opacity: 0;
+		z-index: 2;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slide-from-left {
+	0% {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slide-from-right {
+	0% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+/* ── HORIZONTAL CAROUSEL ── */
+.carousel-h {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+.carousel-h-track {
+	display: flex;
+	height: 100%;
+	transition: transform 600ms ease-in-out;
+}
+
+.carousel-h-slide {
+	min-width: 100%; /* each slide takes full width */
+	height: 100%;
+}
+
+.carousel-h-slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+/* ── VERTICAL CAROUSEL ── */
+.carousel-v {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+.carousel-v-track {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	transition: transform 600ms ease-in-out;
+}
+
+.carousel-v-slide {
+	min-height: 100%; /* each slide takes full height */
+	width: 100%;
+	flex-shrink: 0;
+}
+
+.carousel-v-slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+/* ── SHARED ARROW STYLES ── */
+.carousel-arrow {
+	position: absolute;
+	background: rgba(26, 26, 26, 0.7); /* --lb with opacity */
+	border: 1px solid var(--kg);
+	color: var(--kg);
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	font-size: 16px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+	transition: background 200ms;
+}
+
+.carousel-arrow:hover {
+	background: var(--kg);
+	color: var(--lb);
+}
+
+/* horizontal arrow positions */
+.carousel-arrow-left {
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.carousel-arrow-right {
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* vertical arrow positions */
+.carousel-arrow-top {
+	top: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.carousel-arrow-bottom {
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+/* ── DOTS ── */
+.carousel-dots {
+	position: absolute;
+	bottom: 12px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 8px;
+	z-index: 10;
+}
+
+.carousel-dots-v {
+	position: absolute;
+	right: 8px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	z-index: 10;
+}
+
+.carousel-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: rgba(212, 168, 67, 0.4); /* --kg faded */
+	border: 1px solid var(--kg);
+	cursor: pointer;
+	padding: 0;
+	transition: background 200ms;
+}
+
+.carousel-dot.active {
+	background: var(--kg);
 }

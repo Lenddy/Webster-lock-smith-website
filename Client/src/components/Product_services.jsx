@@ -32,7 +32,9 @@ function Product_services() {
 	return (
 		<div className="product-services-container">
 			<div className="products-services-title">
-				<h1>Our Products And Services</h1>
+				<h1>
+					<span className="blink">Our</span> <span className="blink-2"> Products</span> <span className="blink-3">And</span> <span className="blink-4">Services</span>{" "}
+				</h1>
 			</div>
 			<div className="products-services-wrapper">
 				<div className="products-container">
@@ -46,7 +48,7 @@ function Product_services() {
 					<div className="products">
 						<ul>
 							{products.map((product, index) => (
-								<li key={index} className={openProduct === index ? "expanded" : ""} onClick={() => toggleProduct(index)}>
+								<li key={index} className={`slide-${index} ${openProduct === index ? "expanded" : ""} `} onClick={() => toggleProduct(index)}>
 									<div className="item-header">
 										<h3>{product.name}</h3>
 										<span className="item-chevron">{openProduct === index ? "🔓" : "🔒"}</span>
@@ -71,7 +73,7 @@ function Product_services() {
 					<div className="services">
 						<ul>
 							{services.map((service, index) => (
-								<li key={index} className={openService === index ? "expanded" : ""} onClick={() => toggleService(index)}>
+								<li key={index} className={`service-slide-${index} ${openService === index ? "expanded" : ""} `} onClick={() => toggleService(index)}>
 									<div className="item-header">
 										<h3>{service.name}</h3>
 										<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
