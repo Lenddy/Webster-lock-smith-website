@@ -198,6 +198,44 @@ body {
 **********************************************************************
 */
 
+/* section reveal */
+#banner,
+#products,
+#gallery,
+#footer {
+	opacity: 0;
+	transform: translateY(40px);
+	transition:
+		opacity 0.8s ease,
+		transform 0.8s ease;
+}
+
+.show {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* scroll to top button */
+.scroll-to-top-btn {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: var(--kg);
+	color: var(--lb);
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+	z-index: 9999;
+	transition: background 200ms;
+}
+
+.scroll-to-top-btn:hover {
+	background: var(--dg);
+}
+
 @media (max-width: 768px) {
 	/* styles for mobile devices */
 	.nav-container {

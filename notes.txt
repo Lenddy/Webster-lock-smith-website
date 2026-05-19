@@ -2,7 +2,6 @@ make side bar like MongoDB  and decide what nav bar to use (  allow the users  t
 
 
 
-make the products and services into one tab in the navbar
 
 
 

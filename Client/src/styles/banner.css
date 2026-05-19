@@ -99,6 +99,7 @@
 	border-radius: 10px;
 	justify-content: center;
 	border: solid 1px var(--kg);
+	max-height: 450px;
 }
 
 .banner-description-container {
@@ -201,53 +202,6 @@
 	animation: slide-from-bottom 1000ms ease-out 1150ms forwards; /* starts as logo begins shrinking */
 }
 
-@keyframes slide-from-bottom {
-	0% {
-		transform: translateY(100%);
-		opacity: 0;
-	}
-	100% {
-		transform: translateY(0);
-		opacity: 1;
-	}
-}
-
-@keyframes slide-from-top {
-	0% {
-		transform: translateY(-400px);
-		opacity: 0;
-		z-index: 2;
-	}
-	100% {
-		transform: translateY(0);
-		opacity: 1;
-	}
-}
-
-@keyframes slide-from-left {
-	0% {
-		transform: translateX(-100%);
-		opacity: 0;
-	}
-
-	100% {
-		transform: translateX(0);
-		opacity: 1;
-	}
-}
-
-@keyframes slide-from-right {
-	0% {
-		transform: translateX(100%);
-		opacity: 0;
-	}
-
-	100% {
-		transform: translateX(0);
-		opacity: 1;
-	}
-}
-
 /* ── HORIZONTAL CAROUSEL ── */
 .carousel-h {
 	position: relative;
@@ -282,6 +236,7 @@
 	height: 100%;
 	overflow: hidden;
 	border-radius: 10px;
+	max-height: 450px;
 }
 
 .carousel-v-track {
@@ -289,12 +244,17 @@
 	flex-direction: column;
 	height: 100%;
 	transition: transform 600ms ease-in-out;
+	max-height: 450px;
+	object-fit: cover;
 }
 
 .carousel-v-slide {
 	min-height: 100%; /* each slide takes full height */
 	width: 100%;
+	max-height: 450px;
 	flex-shrink: 0;
+	max-height: 450px;
+	background-color: red;
 }
 
 .carousel-v-slide img {
@@ -302,6 +262,8 @@
 	height: 100%;
 	object-fit: cover;
 	border-radius: 10px;
+	background-color: red;
+	max-height: 450px;
 }
 
 /* ── SHARED ARROW STYLES ── */
@@ -333,6 +295,7 @@
 	top: 50%;
 	transform: translateY(-50%);
 }
+
 .carousel-arrow-right {
 	right: 10px;
 	top: 50%;
@@ -345,6 +308,7 @@
 	left: 50%;
 	transform: translateX(-50%);
 }
+
 .carousel-arrow-bottom {
 	bottom: 10px;
 	left: 50%;
@@ -386,4 +350,50 @@
 
 .carousel-dot.active {
 	background: var(--kg);
+}
+
+@keyframes slide-from-bottom {
+	0% {
+		transform: translateY(100%);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slide-from-top {
+	0% {
+		transform: translateY(-400px);
+		opacity: 0;
+		z-index: 2;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slide-from-left {
+	0% {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slide-from-right {
+	0% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }

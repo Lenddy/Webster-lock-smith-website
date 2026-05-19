@@ -5,8 +5,9 @@ import general from "../assets/general/general-1.png";
 // import general from "../assets/general/general-1.webp";
 // import blankkeys from "../assets/general/blank-keys-on-wall.png";
 import blankkeys from "../assets/general/blank-keys-on-wall.webp";
+import test from "../assets/general/s-l400.webp";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { useCarousel } from "../hooks/useCarousel";
 
@@ -47,6 +48,8 @@ function Banner() {
 	const aboutImages = [
 		{ src: blankkeys, alt: "Blank keys on wall" },
 		{ src: general, alt: "General" },
+		{ src: test, alt: "Services" },
+		{ src: front, alt: "Webster front" },
 		{ src: banner, alt: "Services" },
 	];
 
@@ -54,7 +57,7 @@ function Banner() {
 	const vertical = useCarousel(aboutImages, 3500);
 
 	return (
-		<div className="banner-container">
+		<div className="banner-container ">
 			<div className="banner-title">
 				<h1>
 					Webster Security <span>Services</span>
@@ -108,12 +111,19 @@ function Banner() {
 					</div>
 
 					<div className="banner-about-image-container">
+						{/* !!!! also put the scroll to top btn in the bottom right */}
+						{/* !!!! also put the scroll to top btn in the bottom right */}
+						{/* !!!! also put the scroll to top btn in the bottom right */}
+						{/* !!!! also put the scroll to top btn in the bottom right */}
+						{/* !!!!!!!!!! also put the functionality that when you scroll  the animation should play (the full or almost the full app should be hidden ultil is scroll to the top of the sections ) */}
+						{/* !!!!!!!!!! also put the functionality that when you scroll  the animation should play (the full or almost the full app should be hidden ultil is scroll to the top of the sections ) */}
+						{/* !!!!!!!!!! also put the functionality that when you scroll  the animation should play (the full or almost the full app should be hidden ultil is scroll to the top of the sections ) */}
+						{/* !!!!!!!!!! also put the functionality that when you scroll  the animation should play (the full or almost the full app should be hidden ultil is scroll to the top of the sections ) */}
+						{/* {general} */}
+						{/* <img src={general} alt="Banner" /> */}
+						{/* <img src={banner} alt="Banner" /> */}
+						{/* <img src={blankkeys} alt="Banner" /> */}
 						<div className="banner-about-image">
-							{/* {general} */}
-							{/* <img src={general} alt="Banner" /> */}
-
-							{/* <img src={banner} alt="Banner" /> */}
-							{/* <img src={blankkeys} alt="Banner" /> */}
 							<div className="carousel-v">
 								<div className="carousel-v-track" style={{ transform: `translateY(-${vertical.current * 100}%)` }}>
 									{aboutImages.map((img, i) => (
