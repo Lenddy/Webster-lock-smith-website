@@ -1,0 +1,29 @@
+scrolling:
+    the problem with the scrolling still happens find out how to fix this 
+        sometimes it works normally other times you have to move your mouse and then scroll and sometimes even if you scroll multiple time it does nothing so something is acting as an overlay maybe ? 
+
+navbar
+    1 on the side bars the bottom btns to move to the left ,top, right ar barely visible  they have to be put higher
+    2 on the side bars the dropdowns for the other elements  ar not there put them back 
+    3 on the side bars they are over the site content so you have to add dedicated space for the side bar to be one 
+        and then when they are extended overlay them on top of the content 
+    4 on the side bars for smaller screens you have to disable the top navbar but put a small top bar(background that 
+        goes over the width of the page ) and put the burger menu and the logo and then when the burger menu is 
+        click the side bard should extend over the page content
+    5 for the top navbar you have to allow the products and services to take you to the product or service on click and then expand it 
+
+
+product and services:
+add a part for images inside of the  product and services containers
+
+
+
+Gallery:
+    for the Gallery when the screen is for smaller view allow the  gallery to be scrolled horizontally (make the  items inside of the grind smaller as the screen goes small) 
+
+
+
+
+
+footer
+    for the footer put links to go to places in the site  the areas we work social media if any contact also add the setting for the language nav bar position   the logo schedule

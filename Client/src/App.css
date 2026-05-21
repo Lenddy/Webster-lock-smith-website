@@ -44,6 +44,7 @@ body {
 	width: 100%;
 	overflow-x: hidden; /* overflow lives HERE, not on body */
 	position: relative;
+	scroll-behavior: smooth;
 }
 
 /* 
@@ -200,6 +201,7 @@ body {
 
 /* section reveal */
 #banner,
+/* #products-services, */
 #products,
 #gallery,
 #footer {
@@ -211,8 +213,8 @@ body {
 }
 
 .show {
-	opacity: 1;
-	transform: translateY(0);
+	opacity: 1 !important;
+	transform: translateY(0) !important;
 }
 
 /* scroll to top button */

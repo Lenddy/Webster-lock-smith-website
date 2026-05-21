@@ -25,6 +25,12 @@
 	display: flex;
 	justify-content: start;
 	width: 90%;
+	/* font-size: clamp(1.5rem, 0.349rem + 1.36vw, 3rem); */
+}
+
+.banner-title h1 {
+	/* font-size: clamp(2rem, 0.349rem + 1.36vw, 3rem); */
+	font-size: clamp(1.563rem, 0.977rem + 1.22vw, 2.5rem);
 }
 
 /* main banner image */
@@ -32,6 +38,7 @@
 	width: 98%;
 	/* height: 98%; */
 	height: 700px;
+	/* height: 400px; */
 	/* max-height: 450px; */
 	background-color: var(--lb);
 	display: flex;
@@ -350,6 +357,10 @@
 
 .carousel-dot.active {
 	background: var(--kg);
+}
+
+/* Responsive behavior */
+@media (max-width: 321px) {
 }
 
 @keyframes slide-from-bottom {

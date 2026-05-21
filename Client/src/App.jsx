@@ -16,7 +16,16 @@ function App() {
 	const homeRef = useRef(null);
 	const productsRef = useRef(null);
 	const servicesRef = useRef(null);
+	const galleryRef = useRef(null);
 	const aboutRef = useRef(null);
+
+	// for later
+	const productRef = useRef(null); // scrolls to products specifically
+	const serviceRef = useRef(null); // scrolls to services specifically
+
+	// add expand state to pass down
+	const [expandProduct, setExpandProduct] = useState(null);
+	const [expandService, setExpandService] = useState(null);
 
 	// navbar scroll state + show scroll-to-top btn
 	useEffect(() => {
@@ -36,12 +45,26 @@ function App() {
 		window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 	};
 
+	const [navPosition, setNavPosition] = useState(
+		() => localStorage.getItem("navPosition") || "top" // "top" | "left" | "right"
+	);
+
+	const changeNavPosition = (pos) => {
+		setNavPosition(pos);
+		localStorage.setItem("navPosition", pos);
+	};
+
+	// // wrap content so it shifts when sidebar is present
+	// <div className={`app-wrapper ${navPosition !== "top" ? `sidebar-${navPosition}` : ""}`}></div>;
+
 	// intersection observer — reveal sections on scroll
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
+					console.log("this is the entry", entry);
 					if (entry.isIntersecting) {
+						console.log("this is the entry isIntersecting", entry.isIntersecting);
 						setVisibleSections((prev) => ({
 							...prev,
 							[entry.target.id]: true, // key = the div's id
@@ -50,10 +73,10 @@ function App() {
 					}
 				});
 			},
-			{ threshold: 0.15 } // 15% visible is enough to trigger
+			{ threshold: 0.45 } // 15% visible is enough to trigger
 		);
 
-		const sections = [homeRef.current, productsRef.current, servicesRef.current, aboutRef.current];
+		const sections = [homeRef.current, productsRef.current, servicesRef.current, galleryRef.current, aboutRef.current];
 
 		sections.forEach((section) => {
 			if (section) observer.observe(section);
@@ -62,6 +85,10 @@ function App() {
 		return () => observer.disconnect();
 	}, []);
 
+	useEffect(() => {
+		console.log("visibleSections updated:", visibleSections);
+	}, [visibleSections]);
+
 	return (
 		<>
 			<Routes>
@@ -69,34 +96,46 @@ function App() {
 					path="*"
 					element={
 						<div className="app-wrapper">
-							<Navbar scrolled={scrolled} onHomeClick={() => scrollTo(homeRef)} onProductsClick={() => scrollTo(productsRef)} onServicesClick={() => scrollTo(servicesRef)} onAboutClick={() => scrollTo(aboutRef)} scrollToTop={scrollToTop} />
+							<Navbar
+								scrolled={scrolled}
+								onHomeClick={() => scrollTo(homeRef)}
+								onProductsClick={() => scrollTo(productsRef)}
+								onProductItemClick={(item) => {
+									scrollTo(productRef);
+									setExpandProduct(item); // tells the component which item to open
+								}}
+								onServiceItemClick={(item) => {
+									scrollTo(serviceRef);
+									setExpandService(item);
+								}}
+								onAboutClick={() => scrollTo(aboutRef)}
+								scrollToTop={scrollToTop}
+								navPosition={navPosition}
+								onChangeNavPosition={changeNavPosition}
+							/>
 
 							{/* each div: one ref, one id, checks its own id */}
-							<div
-								ref={homeRef}
-								//  id="banner" className={visibleSections.banner ? "show" : ""}
-							>
+							<div ref={homeRef} id="banner" className={visibleSections.banner ? "show" : ""}>
 								<Banner />
 							</div>
 
-							<div
+							{/* <div
 								ref={productsRef}
-								//  id="products" className={visibleSections.products ? "show" : ""}
-							>
+								id="products-services"
+								
+								className={visibleSections.products ? "show" : ""}>
 								<Product_services />
+							</div> */}
+
+							<div ref={productsRef} id="products" className={visibleSections.products ? "show" : ""}>
+								<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} />
 							</div>
 
-							<div
-								ref={servicesRef}
-								// id="gallery" className={visibleSections.gallery ? "show" : ""}
-							>
+							<div ref={galleryRef} id="gallery" className={visibleSections.gallery ? "show" : ""}>
 								<Gallery />
 							</div>
 
-							<div
-								ref={aboutRef}
-								//  id="footer" className={visibleSections.footer ? "show" : ""}
-							>
+							<div ref={aboutRef} id="footer" className={visibleSections.footer ? "show" : ""}>
 								<Footer />
 							</div>
 
