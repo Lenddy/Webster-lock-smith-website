@@ -82,7 +82,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onProductsClick, onService
 	);
 
 	return (
-		<div className={`nav-container  expand  ${scrolled ? "nav-scrolled" : ""}`}>
+		<div className={`nav-container expand ${scrolled ? "nav-scrolled" : ""}`}>
 			<div className="nav-items">
 				<ul>
 					{/* LEFT 2 — furthest from logo */}

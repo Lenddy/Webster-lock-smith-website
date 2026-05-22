@@ -10,14 +10,15 @@
 
 /* container */
 .banner-container {
-	margin-top: 100px;
+	/* margin-top: 100px; */
+	/* margin-left: 64px; */
 	background-color: var(--dr);
 	display: flex;
 	justify-content: start;
 	align-items: center;
 	flex-direction: column;
-	min-height: 1250px; /* min-height instead of height */
-	padding-bottom: 20px; /* breathing room at the bottom */
+	min-height: 700px; /* min-height instead of height */
+	/* padding-bottom: 20px;  */
 }
 
 /* title */
@@ -68,146 +69,7 @@
 	object-fit: cover;
 }
 
-/* about section */
-.banner-about-container {
-	/* background-color: darkkhaki; */
-	background-color: var(--lb);
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	height: 500px;
-	margin-top: 10px;
-}
-
-.banner-about-wrapper-container {
-	/* background-color: blue; */
-	background-color: var(--lb);
-	width: 98%;
-	/*min-height: 500px;  min-height instead of height */
-	min-height: 80%;
-	/* border: solid 1px white; */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	border-radius: 10px;
-}
-
-/* you are here  */
-.banner-description-container,
-.banner-about-image-container {
-	min-height: 90%; /* min-height instead of height */
-	width: 50%;
-	/* background-color: red; */
-	/* background-color: var(--lb); */
-	/* background-color: green; */
-	background-color: var(--ch);
-	display: flex;
-	border-radius: 10px;
-	justify-content: center;
-	border: solid 1px var(--kg);
-	max-height: 450px;
-}
-
-.banner-description-container {
-	/* align-items: end; */
-	/* background-color: green; */
-
-	flex-direction: column; /* ADD — stacks text box + button vertically */
-	align-items: center;
-	/* justify-content: end; */
-	justify-content: space-between;
-	gap: 12px;
-	padding: 10px;
-}
-
-.banner-about-image-container {
-	align-items: start;
-	/* background-color: darkslategrey; */
-	padding: 10px 0px;
-	animation: slide-from-right 1200ms ease-out forwards;
-}
-
-.banner-description,
-.banner-about-image {
-	height: 60%;
-	width: 100%;
-	/* background-color: red; */
-	border: solid var(--kg) 1px;
-	border-radius: 10px;
-}
-
-.banner-description {
-	width: 100%;
-	max-height: 250px; /* collapsed — shows a preview line */
-	overflow: hidden;
-	transition: max-height 0.4s ease;
-	border: none;
-	background-color: var(--mg);
-	border-radius: 10px;
-	padding: 10px 0px;
-	line-height: 1.7;
-	color: var(--wh);
-	/* remove: height: 70%  ← fixed height breaks the collapse */
-	z-index: 3;
-	animation: slide-from-left 1200ms ease-out forwards;
-}
-
-.banner-description.expanded {
-	max-height: 500px;
-}
-
-/* expand button */
-.banner-about-expand-btn-container {
-	display: flex;
-	justify-content: right;
-	align-items: center;
-	width: 100%;
-	/* background-color: brown; */
-	height: 50px;
-	opacity: 0;
-	animation: slide-from-top 1200ms ease-out 1000ms forwards;
-}
-
-.banner-about-expand-btn {
-	background: none;
-	border: 1px solid var(--kg);
-	color: var(--kg);
-	padding: 6px 14px;
-	border-radius: 6px;
-	cursor: pointer;
-	font-size: 13px;
-	transition:
-		background 200ms,
-		color 200ms;
-	margin-right: 10px;
-	background: var(--lb);
-}
-
-.banner-about-expand-btn:hover {
-	background: var(--kg);
-	color: var(--lb);
-}
-
-.banner-about-image {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 90%;
-	height: 90%;
-	max-height: 450px;
-}
-
-.banner-about-image img {
-	width: 100%;
-	height: 100%;
-	max-height: 450px;
-	border-radius: 10px;
-	object-fit: cover;
-	opacity: 0;
-	/* background-color: green; */
-	animation: slide-from-bottom 1000ms ease-out 1150ms forwards; /* starts as logo begins shrinking */
-}
+/* from here */
 
 /* ── HORIZONTAL CAROUSEL ── */
 .carousel-h {
@@ -216,6 +78,13 @@
 	height: 100%;
 	overflow: hidden;
 	border-radius: 10px;
+}
+.top-left {
+	position: absolute;
+	top: 8px;
+	left: 16px;
+	color: black;
+	background-color: var(--mg);
 }
 
 .carousel-h-track {
@@ -234,43 +103,6 @@
 	height: 100%;
 	object-fit: cover;
 	border-radius: 10px;
-}
-
-/* ── VERTICAL CAROUSEL ── */
-.carousel-v {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	border-radius: 10px;
-	max-height: 450px;
-}
-
-.carousel-v-track {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	transition: transform 600ms ease-in-out;
-	max-height: 450px;
-	object-fit: cover;
-}
-
-.carousel-v-slide {
-	min-height: 100%; /* each slide takes full height */
-	width: 100%;
-	max-height: 450px;
-	flex-shrink: 0;
-	max-height: 450px;
-	background-color: red;
-}
-
-.carousel-v-slide img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: 10px;
-	background-color: red;
-	max-height: 450px;
 }
 
 /* ── SHARED ARROW STYLES ── */
@@ -309,19 +141,6 @@
 	transform: translateY(-50%);
 }
 
-/* vertical arrow positions */
-.carousel-arrow-top {
-	top: 10px;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-.carousel-arrow-bottom {
-	bottom: 10px;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
 /* ── DOTS ── */
 .carousel-dots {
 	position: absolute;
@@ -330,17 +149,6 @@
 	transform: translateX(-50%);
 	display: flex;
 	gap: 8px;
-	z-index: 10;
-}
-
-.carousel-dots-v {
-	position: absolute;
-	right: 8px;
-	top: 50%;
-	transform: translateY(-50%);
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
 	z-index: 10;
 }
 

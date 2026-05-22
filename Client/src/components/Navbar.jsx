@@ -3,7 +3,7 @@ import Logo from "../assets/WebsterSiteLogo.png";
 import video from "../assets/logo.mp4";
 import { useEffect, useState } from "react";
 
-function Navbar({ scrolled, scrollToTop, onHomeClick, onProductsClick, onProductItemClick, onServiceItemClick, onAboutClick, navPosition, onChangeNavPosition }) {
+function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, onProductsClick, onProductItemClick, onServiceItemClick, navPosition, onChangeNavPosition }) {
 	const [sidebarExpanded, setSidebarExpanded] = useState(false);
 	const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -67,9 +67,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onProductsClick, onProduct
 
 	// sidebar (left or right)
 	return (
-		<div
-			className={`sidebar ${navPosition === "right" ? "sidebar-right-pos" : "sidebar-left-pos"}
-      ${sidebarExpanded ? "sidebar-expanded" : ""}`}>
+		<div className={`sidebar ${navPosition === "right" ? "sidebar-right-pos" : "sidebar-left-pos"} ${sidebarExpanded ? "sidebar-expanded" : ""}`}>
 			{/* burger / close toggle at top */}
 			<button className="sidebar-toggle" onClick={() => setSidebarExpanded(!sidebarExpanded)}>
 				{sidebarExpanded ? "✕" : "☰"}
@@ -82,15 +80,52 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onProductsClick, onProduct
 
 			{/* nav items */}
 			<nav className="sidebar-nav">
-				<button className="sidebar-item" onClick={onHomeClick}>
+				{/* <button className="sidebar-item" onClick={onHomeClick}>
 					🏠 {sidebarExpanded && <span>Home</span>}
-				</button>
-				<button className="sidebar-item" onClick={onProductsClick}>
-					🔑 {sidebarExpanded && <span>Products</span>}
+				</button> */}
+
+				<li className="">
+					<h4 onClick={onProductsClick}>
+						🏠 home <span className="chevron">▾</span>
+					</h4>
+					<div className="">
+						<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
+						<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
+						<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
+						<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
+					</div>
+				</li>
+
+				<li className="">
+					<h4 onClick={onProductsClick}>
+						ℹ️ about <span className="chevron">▾</span>
+					</h4>
+					<div className="">
+						<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
+						<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
+						<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
+						<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
+					</div>
+				</li>
+
+				<li className="">
+					<h4 onClick={onProductsClick}>
+						🔑 about <span className="chevron">▾</span>
+					</h4>
+					<div className="">
+						<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
+						<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
+						<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
+						<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
+					</div>
+				</li>
+
+				{/* <button className="sidebar-item" onClick={onProductsClick}>
+					 {sidebarExpanded && <span>Products</span>}
 				</button>
 				<button className="sidebar-item" onClick={onAboutClick}>
-					ℹ️ {sidebarExpanded && <span>About</span>}
-				</button>
+					 {sidebarExpanded && <span>About</span>}
+				</button> */}
 			</nav>
 
 			{/* settings at bottom */}

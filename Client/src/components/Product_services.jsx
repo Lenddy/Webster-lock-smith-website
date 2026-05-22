@@ -2,6 +2,7 @@ import "../styles/products-services.css";
 import { useState, useEffect } from "react";
 import { products } from "../utilities/products-services";
 import { services } from "../utilities/products-services";
+import blankkeys from "../assets/general/blank-keys-on-wall.webp";
 
 //! in the title make an animation that change products and services (our Products ===> Services)
 
@@ -113,6 +114,9 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 										<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
 									</div>
 									<div className="item-body">
+										<div>
+											<img src={blankkeys} alt="blankkeys" />
+										</div>
 										<p>{service.description}</p>
 									</div>
 								</li>

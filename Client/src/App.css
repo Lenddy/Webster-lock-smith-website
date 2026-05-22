@@ -1,6 +1,4 @@
 #root {
-	/* max-width: 1280px; */
-	/* padding: 2rem; */
 	margin: 0 auto;
 	text-align: center;
 }
@@ -42,151 +40,24 @@ body {
 
 .app-wrapper {
 	width: 100%;
-	overflow-x: hidden; /* overflow lives HERE, not on body */
-	position: relative;
+	height: 100%;
+	/* overflow-x: hidden; */
+	overflow-x: clip;
+	position: relative; /*this is not really needed   */
 	scroll-behavior: smooth;
-}
-
-/* 
-**********************************************************************
-**********************************************************************
-**********************************************************************
-* Navbar 
-**********************************************************************
-**********************************************************************
-**********************************************************************
-*/
-
-/* 
-**********************************************************************
-**********************************************************************
-**********************************************************************
-* Banner 
-**********************************************************************
-**********************************************************************
-**********************************************************************
-*/
-
-/*? banner container */
-
-.banner-container {
-	/* background-color: var(--co);
-	height: 1000px;
-	margin-top: 100px;
-	width: 100%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: column; */
-}
-
-/*? banner title */
-.banner-title {
 	/* display: flex;
-	max-width: 90%;
-	height: 400px; */
-	/*flex: 0.3;
-	 width: 80%;
-	height: 100px;
-
-	background-color: var(--cy);
-	margin: 10px 0px; */
+	justify-content: center; */
+	/* align-items: center; */
 }
 
-/*? banner image */
-
-.banner-image-container {
-	/* background-color: var(--cr);
-	width: 80%;
-	height: 400px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex: 2.5;
-	margin: 10px 0px; */
+.left {
+	margin-left: 64px;
 }
-
-.banner-image {
-	/* background-color: var(--cw);
-	width: 95%;
-	height: 100%; */
+.top {
+	margin-top: 100px;
 }
-
-/*? banner about */
-
-.banner-about {
-	/* flex: 2;
-	width: 80%;
-	height: 300px;
-	background-color: var(--cg);
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	margin: 10px 0px; */
-}
-
-.banner-description,
-.banner-about-image {
-	/* height: 90%;
-	width: 45%;
-	background-color: var(--cy);
-
-	border: solid var(--cw) 1px; */
-}
-
-/* 
-**********************************************************************
-**********************************************************************
-**********************************************************************
-* products and services
-**********************************************************************
-**********************************************************************
-**********************************************************************
-*/
-/*? product-services-container */
-.product-services-container {
-	/* background-color: var(--cy);
-	height: 1000px;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: column; */
-}
-/* ? product-services title */
-
-.products-services-title {
-	/* background-color: var(--cr);
-	width: 100%;
-	height: 100px; */
-}
-
-/* ? product-services bottom container */
-
-.products-services-bottom-container {
-	/* background-color: var(--cg);
-	width: 100%;
-	height: 600px;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: row; */
-}
-
-.products-container,
-.services-container {
-	/* background-color: var(--co);
-	width: 45%;
-	height: 100%; */
-}
-
-.products-container ul,
-.services-container ul {
-	/* background-color: var(--cr); */
-}
-
-.products-container ul li,
-.services-container ul li {
-	/* border: solid var(--cw) 1px; */
+.right {
+	margin-right: 64px;
 }
 
 /* 
@@ -201,6 +72,7 @@ body {
 
 /* section reveal */
 #banner,
+#about,
 /* #products-services, */
 #products,
 #gallery,
@@ -231,6 +103,13 @@ body {
 	font-size: 20px;
 	cursor: pointer;
 	z-index: 9999;
+	transition: background 200ms;
+}
+
+.scroll-to-top-btn.right {
+	position: fixed;
+	bottom: 24px;
+	left: 24px;
 	transition: background 200ms;
 }
 

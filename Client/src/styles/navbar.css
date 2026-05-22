@@ -26,15 +26,20 @@
 	animation: expand-1 1200ms ease-out;
 	border-top: solid var(--kg) 1px;
 	border-bottom: solid var(--kg) 1px;
+	/* pointer-events: none */
 }
 
 /* but keep clicks working on the actual nav items */
 .nav-items,
+.nav-items ul,
+.nav-items ul li,
+.nav-items ul li h4,
 .logo-container,
-.nav-dropdown-menu {
+.nav-dropdown-menu,
+.nav-dropdown-menu a,
+.settingIcon {
 	pointer-events: all;
 }
-
 .logo-container {
 	display: flex;
 	justify-content: center;
@@ -170,8 +175,11 @@ h4 {
 
 /* the dropdown panel */
 .nav-dropdown-menu {
-	display: none;
+	/* display: none; */
+	visibility: hidden;
+	opacity: 0;
 	position: absolute;
+	pointer-events: none; /* can't block scroll when hidden */
 	top: 100%;
 	left: 50%;
 	transform: translateX(-50%);
@@ -186,7 +194,10 @@ h4 {
 /* show on hover OR when .open class is present (for click) */
 .nav-items ul li:hover .nav-dropdown-menu,
 .nav-items ul li.open .nav-dropdown-menu {
-	display: block;
+	/* display: block; */
+	visibility: visible;
+	opacity: 1;
+	pointer-events: all; /* re-enable clicks only when visible */
 }
 
 /* each link inside the dropdown */
@@ -360,7 +371,7 @@ h4 {
 .sidebar {
 	position: fixed;
 	top: 0;
-	height: 100vh;
+	height: 98vh;
 	width: 64px; /* collapsed */
 	background: var(--ch);
 	border-right: 1px solid var(--kg);
@@ -369,7 +380,7 @@ h4 {
 	align-items: center;
 	padding: 12px 0;
 	gap: 8px;
-	z-index: 1000;
+	z-index: 10000;
 	transition: width 300ms ease;
 	overflow: hidden;
 }
@@ -381,6 +392,7 @@ h4 {
 .sidebar-left-pos {
 	left: 0;
 	border-right: 1px solid var(--kg);
+	margin-right: 64px;
 }
 .sidebar-right-pos {
 	right: 0;
