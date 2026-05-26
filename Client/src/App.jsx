@@ -51,6 +51,8 @@ function App() {
 		() => localStorage.getItem("navPosition") || "top" // "top" | "left" | "right"
 	);
 
+	const [isPinned, setIsPinned] = useState();
+
 	const changeNavPosition = (pos) => {
 		setNavPosition(pos);
 		localStorage.setItem("navPosition", pos);
@@ -60,6 +62,17 @@ function App() {
 	// <div className={`app-wrapper ${navPosition !== "top" ? `sidebar-${navPosition}` : ""}`}></div>;
 
 	// intersection observer — reveal sections on scroll
+
+	// ! add it to change the navbar whe the screns goes bellow a certain width
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+	useEffect(() => {
+		const handleResize = () => setScreenWidth(window.innerWidth);
+		window.addEventListener("resize", handleResize);
+
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
@@ -75,7 +88,8 @@ function App() {
 					}
 				});
 			},
-			{ threshold: 0.45 } // 45% visible is enough to trigger
+			{ threshold: 0.35 } // 3
+			// 5% visible is enough to trigger
 		);
 
 		const sections = [homeRef.current, aboutRef.current, productsRef.current, servicesRef.current, galleryRef.current, footerRef.current];
@@ -103,6 +117,7 @@ function App() {
 								scrolled={scrolled}
 								onHomeClick={() => scrollTo(homeRef)}
 								onAboutClick={() => scrollTo(aboutRef)}
+								oneGalleryClick={() => scrollTo(galleryRef)}
 								onProductsClick={() => scrollTo(productsRef)}
 								onProductItemClick={(item) => {
 									scrollTo(productRef);
@@ -115,10 +130,11 @@ function App() {
 								scrollToTop={scrollToTop}
 								navPosition={navPosition}
 								onChangeNavPosition={changeNavPosition}
+								setIsPinned={setIsPinned}
 							/>
 							{/* </div> */}
 
-							<div className={`app-content ${navPosition}`}>
+							<div className={`app-content ${navPosition} ${isPinned ? "isPinned" : ""}`}>
 								{/* each div: one ref, one id, checks its own id */}
 								<div ref={homeRef} id="banner" className={visibleSections.banner ? "show" : ""}>
 									<Banner />

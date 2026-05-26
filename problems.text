@@ -1,14 +1,12 @@
 navbar
-        2 on the side bars the dropdowns for the other elements  are not there put them back 
+    2 on the side bars the dropdowns for the other elements  are not there put them back (done)
 
     4 on the side bars for smaller screens you have to disable the top navbar but put a small top bar(background that 
         goes over the width of the page ) and put the burger menu and the logo and then when the burger menu is 
         click the side bard should extend over the page content
 
-
     banner: see if you what to put the title over the banner or not
     see if you want to put the about section separate from the banner (i say yes) 
-
 
 product and services:
 add a part for images inside of the  product and services containers
@@ -48,3 +46,11 @@ fixed:
             3 on the side bars they are over the site content so you have to add dedicated space for the side bar to be one 
             and then when they are extended overlay them on top of the content 
             5 for the top navbar you have to allow the products and services to take you to the product or service on click and then expand it
+
+
+
+
+            the side bar i would like them to be more like the one from mongoodb atlas 
+            that when on hover it expands and it could also be extended by clicking at the bottom or at the top 
+            
+           
