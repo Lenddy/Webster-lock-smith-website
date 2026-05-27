@@ -75,9 +75,7 @@ function Banner() {
 							))}
 						</div>
 						<div className="top-left">
-							<h1>
-								Webster Security <span>Services</span>
-							</h1>
+							<h1>{/* Webster Security <span>Services</span> */}</h1>
 						</div>
 
 						{/* arrows */}

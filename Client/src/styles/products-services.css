@@ -190,6 +190,8 @@
 	color: var(--lg);
 	line-height: 1.7;
 	font-size: 14px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .item-body p {

@@ -29,6 +29,8 @@ function App() {
 	const [expandProduct, setExpandProduct] = useState(null);
 	const [expandService, setExpandService] = useState(null);
 
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
 	// navbar scroll state + show scroll-to-top btn
 	useEffect(() => {
 		const handleScroll = () => {
@@ -62,9 +64,6 @@ function App() {
 	// <div className={`app-wrapper ${navPosition !== "top" ? `sidebar-${navPosition}` : ""}`}></div>;
 
 	// intersection observer — reveal sections on scroll
-
-	// ! add it to change the navbar whe the screns goes bellow a certain width
-	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
 	useEffect(() => {
 		const handleResize = () => setScreenWidth(window.innerWidth);
@@ -131,6 +130,7 @@ function App() {
 								navPosition={navPosition}
 								onChangeNavPosition={changeNavPosition}
 								setIsPinned={setIsPinned}
+								screenWidth={screenWidth}
 							/>
 							{/* </div> */}
 

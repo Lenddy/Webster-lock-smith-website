@@ -114,10 +114,10 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 										<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
 									</div>
 									<div className="item-body">
+										<p>{service.description}</p>
 										<div>
 											<img src={blankkeys} alt="blankkeys" />
 										</div>
-										<p>{service.description}</p>
 									</div>
 								</li>
 							))}

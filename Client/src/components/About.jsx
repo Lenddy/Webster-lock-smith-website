@@ -40,18 +40,6 @@ export default function About() {
 					</div>
 
 					<div className="banner-about-image-container">
-						{/* !!!! also put the scroll to top btn in the bottom right */}
-						{/* !!!! also put the scroll to top btn in the bottom right */}
-						{/* !!!! also put the scroll to top btn in the bottom right */}
-						{/* !!!! also put the scroll to top btn in the bottom right */}
-						{/* !!!!!!!!!! also put the functionality that when you scroll  the animation should play (the full or almost the full app should be hidden ultil is scroll to the top of the sections ) */}
-						{/* !!!!!!!!!! also put the functionality that when you scroll  the animation should play (the full or almost the full app should be hidden ultil is scroll to the top of the sections ) */}
-						{/* !!!!!!!!!! also put the functionality that when you scroll  the animation should play (the full or almost the full app should be hidden ultil is scroll to the top of the sections ) */}
-						{/* !!!!!!!!!! also put the functionality that when you scroll  the animation should play (the full or almost the full app should be hidden ultil is scroll to the top of the sections ) */}
-						{/* {general} */}
-						{/* <img src={general} alt="Banner" /> */}
-						{/* <img src={banner} alt="Banner" /> */}
-						{/* <img src={blankkeys} alt="Banner" /> */}
 						<div className="banner-about-image">
 							<div className="carousel-v">
 								<div className="carousel-v-track" style={{ transform: `translateY(-${vertical.current * 100}%)` }}>

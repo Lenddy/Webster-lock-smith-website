@@ -39,8 +39,7 @@
 	width: 98%;
 	/* height: 98%; */
 	height: 700px;
-	/* height: 400px; */
-	/* max-height: 450px; */
+	max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem);
 	background-color: var(--lb);
 	display: flex;
 	justify-content: center;
@@ -165,6 +164,20 @@
 
 .carousel-dot.active {
 	background: var(--kg);
+}
+
+@media (max-width: 768px) {
+	/* .banner-image-container {
+		width: 98%;
+		height: 700px;
+		max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem);
+		background-color: var(--lb);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		animation: slide-from-bottom 1200ms ease-out forwards;
+	} */
 }
 
 /* Responsive behavior */
