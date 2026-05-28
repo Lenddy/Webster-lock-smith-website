@@ -87,6 +87,11 @@
 	animation: slide-from-top 1000ms ease-out 150ms forwards;
 }
 
+.products-description .services-description {
+	/* font-size: clamp(0.75rem, 0.656rem + 0.75vw, 1.125rem); */
+	font-size: 200px;
+}
+
 .slide-0 {
 	opacity: 0;
 	animation: slide-from-top 1000ms ease-out 250ms forwards;
@@ -192,10 +197,16 @@
 	font-size: 14px;
 	display: flex;
 	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 }
 
 .item-body p {
 	margin: 0;
+}
+
+.image-wrapper {
+	max-height: 450px;
 }
 
 @keyframes slide-from-top {

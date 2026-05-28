@@ -6,8 +6,8 @@ import blankkeys from "../assets/general/blank-keys-on-wall.webp";
 
 //! in the title make an animation that change products and services (our Products ===> Services)
 
-// ! put pictures inside of the dropdown of the products and services
-// ! on out products and services page, we need to add a dropdown for each product and service
+// ! put pictures inside of the dropdown of the products and services (done)
+// ! on out products and services page, we need to add a dropdown for each product and service(done)
 // ! and then we need to add a picture for each product and service
 // ! and then we need to add a description for each product and service
 // ! and then we need to add a link for each product and service
@@ -78,6 +78,9 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 									</div>
 									<div className="item-body">
 										<p>{product.description}</p>
+										{/* <div className="image-wrapper"> */}
+										<img src={blankkeys} alt="blankkeys" />
+										{/* </div> */}
 									</div>
 								</li>
 							))}

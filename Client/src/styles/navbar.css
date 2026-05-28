@@ -298,75 +298,6 @@ h4 {
 	animation: slide-from-center-right 400ms ease-out 900ms forwards;
 }
 
-/* @keyframes expand- {
-	0% {
-		scale: 1;
-	}
-	50% {
-		scale: 1.5;
-	}
-	100% {
-		scale: 1;
-	}
-} */
-
-@keyframes expand-1 {
-	0% {
-		height: 100px;
-	}
-	50% {
-		height: 150px;
-	}
-	100% {
-		height: 100px;
-	}
-}
-
-/* Logo: scale up then back down */
-@keyframes logo-entrance {
-	0% {
-		transform: scale(0.2);
-		opacity: 0;
-	}
-	30% {
-		transform: scale(1.4);
-		opacity: 1;
-	}
-	60% {
-		transform: scale(1.4);
-		opacity: 1;
-	} /* hold big */
-	100% {
-		transform: scale(1);
-		opacity: 1;
-	} /* settle */
-}
-
-/* Left items: slide in from center (from right to left position) */
-@keyframes slide-from-center-left {
-	0% {
-		transform: translateX(100%);
-		opacity: 0;
-	}
-	100% {
-		transform: translateX(0);
-		opacity: 1;
-	}
-}
-
-/* Right items: slide in from center (from left to right position) */
-@keyframes slide-from-center-right {
-	0% {
-		transform: translateX(-100%);
-		opacity: 0;
-	}
-
-	100% {
-		transform: translateX(0);
-		opacity: 1;
-	}
-}
-
 /* ── SIDEBAR BASE (rail — collapsed) ── */
 .sidebar {
 	position: fixed;
@@ -588,17 +519,6 @@ h4 {
 
 /* burger menu */
 
-.burger-menu-container {
-	width: 100%;
-	height: 50px;
-	background-color: blue;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 1000;
-	/* margin-bottom: 50px; */
-}
-
 .burger-hide {
 	/* display: none; */
 	transform: translateX(220px);
@@ -624,13 +544,13 @@ h4 {
 		/* display: flex; */
 		/* align-items: center; */
 		/* justify-content: space-between; */
-		padding: 0px;
-		gap: 8px;
+		/* padding: 0px; */
+		/* gap: 8px; */
 	}
 
 	/* ── MOBILE BURGER BAR (≤768px) ── */
 	.burger-menu-container {
-		width: 99.9%;
+		width: 100%;
 		height: 56px;
 		background: var(--ch);
 		border-bottom: 1px solid var(--kg);
@@ -642,8 +562,31 @@ h4 {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
 		/* padding: 0px 10px; */
 		/* margin: 0px 5px; */
+	}
+
+	.burger-menu-container.right,
+	.sidebar-top.right {
+		flex-direction: row-reverse;
+	}
+
+	.burger-logo {
+		width: 42px;
+		height: 42px;
+		cursor: pointer;
+		/* position: fixed;
+		right: 10px; */
+		margin: 0px 10px;
+	}
+
+	.burger-logo video {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		border: 1px solid var(--kg);
+		/* object-fit: cover; */
 	}
 
 	.burger-btn {
@@ -658,20 +601,9 @@ h4 {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-
-	.burger-logo {
-		width: 42px;
-		height: 42px;
-		cursor: pointer;
-	}
-
-	.burger-logo video {
-		width: 100%;
-		height: 100%;
-		border-radius: 50%;
-		border: 1px solid var(--kg);
-		object-fit: cover;
+		/* position: fixed;
+		left: 10px; */
+		margin: 0px 10px;
 	}
 
 	/* ── OVERLAY behind open sidebar ── */
@@ -690,9 +622,9 @@ h4 {
 	/* ── SIDEBAR (mobile — no rail) ── */
 	.sidebar {
 		position: fixed;
-		top: 56px; /* below burger bar */
+		top: 0; /* below burger bar */
 		left: 0;
-		height: calc(100vh - 56px);
+		height: 100vh;
 		width: 260px;
 		background: var(--ch);
 		border-right: 1px solid var(--kg);
@@ -739,7 +671,8 @@ h4 {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 12px 12px 8px;
+		padding: 0px 10px;
+		height: 57px;
 		border-bottom: 1px solid var(--mg);
 	}
 
@@ -761,8 +694,8 @@ h4 {
 		background: none;
 		border: 1px solid var(--mg);
 		color: var(--wh);
-		width: 32px;
-		height: 32px;
+		width: 38px;
+		height: 38px;
 		border-radius: 8px;
 		font-size: 16px;
 		cursor: pointer;
@@ -866,5 +799,74 @@ h4 {
 	.sidebar-menu-links a:hover {
 		background: var(--mg);
 		color: var(--kg);
+	}
+}
+
+/* @keyframes expand- {
+	0% {
+		scale: 1;
+	}
+	50% {
+		scale: 1.5;
+	}
+	100% {
+		scale: 1;
+	}
+} */
+
+@keyframes expand-1 {
+	0% {
+		height: 100px;
+	}
+	50% {
+		height: 150px;
+	}
+	100% {
+		height: 100px;
+	}
+}
+
+/* Logo: scale up then back down */
+@keyframes logo-entrance {
+	0% {
+		transform: scale(0.2);
+		opacity: 0;
+	}
+	30% {
+		transform: scale(1.4);
+		opacity: 1;
+	}
+	60% {
+		transform: scale(1.4);
+		opacity: 1;
+	} /* hold big */
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	} /* settle */
+}
+
+/* Left items: slide in from center (from right to left position) */
+@keyframes slide-from-center-left {
+	0% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+/* Right items: slide in from center (from left to right position) */
+@keyframes slide-from-center-right {
+	0% {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
 	}
 }

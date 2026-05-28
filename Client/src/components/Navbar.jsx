@@ -19,13 +19,13 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 		return (
 			<>
 				{/* fixed top bar with burger + logo */}
-				<div className="burger-menu-container">
-					<div className="burger-logo" onClick={scrollToTop}>
-						<video src={video} autoPlay muted playsInline />
-					</div>
+				<div className={`burger-menu-container ${navPosition === "right" ? "right" : ""}`}>
 					<button className="burger-btn" onClick={() => setHovered(!hovered)}>
 						{hovered ? "✕" : "☰"}
 					</button>
+					<div className="burger-logo" onClick={scrollToTop}>
+						<video src={video} autoPlay muted playsInline />
+					</div>
 				</div>
 
 				{/* dark overlay — click to close */}
@@ -38,16 +38,9 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 				/>
 
 				{/* sidebar — slides in from left or right */}
-				<div
-					className={`sidebar
-        ${navPosition === "right" ? "sidebar-right-pos" : "sidebar-left-pos"}
-        ${hovered ? "sidebar-open" : ""}
-      `}>
+				<div className={`sidebar ${navPosition === "right" ? "sidebar-right-pos" : "sidebar-left-pos"} ${hovered ? "sidebar-open" : ""}`}>
 					{/* top: logo + close btn */}
-					<div className="sidebar-top">
-						<div className="sidebar-logo" onClick={scrollToTop}>
-							<video src={video} autoPlay muted playsInline className="sidebar-logo-img" />
-						</div>
+					<div className={`sidebar-top ${navPosition === "right" ? "right" : ""}`}>
 						<button
 							className="sidebar-close-btn"
 							onClick={() => {
@@ -56,6 +49,10 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 							}}>
 							✕
 						</button>
+
+						<div className="sidebar-logo" onClick={scrollToTop}>
+							<video src={video} autoPlay muted playsInline className="sidebar-logo-img" />
+						</div>
 					</div>
 
 					{/* nav items */}
@@ -87,6 +84,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 						<div className="sidebar-menu">
 							<button
 								className={`sidebar-menu-title ${openMenu === "products" ? "active" : ""}`}
+								// className={`sidebar-menu-title `}
 								onClick={() => {
 									onProductsClick();
 									toggleMenu("products");
@@ -95,7 +93,8 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 								<span className="sidebar-menu-label">Products</span>
 								<span className="sidebar-menu-chevron">{openMenu === "products" ? "▴" : "▾"}</span>
 							</button>
-							<div className={`sidebar-menu-links ${openMenu === "products" ? "open" : ""}`}>
+							{/* <div className={`sidebar-menu-links open ${openMenu === "products" ? "open" : ""}`}> */}
+							<div className={`sidebar-menu-links open`}>
 								<a
 									onClick={() => {
 										onProductItemClick(0);
@@ -126,7 +125,8 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 								<span className="sidebar-menu-label">Services</span>
 								<span className="sidebar-menu-chevron">{openMenu === "services" ? "▴" : "▾"}</span>
 							</button>
-							<div className={`sidebar-menu-links ${openMenu === "services" ? "open" : ""}`}>
+							{/* <div className={`sidebar-menu-links ${openMenu === "services" ? "open" : ""}`}> */}
+							<div className={`sidebar-menu-links open `}>
 								<a
 									onClick={() => {
 										onServiceItemClick(0);

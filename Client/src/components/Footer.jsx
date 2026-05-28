@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/footer.css";
 
-function Footer() {
+function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryClick, onProductsClick, onProductItemClick, onServiceItemClick }) {
 	// you should  have a function that get the current year for the the copy rights section
 	// add the credit aplication  form
 
@@ -15,50 +15,120 @@ function Footer() {
 			<div className="footer-content-container">
 				<div className="useful-links-container">
 					<div className="links-container">
-						<h4>Home</h4>
+						<h3>Main menu</h3>
 						<ul>
-							<li></li>
-							<li>link 2 </li>
-							<li>link 3</li>
-							<li>link 4</li>
-						</ul>
-					</div>
-					<div className="links-container">
-						<h4>Areas we service</h4>
-						<ul>
-							<li>Bx</li>
-							<li>um</li>
-							<li>bk</li>
-							<li>qns</li>
-							<li>lm</li>
-						</ul>
-					</div>
-					<div className="links-container">
-						<h4>social media</h4>
-						<ul>
-							<li>link 1</li>
-							<li>link 2 </li>
-							<li>link 3</li>
-						</ul>
-					</div>
+							<li>Home</li>
+							<li>About</li>
 
-					{/* <div className="links-container">
-						<h4>social media</h4>
-						<ul>
-							<li>link 1</li>
-							<li>link 2 </li>
-							<li>link 3</li>
-							<li>link 4</li>
-							<li>link 5 </li>
-							<li>link 6</li>
-							<li>link 7</li>
+							<div className="sidebar-menu">
+								<button
+									// className={`sidebar-menu-title ${openMenu === "products" ? "active" : ""}`}
+									className={`sidebar-menu-title }`}
+									// className={`sidebar-menu-title `}
+									onClick={() => {
+										onProductsClick();
+									}}>
+									<span className="sidebar-icon">🔒 Products</span>
+									<span className="sidebar-menu-label">Products</span>
+									<span className="sidebar-menu-chevron">{/* {openMenu === "products" ? "▴" : "▾"}  */}▾</span>
+								</button>
+								{/* <div className={`sidebar-menu-links open ${openMenu === "products" ? "open" : ""}`}> */}
+								<div className={`sidebar-menu-links open`}>
+									<a
+										onClick={() => {
+											onProductItemClick(0);
+										}}>
+										Residential Locks
+									</a>
+									<a
+										onClick={() => {
+											onProductItemClick(1);
+										}}>
+										Commercial Locks
+									</a>
+									<a
+										onClick={() => {
+											onProductItemClick(2);
+										}}>
+										Smart Locks
+									</a>
+								</div>
+							</div>
+
+							<div className="sidebar-menu">
+								<button
+									// className={`sidebar-menu-title ${openMenu === "products" ? "active" : ""}`}
+									className={`sidebar-menu-title }`}
+									// className={`sidebar-menu-title `}
+									onClick={() => {
+										onProductsClick();
+										// toggleMenu("products");
+									}}>
+									<span className="sidebar-icon">🔒 Products</span>
+									<span className="sidebar-menu-label">Products</span>
+									<span className="sidebar-menu-chevron">{/* {openMenu === "products" ? "▴" : "▾"}  */}▾</span>
+								</button>
+								{/* <div className={`sidebar-menu-links open ${openMenu === "products" ? "open" : ""}`}> */}
+								<div className={`sidebar-menu-links open`}>
+									<a
+										onClick={() => {
+											// onProductItemClick(0);
+											// setHovered(false);
+										}}>
+										Residential Locks
+									</a>
+									<a
+										onClick={() => {
+											// onProductItemClick(1);
+											// setHovered(false);
+										}}>
+										Commercial Locks
+									</a>
+									<a
+										onClick={() => {
+											// onProductItemClick(2);
+											// setHovered(false);
+										}}>
+										Smart Locks
+									</a>
+								</div>
+							</div>
 						</ul>
-					</div> */}
+					</div>
+					<div className="links-container">
+						<h3>Useful info</h3>
+						<ul>
+							<li>Credit Aplication</li>
+							{/* this is to give credit and let every body know where did i take the pictures and icons from  */}
+							<li>Attribution</li>
+							{/* this should go un der the attribution section*/}
+							<li>icons</li>
+						</ul>
+					</div>
+					<div className="links-container">
+						<h3>Socials</h3>
+						<ul>
+							<li>yelp</li>
+							<li>linkin</li>
+							<li>Email</li>
+						</ul>
+					</div>
 				</div>
 
 				<div className="schedule-container">
+					<div className="links-container">
+						<h3>
+							<h3>Areas we service</h3>
+						</h3>
+						<ul>
+							<li>The Bronx</li>
+							<li>Manhattan</li>
+							<li>Brooklyn</li>
+							<li>Queens</li>
+						</ul>
+					</div>
 					<div className="schedule">
-						<h4>Contact us</h4>
+						<h3>Contact us</h3>
 						<div>
 							<p>Webster Lock & Hardware Co. </p>
 							<p>2471 Webster Avenue Bronx, NY 10458</p>

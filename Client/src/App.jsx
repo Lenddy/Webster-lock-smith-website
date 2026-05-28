@@ -153,7 +153,22 @@ function App() {
 								</div>
 
 								<div ref={footerRef} id="footer" className={visibleSections.footer ? "show" : ""}>
-									<Footer />
+									<Footer
+										scrolled={scrolled}
+										onHomeClick={() => scrollTo(homeRef)}
+										onAboutClick={() => scrollTo(aboutRef)}
+										oneGalleryClick={() => scrollTo(galleryRef)}
+										onProductsClick={() => scrollTo(productsRef)}
+										onProductItemClick={(item) => {
+											scrollTo(productRef);
+											setExpandProduct(item); // tells the component which item to open
+										}}
+										onServiceItemClick={(item) => {
+											scrollTo(serviceRef);
+											setExpandService(item);
+										}}
+										scrollToTop={scrollToTop}
+									/>
 								</div>
 
 								<Test />
