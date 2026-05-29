@@ -108,7 +108,7 @@ body {
 	background: var(--kg);
 	color: var(--lb);
 	border: none;
-	font-size: 20px;
+	/* font-size: 20px; */
 	cursor: pointer;
 	z-index: 9999;
 	transition: background 200ms;

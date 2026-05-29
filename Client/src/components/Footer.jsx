@@ -15,89 +15,27 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 			<div className="footer-content-container">
 				<div className="useful-links-container">
 					<div className="links-container">
-						<h3>Main menu</h3>
+						<h2>Main menu</h2>
 						<ul>
-							<li>Home</li>
-							<li>About</li>
+							<li
+								onClick={() => {
+									onHomeClick();
+								}}>
+								<p>Home</p>
+							</li>
+							<li
+								onClick={() => {
+									onAboutClick();
+								}}>
+								<p>About</p>
+							</li>
+							<li
+								onClick={() => {
+									oneGalleryClick();
+								}}>
+								<p>Gallery</p>
+							</li>
 
-							<div className="sidebar-menu">
-								<button
-									// className={`sidebar-menu-title ${openMenu === "products" ? "active" : ""}`}
-									className={`sidebar-menu-title }`}
-									// className={`sidebar-menu-title `}
-									onClick={() => {
-										onProductsClick();
-									}}>
-									<span className="sidebar-icon">🔒 Products</span>
-									<span className="sidebar-menu-label">Products</span>
-									<span className="sidebar-menu-chevron">{/* {openMenu === "products" ? "▴" : "▾"}  */}▾</span>
-								</button>
-								{/* <div className={`sidebar-menu-links open ${openMenu === "products" ? "open" : ""}`}> */}
-								<div className={`sidebar-menu-links open`}>
-									<a
-										onClick={() => {
-											onProductItemClick(0);
-										}}>
-										Residential Locks
-									</a>
-									<a
-										onClick={() => {
-											onProductItemClick(1);
-										}}>
-										Commercial Locks
-									</a>
-									<a
-										onClick={() => {
-											onProductItemClick(2);
-										}}>
-										Smart Locks
-									</a>
-								</div>
-							</div>
-
-							<div className="sidebar-menu">
-								<button
-									// className={`sidebar-menu-title ${openMenu === "products" ? "active" : ""}`}
-									className={`sidebar-menu-title }`}
-									// className={`sidebar-menu-title `}
-									onClick={() => {
-										onProductsClick();
-										// toggleMenu("products");
-									}}>
-									<span className="sidebar-icon">🔒 Products</span>
-									<span className="sidebar-menu-label">Products</span>
-									<span className="sidebar-menu-chevron">{/* {openMenu === "products" ? "▴" : "▾"}  */}▾</span>
-								</button>
-								{/* <div className={`sidebar-menu-links open ${openMenu === "products" ? "open" : ""}`}> */}
-								<div className={`sidebar-menu-links open`}>
-									<a
-										onClick={() => {
-											// onProductItemClick(0);
-											// setHovered(false);
-										}}>
-										Residential Locks
-									</a>
-									<a
-										onClick={() => {
-											// onProductItemClick(1);
-											// setHovered(false);
-										}}>
-										Commercial Locks
-									</a>
-									<a
-										onClick={() => {
-											// onProductItemClick(2);
-											// setHovered(false);
-										}}>
-										Smart Locks
-									</a>
-								</div>
-							</div>
-						</ul>
-					</div>
-					<div className="links-container">
-						<h3>Useful info</h3>
-						<ul>
 							<li>Credit Aplication</li>
 							{/* this is to give credit and let every body know where did i take the pictures and icons from  */}
 							<li>Attribution</li>
@@ -105,21 +43,82 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 							<li>icons</li>
 						</ul>
 					</div>
+
 					<div className="links-container">
-						<h3>Socials</h3>
+						<h2
+							onClick={() => {
+								onProductsClick();
+							}}>
+							Useful info
+						</h2>
 						<ul>
-							<li>yelp</li>
-							<li>linkin</li>
-							<li>Email</li>
+							<li>
+								<p
+									onClick={() => {
+										onProductItemClick(0);
+									}}>
+									{" "}
+									Residential Locks
+								</p>
+							</li>
+
+							<li>
+								{" "}
+								<p
+									onClick={() => {
+										onProductItemClick(1);
+									}}>
+									Commercial Locks
+								</p>
+							</li>
+							<li>
+								<p
+									onClick={() => {
+										onProductItemClick(2);
+									}}>
+									Smart Locks
+								</p>
+							</li>
+						</ul>
+					</div>
+					<div className="links-container">
+						<h2>Socials</h2>
+						<ul>
+							<li>
+								<p
+									onClick={() => {
+										onServiceItemClick(0);
+										// setHovered(false);
+									}}>
+									Emergency Lockout
+								</p>
+							</li>
+							<li>
+								<p
+									onClick={() => {
+										onServiceItemClick(1);
+										// setHovered(false);
+									}}>
+									Lock Installation{" "}
+								</p>
+							</li>
+							<li>
+								<p
+									onClick={() => {
+										onServiceItemClick(2);
+										// setHovered(false);
+									}}>
+									Rekeying{" "}
+								</p>
+							</li>
 						</ul>
 					</div>
 				</div>
 
 				<div className="schedule-container">
-					<div className="links-container">
-						<h3>
-							<h3>Areas we service</h3>
-						</h3>
+					<div className="links-container service-areas">
+						<h2>Areas we service</h2>
+
 						<ul>
 							<li>The Bronx</li>
 							<li>Manhattan</li>
@@ -128,7 +127,8 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 						</ul>
 					</div>
 					<div className="schedule">
-						<h3>Contact us</h3>
+						<h2>Contact Us</h2>
+
 						<div>
 							<p>Webster Lock & Hardware Co. </p>
 							<p>2471 Webster Avenue Bronx, NY 10458</p>
@@ -144,7 +144,16 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 				</div>
 			</div>
 
-			<h3>Webster Lock & Hardware Co. 2026 © All Rights Reserved</h3>
+			<div className="footer-bottom-container">
+				<div className="footer-social-container">
+					<ul>
+						<li>yelp</li>
+						<li>linkin</li>
+						<li>Email</li>
+					</ul>
+				</div>
+				<h3>Webster Lock & Hardware Co. 2026 © All Rights Reserved</h3>
+			</div>
 		</div>
 	);
 }

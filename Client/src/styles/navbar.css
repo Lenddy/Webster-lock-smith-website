@@ -253,6 +253,7 @@ h4 {
 
 /* Shrink nav text when scrolled */
 .nav-scrolled .nav-items ul li h4 {
+	/* font-size: 0.8rem; */
 	font-size: 0.8rem;
 }
 
