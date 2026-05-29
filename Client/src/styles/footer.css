@@ -57,13 +57,27 @@
 .links-container {
 	height: 90%;
 	width: 250px;
-	/* background-color: red;
-	border: solid white 1px; */
+	/* background-color: red;*/
+	border: solid white 1px;
 	border-radius: 10px;
 }
 
 .links-container h2 {
 	text-decoration: underline;
+	color: red;
+	text-decoration-color: white;
+}
+
+.links-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.schedule h2 {
+	text-decoration: underline;
+	color: var(--kg);
+	text-decoration-color: white;
 }
 
 .links-container ul li {

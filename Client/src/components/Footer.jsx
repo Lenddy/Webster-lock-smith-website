@@ -10,37 +10,46 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 	one would be for the website utilities  (back ground color ,language  , reduced animation )
 	one will be for the credit form 
 	*/
+
 	return (
 		<div className="footer-container">
 			<div className="footer-content-container">
 				<div className="useful-links-container">
 					<div className="links-container">
 						<h2>Main menu</h2>
-						<ul>
-							<li
-								onClick={() => {
-									onHomeClick();
-								}}>
-								<p>Home</p>
-							</li>
-							<li
-								onClick={() => {
-									onAboutClick();
-								}}>
-								<p>About</p>
-							</li>
-							<li
-								onClick={() => {
-									oneGalleryClick();
-								}}>
-								<p>Gallery</p>
-							</li>
+						<ul className="links-wrapper">
+							<div className="links-container-inner-wrapper">
+								<li
+									onClick={() => {
+										onHomeClick();
+									}}>
+									<p>Home</p>
+								</li>
+								<li
+									onClick={() => {
+										onAboutClick();
+									}}>
+									<p>About</p>
+								</li>
+								<li
+									onClick={() => {
+										oneGalleryClick();
+									}}>
+									<p>Gallery</p>
+								</li>
+							</div>
 
-							<li>Credit Aplication</li>
-							{/* this is to give credit and let every body know where did i take the pictures and icons from  */}
-							<li>Attribution</li>
-							{/* this should go un der the attribution section*/}
-							<li>icons</li>
+							<div className="links-container-inner-wrapper">
+								<h2>Useful info</h2>
+
+								<ul>
+									<li>Credit Aplication</li>
+									{/* this is to give credit and let every body know where did i take the pictures and icons from  */}
+									<li>Attribution</li>
+									{/* this should go un der the attribution section*/}
+									<li>icons</li>
+								</ul>
+							</div>
 						</ul>
 					</div>
 
@@ -49,7 +58,7 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 							onClick={() => {
 								onProductsClick();
 							}}>
-							Useful info
+							Products
 						</h2>
 						<ul>
 							<li>
@@ -82,7 +91,7 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 						</ul>
 					</div>
 					<div className="links-container">
-						<h2>Socials</h2>
+						<h2>Services</h2>
 						<ul>
 							<li>
 								<p
