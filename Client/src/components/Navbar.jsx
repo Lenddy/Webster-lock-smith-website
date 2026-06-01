@@ -116,6 +116,14 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 									}}>
 									Smart Locks
 								</a>
+
+								<a
+									onClick={() => {
+										onProductItemClick(3);
+										setHovered(false);
+									}}>
+									Safes & Vaults
+								</a>
 							</div>
 						</div>
 
@@ -147,6 +155,14 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 										setHovered(false);
 									}}>
 									Rekeying
+								</a>
+
+								<a
+									onClick={() => {
+										onServiceItemClick(3);
+										setHovered(false);
+									}}>
+									Key Duplication
 								</a>
 							</div>
 						</div>
@@ -205,10 +221,19 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 								Products & Services <span className="chevron">▾</span>
 							</h4>
 							<div className="nav-dropdown-menu">
-								<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
-								<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
-								<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
-								<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
+								<div>
+									<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
+									<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
+									<a onClick={() => onProductItemClick(2)}>Smart Locks</a>
+									<a onClick={() => onProductItemClick(3)}> Safes & Vaults</a>
+								</div>
+
+								<div>
+									<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
+									<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
+									<a onClick={() => onServiceItemClick(2)}>Rekeying</a>
+									<a onClick={() => onServiceItemClick(3)}> Key Duplication</a>
+								</div>
 							</div>
 						</li>
 
@@ -312,6 +337,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 						<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
 						<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
 						<a onClick={() => onProductItemClick(2)}>Smart Locks</a>
+						<a onClick={() => onProductItemClick(3)}> Safes & Vaults</a>
 					</div>
 				</div>
 
@@ -331,6 +357,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 						<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
 						<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
 						<a onClick={() => onServiceItemClick(2)}>Rekeying</a>
+						<a onClick={() => onServiceItemClick(3)}> Key Duplication</a>
 					</div>
 				</div>
 

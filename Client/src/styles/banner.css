@@ -17,8 +17,14 @@
 	justify-content: start;
 	align-items: center;
 	flex-direction: column;
-	min-height: 700px; /* min-height instead of height */
-	/* padding-bottom: 20px;  */
+
+	/* min-height: 300px; */
+	/* min-height instead of height */
+	padding-bottom: 20px;
+	/* height: clamp(12.5rem, 8.263rem + 33.9vw, 62.5rem); */
+	/* height: clamp(12.5rem, 7.203rem + 42.37vw, 75rem); */
+	/* height: 1000px; */
+	/* max-height: 1000px; */
 }
 
 /* title */
@@ -30,16 +36,17 @@
 }
 
 .banner-title h1 {
-	/* font-size: clamp(2rem, 0.349rem + 1.36vw, 3rem); */
-	font-size: clamp(1.563rem, 0.977rem + 1.22vw, 2.5rem);
+	font-size: clamp(1.25rem, 1.038rem + 1.69vw, 3.75rem);
 }
 
 /* main banner image */
 .banner-image-container {
 	width: 98%;
 	/* height: 98%; */
-	height: 700px;
-	max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem);
+	/* min-height: ; */
+	height: 900px;
+	/* max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem); */
+	max-height: clamp(18.75rem, 15.572rem + 25.42vw, 56.25rem);
 	background-color: var(--lb);
 	display: flex;
 	justify-content: center;
@@ -178,6 +185,10 @@
 		border-radius: 10px;
 		animation: slide-from-bottom 1200ms ease-out forwards;
 	} */
+
+	.banner-container {
+		margin-top: 57px;
+	}
 }
 
 /* Responsive behavior */
