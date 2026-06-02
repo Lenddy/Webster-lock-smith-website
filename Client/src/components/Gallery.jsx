@@ -27,26 +27,30 @@ function Gallery() {
 	// fix the remaining part of the grid later
 
 	return (
-		<div className="gallery-container">
-			<div className="gallery-expanded-container">
-				{sections.map((section) => (
-					<section key={section.name} className="section-row">
-						<div className="column-container">
-							<h3 className="column-title">{section.name}</h3>
-						</div>
+		<div>
+			<h2>Our Vendors</h2>
 
-						{/* scroll wrapper — this constrains and clips */}
-						<div className="images-scroll-wrapper">
-							<div className="images-area">
-								{section.images.map((img, i) => (
-									<div className="image-wrapper" key={i}>
-										<img src={img.src} alt={img.alt} />
-									</div>
-								))}
+			<div className="gallery-container">
+				<div className="gallery-expanded-container">
+					{sections.map((section) => (
+						<section key={section.name} className="section-row">
+							<div className="column-container">
+								<h3 className="column-title">{section.name}</h3>
 							</div>
-						</div>
-					</section>
-				))}
+
+							{/* scroll wrapper — this constrains and clips */}
+							<div className="images-scroll-wrapper">
+								<div className="images-area">
+									{section.images.map((img, i) => (
+										<div className="image-wrapper" key={i}>
+											<img src={img.src} alt={img.alt} />
+										</div>
+									))}
+								</div>
+							</div>
+						</section>
+					))}
+				</div>
 			</div>
 		</div>
 	);
