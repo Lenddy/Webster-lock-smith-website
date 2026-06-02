@@ -31,16 +31,19 @@ function Gallery() {
 			<div className="gallery-expanded-container">
 				{sections.map((section) => (
 					<section key={section.name} className="section-row">
-						<h3 className="column">{section.name}</h3>
-						<div className="images-area">
-							{section.images.map((img, i) => (
-								<div className="image-wrapper" key={i}>
-									<img key={i} src={img.src} alt={img.alt} />
-									{/* <img src={Hes} alt="test" /> */}
-									{/* <img src={Falcon} alt="test" /> */}
-									{/* <img src={Folger} alt="test" /> */}
-								</div>
-							))}
+						<div className="column-container">
+							<h3 className="column-title">{section.name}</h3>
+						</div>
+
+						{/* scroll wrapper — this constrains and clips */}
+						<div className="images-scroll-wrapper">
+							<div className="images-area">
+								{section.images.map((img, i) => (
+									<div className="image-wrapper" key={i}>
+										<img src={img.src} alt={img.alt} />
+									</div>
+								))}
+							</div>
 						</div>
 					</section>
 				))}

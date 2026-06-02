@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import Test from "./components/Test";
 import { useEffect, useState, useRef } from "react";
 
+import calcClampBreakpoints from "../../min-max-calculator";
+
 function App() {
 	const [scrolled, setScrolled] = useState(false);
 	const [showBtn, setShowBtn] = useState(false);
@@ -60,6 +62,8 @@ function App() {
 		localStorage.setItem("navPosition", pos);
 	};
 
+	console.log(calcClampBreakpoints("1.625rem", "1.593rem", 17.88, "2rem"));
+
 	// // wrap content so it shifts when sidebar is present
 	// <div className={`app-wrapper ${navPosition !== "top" ? `sidebar-${navPosition}` : ""}`}></div>;
 
@@ -103,6 +107,9 @@ function App() {
 	useEffect(() => {
 		console.log("visibleSections updated:", visibleSections);
 	}, [visibleSections]);
+
+	// TODO go look at the Bronx locksmith website https://www.bronxlocksmith.com/ for inspiration
+	// TODO go look at the Mr lock website https://mr-locks.com/ for inspiration
 
 	return (
 		<>

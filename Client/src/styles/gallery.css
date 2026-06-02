@@ -10,16 +10,16 @@
 
 .gallery-container {
 	width: 100%;
-	/* background-color: cornflowerblue; */
-	background-color: var(--lb);
+	/* background-color: rgb(2, 33, 33); */
+	/* background-color: var(--lb); */
 	display: flex;
 	justify-content: center;
 	/* margin-top: 25px; */
+	padding: 10px 0px;
 }
 
 .gallery-expanded-container {
 	width: 98%;
-	/* background-color: burlywood; */
 	border-radius: 10px;
 }
 
@@ -27,24 +27,70 @@
 	display: grid;
 	grid-template-columns: 200px 1fr; /* fixed label col + flexible images col */
 	border-bottom: 1px solid var(--kg);
-	gap: 10px;
+	min-width: 0;
+	overflow: hidden;
 }
 
-.column {
+.column-container {
 	align-self: center;
+	/* width: 100%; */
+	width: 100%;
+
+	position: sticky;
+	left: 0;
+	z-index: 1;
+	background: inherit; /* matches row background */
+	padding: 8px 0;
+	border-right: dotted 2px var(--kg);
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .images-area {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(100px, 300px)); /* responsive image cols */
-	gap: 10px 10px;
+	grid-template-columns: repeat(4, 300px); /* responsive image cols */
+	gap: 10px 0px;
 	padding: 12px 5px;
 	justify-items: center;
 	align-items: center;
-	/* background-color: var(--wh); */
-	/* border: solid 1px white; */
-	/* border-radius: 10px; */
 	border-left: dotted 2px var(--kg);
+	overflow-x: auto;
+	width: clamp(18.75rem, 8.284rem + 83.73vw, 142.25rem);
+}
+
+.images-scroll-wrapper {
+	overflow-x: auto;
+	overflow-y: hidden;
+	/* scroll stops at end of content — no extra space */
+	scroll-padding-right: 12px;
+
+	/* custom scrollbar stays inside this box */
+	scrollbar-width: thin;
+	scrollbar-color: var(--kg) transparent;
+}
+
+.images-scroll-wrapper::-webkit-scrollbar {
+	height: 5px;
+}
+
+.images-area {
+	/* fixed columns — always same width regardless of screen */
+	display: grid;
+	grid-template-columns: repeat(4, 250px);
+	gap: 10px;
+	padding: 12px 5px;
+	justify-items: center;
+	align-items: center;
+	border-left: dotted 2px var(--kg);
+	/* background-color: rgb(5, 62, 17); */
+
+	/* width is exactly 4 items + gaps + padding — scroll stops here */
+	width: calc(4 * 250px + 3 * 10px + 10px);
+
+	/* no overflow on images-area itself — wrapper handles it */
+	overflow: visible;
 }
 
 .image-wrapper {
@@ -53,19 +99,44 @@
 	align-items: center;
 	width: 250px;
 	height: 150px;
-	/* background-color: var(--lg); */
 	background-color: #f5f5f5;
 	border: 1px solid var(--kg);
 	border-radius: 10px;
 }
 
-.image-wrapper img {
-	display: flex;
+.test {
+	width: 100%;
+	height: 100%;
+	background-color: red;
+	overflow-x: auto;
+}
+
+.image-wrapper {
 	width: 250px;
 	height: 150px;
-	/* background-color: white; */
-	/* border: solid 1px white; */
-	/* background-color: var(--lg); */
-	/* border: 1px solid var(--kg); */
+	background-color: #f5f5f5;
+	border: 1px solid var(--kg);
 	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0; /* don't let flex/grid crush them */
+}
+
+.image-wrapper img {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	object-fit: cover;
+}
+
+@media (min-width: 1200px) {
+	.images-area {
+		grid-template-columns: repeat(4, 1fr);
+		width: 100%; /* fill the column, no scroll */
+	}
+
+	.images-scroll-wrapper {
+		overflow-x: hidden; /* disable scroll on large screens */
+	}
 }

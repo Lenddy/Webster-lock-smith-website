@@ -20,6 +20,10 @@
 	min-height: 450px;
 }
 
+.products-services-title h1 {
+	font-size: clamp(1.625rem, 1.593rem + 0.25vw, 2rem);
+}
+
 .blink {
 	opacity: 0;
 	animation: blink 1200ms ease-out forwards;
@@ -49,11 +53,11 @@
 	width: 98%;
 	/* height: 700px; */
 	/* max-height: 100%; */
-	gap: 10px;
+	/* gap: 10px; */
 	/* border: solid 1px var(--lg); */
 	/* border: solid 1px white; */
 
-	border-radius: 10px;
+	border-radius: clamp(0.313rem, 0.066rem + 0.35vw, 0.625rem);
 }
 
 .products-container,
@@ -65,8 +69,9 @@
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
+	/* padding: 0px; */
 	/* border: solid 1px var(--wh); */
+	padding: 5px;
 }
 
 .services-container {
@@ -79,17 +84,26 @@
 .products-title {
 	opacity: 0;
 	animation: slide-from-top 1000ms ease-out forwards;
-	/* animation-delay: 1150ms; */
+}
+
+.products-title h1,
+.services-title h1 {
+	font-size: clamp(1.188rem, 1.161rem + 0.21vw, 1.5rem);
 }
 
 .products-description {
 	opacity: 0;
 	animation: slide-from-top 1000ms ease-out 150ms forwards;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.products-description .services-description {
-	/* font-size: clamp(0.75rem, 0.656rem + 0.75vw, 1.125rem); */
-	font-size: 200px;
+.products-description p,
+.services-description p {
+	font-size: clamp(0.75rem, 0.729rem + 0.17vw, 1rem);
+	max-width: 800px;
 }
 
 .slide-0 {
@@ -122,6 +136,9 @@
 .services-description {
 	opacity: 0;
 	animation: slide-from-right 1000ms ease-out 150ms forwards;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .service-slide-0 {
@@ -182,7 +199,7 @@
 
 .item-header h3 {
 	margin: 0;
-	font-size: 16px;
+	font-size: clamp(0.875rem, 0.864rem + 0.08vw, 1rem);
 }
 
 .item-chevron {
@@ -194,11 +211,12 @@
 	padding: 0 14px 12px;
 	color: var(--lg);
 	line-height: 1.7;
-	font-size: 14px;
+	/* font-size: 14px; */
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
+	font-size: clamp(0.75rem, 0.729rem + 0.17vw, 1rem);
 }
 
 .item-body p {
@@ -207,6 +225,38 @@
 
 .image-wrapper {
 	max-height: 450px;
+}
+
+@media (max-width: 1130px) {
+	.products-container,
+	.services-container {
+		width: 49%;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		padding: 0px;
+	}
+}
+
+@media (max-width: 899px) {
+	.products-services-wrapper {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.products-container,
+	.services-container {
+		width: 100%;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		padding: 5px;
+	}
+
+	.products-description p,
+	.services-description p {
+		padding: 10px 5px;
+	}
 }
 
 @keyframes slide-from-top {
