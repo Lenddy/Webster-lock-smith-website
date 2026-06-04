@@ -43,7 +43,8 @@ function Gallery() {
 								<div className="images-area">
 									{section.images.map((img, i) => (
 										<div className="image-wrapper" key={i}>
-											<img src={img.src} alt={img.alt} />
+											{/* <img src={img.src} alt={img.alt} /> */}
+											<img src={Folger} alt={img.alt} />
 										</div>
 									))}
 								</div>

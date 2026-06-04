@@ -65,7 +65,15 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 						<h2>Products</h2>
 					</div>
 					<div className="products-description">
-						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus beatae quas voluptas minus delectus maiores repellat tempore perspiciatis ipsam excepturi quo, enim quos, natus blanditiis magni, libero cumque quibusdam voluptates? Tempora, unde. Sed adipisci ducimus accusamus exercitationem recusandae. Unde, odio voluptate sapiente hic facilis veritatis non praesentium aperiam minus ratione!</p>
+						<p>
+							Webster Locksmiths is home to a super-store and onsite warehouse stocked with hundreds of items available for your purchase.
+							<br />
+							Whether you are looking for a decorative lockset, mailbox system, safe, plumbing and electrical supplies, or general hardware, we have it.
+							<br />
+							Webster Locksmiths is a one-stop-shop for all your security product needs.
+							<br />
+							Check out some of our great products below:
+						</p>
 					</div>
 
 					<div className="products">
@@ -84,18 +92,6 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 									</div>
 								</li>
 							))}
-
-							{/* {products.map((product, index) => (
-								<li key={index} className={`slide-${index} ${openProduct === index ? "expanded" : ""} `} onClick={() => toggleProduct(index)}>
-									<div className="item-header">
-										<h3>{product.name}</h3>
-										<span className="item-chevron">{openProduct === index ? "🔓" : "🔒"}</span>
-									</div>
-									<div className="item-body">
-										<p>{product.description}</p>
-									</div>
-								</li>
-							))} */}
 						</ul>
 					</div>
 				</div>
@@ -106,7 +102,11 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 						<h2>Services</h2>
 					</div>
 					<div className="services-description">
-						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus beatae quas voluptas minus delectus maiores repellat tempore perspiciatis ipsam excepturi quo, enim quos, natus blanditiis magni, libero cumque quibusdam voluptates? Tempora, unde. Sed adipisci ducimus accusamus exercitationem recusandae. Unde, odio voluptate sapiente hic facilis veritatis non praesentium aperiam minus ratione!</p>
+						<p>
+							Webster Lock has a complete suite of services to keep your home, business, and automobiles safe and secure. Our team of over 50 uniformed service technicians and more than 40 vehicles cover the 5 boroughs of New York City with the state-of-the-art equipment needed to solve your problems professionally and quickly.
+							<br />
+							Here is a list of our major service areas.!
+						</p>
 					</div>
 					<div className="services">
 						<ul>
@@ -124,18 +124,6 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 									</div>
 								</li>
 							))}
-
-							{/* {services.map((service, index) => (
-								<li key={index} className={`service-slide-${index} ${openService === index ? "expanded" : ""} `} onClick={() => toggleService(index)}>
-									<div className="item-header">
-										<h3>{service.name}</h3>
-										<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
-									</div>
-									<div className="item-body">
-										<p>{service.description}</p>
-									</div>
-								</li>
-							))} */}
 						</ul>
 					</div>
 				</div>

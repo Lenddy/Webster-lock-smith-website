@@ -54,17 +54,6 @@
 	/* text-align: left; */
 }
 
-@media (max-width: 500px) {
-	.column-container {
-		/* justify-content: start; */
-	}
-
-	.column-title {
-		font-size: clamp(0.875rem, 0.854rem + 0.17vw, 1.125rem);
-		text-align: left;
-	}
-}
-
 .images-area {
 	display: grid;
 	grid-template-columns: repeat(4, 300px); /* responsive image cols */
@@ -148,5 +137,16 @@
 
 	.images-scroll-wrapper {
 		overflow-x: hidden; /* disable scroll on large screens */
+	}
+}
+
+@media (max-width: 500px) {
+	.column-container {
+		/* justify-content: start; */
+	}
+
+	.column-title {
+		font-size: clamp(0.875rem, 0.854rem + 0.17vw, 1.125rem);
+		text-align: left;
 	}
 }

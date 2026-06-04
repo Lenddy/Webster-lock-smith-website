@@ -104,6 +104,8 @@
 .services-description p {
 	font-size: clamp(0.75rem, 0.729rem + 0.17vw, 1rem);
 	max-width: 800px;
+	/* min-height: 150px; */
+	padding: 10px;
 }
 
 .slide-0 {

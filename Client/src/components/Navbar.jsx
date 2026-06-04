@@ -3,7 +3,7 @@ import Logo from "../assets/WebsterSiteLogo.png";
 import video from "../assets/logo.mp4";
 import { useEffect, useState } from "react";
 
-function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryClick, onProductsClick, onProductItemClick, onServiceItemClick, navPosition, onChangeNavPosition, setIsPinned, screenWidth }) {
+function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryClick, onProductsClick, onProductItemClick, onServicesClick, onServiceItemClick, navPosition, onChangeNavPosition, setIsPinned, screenWidth }) {
 	const [sidebarExpanded, setSidebarExpanded] = useState(false);
 	const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -128,7 +128,12 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 						</div>
 
 						<div className="sidebar-menu">
-							<button className={`sidebar-menu-title ${openMenu === "services" ? "active" : ""}`} onClick={() => toggleMenu("services")}>
+							<button
+								className={`sidebar-menu-title ${openMenu === "services" ? "active" : ""}`}
+								onClick={() => {
+									onProductsClick();
+									toggleMenu("services");
+								}}>
 								<span className="sidebar-icon">🔑</span>
 								<span className="sidebar-menu-label">Services</span>
 								<span className="sidebar-menu-chevron">{openMenu === "services" ? "▴" : "▾"}</span>
@@ -273,11 +278,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 	// sidebar JSX
 	return (
 		<div
-			className={`sidebar
-      ${navPosition === "right" ? "sidebar-right-pos" : "sidebar-left-pos"}
-      ${isExpanded ? "sidebar-expanded" : ""}
-      ${pinned ? "sidebar-pinned" : "sidebar-hover"}
-    `}
+			className={`sidebar ${navPosition === "right" ? "sidebar-right-pos" : "sidebar-left-pos"} ${isExpanded ? "sidebar-expanded" : ""} ${pinned ? "sidebar-pinned" : "sidebar-hover"}`}
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => {
 				setHovered(false);
@@ -344,8 +345,10 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 				{/* Services */}
 				<div className="sidebar-menu">
 					<button
-						className={`sidebar-menu-title ${openMenu === "services" ? "active" : ""}`}
+						// className={`sidebar-menu-title ${openMenu === "services" ? "active" : ""}`}
+						className={`sidebar-menu-title `}
 						onClick={() => {
+							onServicesClick();
 							toggleMenu("services");
 						}}>
 						<span className="sidebar-icon">🔑</span>

@@ -62,13 +62,6 @@ function App() {
 		localStorage.setItem("navPosition", pos);
 	};
 
-	console.log(calcClampBreakpoints("1.625rem", "1.593rem", 17.88, "2rem"));
-
-	// // wrap content so it shifts when sidebar is present
-	// <div className={`app-wrapper ${navPosition !== "top" ? `sidebar-${navPosition}` : ""}`}></div>;
-
-	// intersection observer — reveal sections on scroll
-
 	useEffect(() => {
 		const handleResize = () => setScreenWidth(window.innerWidth);
 		window.addEventListener("resize", handleResize);
@@ -111,6 +104,8 @@ function App() {
 	// TODO go look at the Bronx locksmith website https://www.bronxlocksmith.com/ for inspiration
 	// TODO go look at the Mr lock website https://mr-locks.com/ for inspiration
 
+	console.log(calcClampBreakpoints("12.5rem", "12.235rem", 2.12, "15.625rem"));
+
 	return (
 		<>
 			<Routes>
@@ -125,6 +120,7 @@ function App() {
 								onAboutClick={() => scrollTo(aboutRef)}
 								oneGalleryClick={() => scrollTo(galleryRef)}
 								onProductsClick={() => scrollTo(productsRef)}
+								onServicesClick={() => scrollTo(serviceRef)}
 								onProductItemClick={(item) => {
 									scrollTo(productRef);
 									setExpandProduct(item); // tells the component which item to open

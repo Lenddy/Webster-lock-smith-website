@@ -5,7 +5,7 @@ import { useCarousel } from "../hooks/useCarousel";
 import front from "../assets/banner/Webster-Front.jpg";
 import banner from "../assets/banner/banner-services.png";
 import general from "../assets/general/general-1.png";
-import blankkeys from "../assets/general/blank-keys-on-wall.webp";
+import blankKeys from "../assets/general/blank-keys-on-wall.webp";
 import test from "../assets/general/s-l400.webp";
 
 export default function About() {
@@ -16,7 +16,7 @@ export default function About() {
 	const [expanded, setExpanded] = useState(false);
 
 	const aboutImages = [
-		{ src: blankkeys, alt: "Blank keys on wall" },
+		{ src: blankKeys, alt: "Blank keys on wall" },
 		{ src: general, alt: "General" },
 		{ src: test, alt: "Services" },
 		{ src: front, alt: "Webster front" },
@@ -30,7 +30,17 @@ export default function About() {
 			<div className={`banner-about-container ${!expanded ? "" : "expanded"}`}>
 				<div className="banner-about-wrapper-container">
 					<div className="banner-description-container">
-						<div className={`banner-description ${!expanded ? "" : "expanded"}`}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nulla magni fugit eum nesciunt, et dolores corrupti! Voluptatem molestias distinctio itaque. Dolorem, quaerat laboriosam aspernatur illum officia cumque quia nisi voluptatum cum doloribus dignissimos adipisci minus, tempora assumenda aliquam inventore sunt! Quos inventore incidunt recusandae blanditiis qui deleniti. Esse, cupiditate saepe natus officiis obcaecati a nulla fuga soluta. Sint facilis dolore tempore deserunt cum hic doloremque laboriosam dolorem quisquam quaerat aspernatur fuga repellendus voluptatibus, dolor, pariatur doloribus quasi laborum veniam delectus corporis expedita, itaque eius. Aut distinctio asperiores adipisci, sed soluta doloremque consectetur accusamus ab incidunt nam cum molestiae repellendus hic perferendis non, tenetur a veritatis dicta deserunt laborum! Ab veniam officiis consequuntur incidunt vero dolore, molestiae veritatis architecto consectetur laborum, debitis quibusdam sit animi facilis ex impedit excepturi natus doloremque fugit itaque. Quam nulla officia maiores autem quod doloribus porro quia obcaecati recusandae quaerat suscipit laboriosam, placeat voluptates accusantium laudantium magni saepe labore dicta culpa fuga sit quasi optio. Accusamus odit dignissimos, vitae sunt aliquid veritatis, at deleniti voluptate quam veniam modi laudantium saepe sit, quia perferendis eaque! Dolor reprehenderit, porro dolorem molestias fugit recusandae cumque autem repellendus minus, excepturi hic consequatur vero nostrum quos cum veritatis repellat quibusdam.</div>
+						<h1>About</h1>
+
+						<div className={`banner-description ${!expanded ? "" : "expanded"}`}>
+							<p>
+								Webster Lock and Hardware Co. Inc was founded in 1949 by Mike and Ann Miller.
+								<br />
+								Today their son, Allan Miller is the Chief Executive Officer of Webster Locksmiths. Allan’s son, David Miller is Vice President of Operations.
+								<br />
+								Webster Lock and Hardware is a complete security and security related, distributor and manufacturer. Forty radio-dispatched vehicles are serving the needs of residential and commercial customers throughout the New York metro area.
+							</p>
+						</div>
 						{/*
 								 add litle pictures (icons) keys , locks other similitar thinks 
 								 and make them move around  like butmp into each other
