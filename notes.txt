@@ -1,3 +1,27 @@
+put the front of the store as the background
+
+move the stack of pictures to the right 
+
+put the number of the company above the stack of pictures 
+
+put the emails at the bottom of the stack of pictures 
+
+have a btn that when click it (expands to show the about section) move the stack of pictures to the left and then show the about where the stack of pictures was  having the number of the company on the top  the about int he middle and the emails at the bottom 
+
+do you want to have the logo ont he left of the stack  and then have it move to the stack once the  about is expanded ? 
+
+
+
+
+for the  gallery  have a stager carrousel  (horizontal)  that keep changing the icons from left to right  the icons coming from the top stager (also add a btn to expand  to show the  gallery that you have now )
+
+
+
+
+
+re design the carruseles to be ( as an image comes into focus it gets bigger  and as i losing focus it gets smaller )
+
+
 you have to figure out how to make the height and the width match the screen 
 in the about section  when expanding the description
 

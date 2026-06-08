@@ -240,3 +240,196 @@
 		opacity: 1;
 	}
 }
+
+/* test for stack carrousel */
+
+/* ── register animated properties — REQUIRED ── */
+@property --p {
+	syntax: "<number>";
+	initial-value: 0;
+	inherits: true;
+}
+@property --v {
+	syntax: "<number>";
+	initial-value: 0;
+	inherits: true;
+}
+
+/* ── SECTION (the carousel root) ── */
+.stack-carousel {
+	--p: var(--k);
+	--abs-p: abs(var(--k) - var(--p));
+	--end: clamp(0, var(--abs-p) - 1, 1);
+	--dir: calc((1 - 2 * var(--end)) * sign(var(--k) - var(--p)));
+	--fwd: calc(0.5 * (1 + var(--dir)));
+	--v: var(--k);
+	--abs-v: abs(var(--v) - var(--p));
+	--prg: calc(var(--abs-v) / (1 - var(--end) + var(--end) * (var(--n) - 1)));
+
+	display: grid;
+	/* col 1 = image stack, col 2 = text + controls */
+	grid-template:
+		repeat(2, max-content) 1fr max-content /
+		max-content 1fr;
+	gap: 0.5em 3em;
+
+	/* center inside banner-image */
+	place-self: center;
+	margin: auto;
+
+	color: var(--wh, #f1f5f9);
+	font-family: system-ui, sans-serif;
+	counter-reset: k calc(1 + var(--k)) n var(--n);
+
+	transition:
+		--p 0s 0.8s,
+		--v 0.8s;
+
+	/* counter top-right of text column */
+	&::before {
+		grid-area: 1 / 2;
+		content: counter(k) "/" counter(n);
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.5);
+		text-align: right;
+		width: 3ch;
+	}
+
+	/* Chrome fallbacks */
+	@supports not (scale: Abs(-2)) {
+		--abs-p: max(var(--k) - var(--p), var(--p) - var(--k));
+		--abs-v: max(var(--v) - var(--p), var(--p) - var(--v));
+	}
+	@supports not (scale: Sign(-2)) {
+		--dir: clamp(-1, calc((var(--k) - var(--p)) * 100000), 1);
+	}
+}
+
+.stack-carousel img {
+	height: 400px;
+}
+
+/* ── CARD ── */
+.stack-card {
+	--abs-top: abs(var(--k) - var(--i));
+	--not-top: min(1, var(--abs-top));
+	--top: calc(1 - var(--not-top));
+	--val-mov: calc((1 - var(--fwd)) * var(--p) + var(--fwd) * var(--k) - var(--i));
+	--abs-mov: abs(var(--val-mov));
+	--not-mov: min(1, var(--abs-mov));
+	--mov: calc(1 - var(--not-mov));
+
+	grid-area: 1 / 1 / -1 / -1;
+	display: grid;
+	grid-template: subgrid / subgrid;
+
+	z-index: mod(calc(var(--n) - 1 + var(--i) - var(--k)), var(--n));
+	transition: z-index 0.8s cubic-bezier(1, -0.9, 0, 1.9);
+
+	@supports not (scale: Abs(-2)) {
+		--abs-top: max(var(--k) - var(--i), var(--i) - var(--k));
+		--abs-mov: max(var(--val-mov), calc(-1 * var(--val-mov)));
+	}
+}
+
+/* ── TEXT ── */
+.stack-title {
+	grid-area: 2 / 2;
+	font-size: clamp(1rem, 0.8rem + 1vw, 1.8rem);
+	font-weight: 600;
+	color: var(--wh, #fff);
+	translate: 0 calc(var(--not-top) * 1lh);
+	opacity: var(--top);
+	transition-duration: 0.4s;
+	transition-delay: calc(var(--top) * 0.4s);
+	transition-property: translate, opacity;
+}
+
+.stack-sub {
+	grid-area: 3 / 2;
+	font-size: clamp(0.8rem, 0.6rem + 0.5vw, 1rem);
+	color: rgba(255, 255, 255, 0.55);
+	translate: 0 calc(var(--not-top) * 1lh);
+	opacity: var(--top);
+	transition-duration: 0.4s;
+	transition-delay: calc(var(--top) * 0.4s);
+	transition-property: translate, opacity;
+}
+
+/* ── IMAGE — rectangular to match your banner style ── */
+.stack-img {
+	--sin: sin(calc(var(--prg) * 0.5turn));
+
+	grid-area: 1 / 1 / -1;
+
+	/* rectangular — matches your banner proportions */
+	height: clamp(200px, 35vh, 480px);
+	aspect-ratio: 4 / 3;
+
+	object-fit: cover;
+	border-radius: 10px;
+	border: 1px solid var(--kg);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+	/* slide moving card out and back in */
+	translate: calc(-150% * var(--mov) * sqrt(var(--sin)));
+	/* frozen random rotation, releases during transition */
+	rotate: calc((1 - var(--sin)) * var(--a));
+}
+
+/* ── CONTROLS ── */
+.stack-controls {
+	display: flex;
+	gap: 1.5em;
+	grid-area: 4 / 2;
+	/* disable clicks during animation */
+	z-index: calc((1 - min(1, var(--abs-p))) * var(--n));
+}
+
+.stack-btn {
+	--sgn: -1;
+	width: 2.5rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	border: 1px solid var(--kg);
+	background: rgba(26, 26, 26, 0.7);
+	color: var(--kg);
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	transition:
+		background 200ms,
+		color 200ms;
+}
+
+.stack-btn::before {
+	content: "";
+	display: block;
+	border: solid 2px currentColor;
+	border-width: 2px 2px 0 0;
+	width: 35%;
+	aspect-ratio: 1;
+	translate: calc(var(--sgn) * -15%);
+	rotate: 45deg;
+	scale: var(--sgn);
+}
+
+.stack-btn--next {
+	--sgn: 1;
+}
+
+.stack-btn:hover {
+	background: var(--kg);
+	color: var(--lb);
+}
+
+/* ── responsive: smaller on mobile ── */
+@media (max-width: 768px) {
+	.stack-carousel {
+		gap: 0.5em 1.5em;
+	}
+
+	.stack-img {
+		height: clamp(140px, 28vw, 220px);
+	}
+}
