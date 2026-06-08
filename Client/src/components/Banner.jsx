@@ -55,6 +55,10 @@ function Banner() {
 
 	const horizontal = useCarousel(bannerImages, 4000);
 
+	// TODO for the  banner make a different carrousel    use this for inspiration https://freefrontend.com/css-carousels/    also try one for the carrousel c
+
+	//TODO  add a section  where you have the logo and some items (keys , locks ,mail boxes)for example are rotating around it
+
 	return (
 		<div className="banner-container ">
 			<div className="banner-title">

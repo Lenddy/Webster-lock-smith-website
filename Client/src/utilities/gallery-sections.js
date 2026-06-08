@@ -1,13 +1,16 @@
 // data/galleryData.js
+import Hes from "../assets/lock-company-logos/hes.png";
+import Falcon from "../assets/lock-company-logos/falcon.png";
+import Folger from "../assets/lock-company-logos/folger.png";
 
 export const sections = [
 	{
 		name: "Locks",
 		images: [
 			// { src: "../assets/lock-company-logos/folger.png", alt: "Brand A" },
-			{ src: "../assets/lock-company-logos/folger.png", alt: "Brand A" },
-			{ src: "/images/locks/brand-b.png", alt: "Brand B" },
-			{ src: "/images/locks/brand-c.png", alt: "Brand C" },
+			{ src: Falcon, alt: "Brand A" },
+			{ src: Hes, alt: "Brand B" },
+			{ src: Folger, alt: "Brand C" },
 			{ src: "/images/locks/brand-c.png", alt: "Brand D" },
 			{ src: "/images/locks/brand-c.png", alt: "Brand E" },
 			{ src: "/images/locks/brand-c.png", alt: "Brand G" },

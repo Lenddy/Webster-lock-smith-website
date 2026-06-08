@@ -104,7 +104,7 @@ function App() {
 	// TODO go look at the Bronx locksmith website https://www.bronxlocksmith.com/ for inspiration
 	// TODO go look at the Mr lock website https://mr-locks.com/ for inspiration
 
-	console.log(calcClampBreakpoints("12.5rem", "12.235rem", 2.12, "15.625rem"));
+	console.log(calcClampBreakpoints("6.25rem", "5.72rem", 4.24, "12.5rem"));
 
 	return (
 		<>
