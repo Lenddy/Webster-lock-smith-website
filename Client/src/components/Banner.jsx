@@ -40,7 +40,7 @@ function Banner() {
 
 	useEffect(() => {
 		// timerRef.current = setInterval(next, 3500); //3500
-		return () => clearInterval(timerRef.current);
+		// return () => clearInterval(timerRef.current);
 	}, [next]);
 
 	const pauseAuto = () => clearInterval(timerRef.current);
@@ -50,7 +50,9 @@ function Banner() {
 
 	// TODO when expanding is to fast and when closing is almost instant fix that
 
-	//TODO figure out the height problem for the stack
+	//TODO figure out the height problem for the
+
+	//TODO after 1200 px only show the stack  make it wider  , put the left pictures  in the stacked make the expansion go down instead of side ways
 
 	return (
 		<div className="banner-container">

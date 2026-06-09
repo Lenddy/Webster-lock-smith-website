@@ -254,7 +254,7 @@
 	grid-area: 1 / 1 / -1 / -1;
 	display: grid;
 	grid-template: subgrid / subgrid;
-
+	gap: 0px 15px;
 	z-index: mod(calc(var(--n) - 1 + var(--i) - var(--k)), var(--n));
 	transition: z-index 0.8s cubic-bezier(1, -0.9, 0, 1.9);
 
@@ -275,6 +275,7 @@
 	transition-duration: 0.4s;
 	transition-delay: calc(var(--top) * 0.4s);
 	transition-property: translate, opacity;
+	z-index: 10;
 }
 
 .stack-sub {
@@ -296,8 +297,14 @@
 
 	/* rectangular — matches your banner proportions */
 	/* height: clamp(200px, 35vh, 480px); */
-	height: 600px;
-	/* width: 600px; */
+	/* from  2560 to 1200*/
+	/* height 550 to 350 looks good*/
+	/* height: 350px; */
+	height: clamp(21.875rem, 10.846rem + 14.71vw, 34.375rem);
+	/* from  2560 to 1200*/
+	/* height 650 to 475 looks good */
+	/* width: 850px; */
+	width: clamp(29.688rem, 9.007rem + 27.57vw, 53.125rem);
 	aspect-ratio: 4 / 3;
 
 	object-fit: cover;
