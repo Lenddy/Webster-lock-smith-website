@@ -16,7 +16,7 @@ do you want to have the logo ont he left of the stack  and then have it move to 
 for the  gallery  have a stager carrousel  (horizontal)  that keep changing the icons from left to right  the icons coming from the top stager (also add a btn to expand  to show the  gallery that you have now )
 
 
-
+fix the animation of everything to show their dedicated animation when they come into view
 
 
 re design the carruseles to be ( as an image comes into focus it gets bigger  and as i losing focus it gets smaller )
@@ -29,3 +29,34 @@ in the about section  when expanding the description
 
 
 use a lightbulb svg and use gradient color  with blur to simulate the light turning on and of
+
+
+
+
+
+
+
+
+
+
+banner-container
+banner-title
+banner-image-container
+banner-background-image
+banner-foreground ${expanded ? "expanded" : ""}
+banner-left-panel ${expanded ? "banner-left-hidden" : ""
+banner-left-img
+banner-right-panel
+banner-phone
+stack-carousel
+stack-card
+stack-title
+stack-sub
+stack-img
+stack-controls
+stack-btn
+stack-btn stack-btn--next
+banner-email
+banner-expand-btn
+banner-about-panel ${expanded ? "banner-about-visible
+banner-about-list

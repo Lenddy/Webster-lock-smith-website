@@ -1,12 +1,16 @@
 import "../styles/banner.css";
-import front from "../assets/banner/Webster-Front.jpg";
+// import front from "../assets/banner/Webster-Front.jpg";
+// import front from "../assets/banner/front-store.jpg";
+// import front from "../assets/banner/front-store-new.jpg";
+// import front from "../assets/banner/front-store-new-1.jpg";
+import front from "../assets/banner/front-store-1.jpg";
+// import front from "../assets/banner/front-store-2.jpg";
 import banner from "../assets/banner/banner-services.png";
 import general from "../assets/general/general-1.png";
 import blankkeys from "../assets/general/blank-keys-on-wall.webp";
 import test from "../assets/general/s-l400.webp";
 import { useState, useRef, useCallback, useEffect } from "react";
 
-// random angle per image — generated once, stable across renders
 const bannerImages = [
 	{ src: front, alt: "Webster front", title: "Since 1949", sub: "Trusted security" },
 	{ src: banner, alt: "Services banner", title: "Full Service", sub: "Lock & security solutions" },
@@ -34,16 +38,19 @@ function Banner() {
 	const next = useCallback(() => goTo(kRef.current + 1), [goTo]);
 	const prev = useCallback(() => goTo(kRef.current - 1), [goTo]);
 
-	// auto-play
 	useEffect(() => {
-		timerRef.current = setInterval(next, 3500);
+		// timerRef.current = setInterval(next, 3500); //3500
 		return () => clearInterval(timerRef.current);
 	}, [next]);
 
 	const pauseAuto = () => clearInterval(timerRef.current);
 	const resumeAuto = () => {
-		timerRef.current = setInterval(next, 3500);
+		// timerRef.current = setInterval(next, 3500); //3500
 	};
+
+	// TODO when expanding is to fast and when closing is almost instant fix that
+
+	//TODO figure out the height problem for the stack
 
 	return (
 		<div className="banner-container">
@@ -54,22 +61,78 @@ function Banner() {
 			</div>
 
 			<div className="banner-image-container">
-				<div className="banner-image">
-					{/* stack carousel replaces carousel-h */}
-					<section ref={sectionRef} className="stack-carousel" style={{ "--n": N, "--k": 0 }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
-						{bannerImages.map((img, i) => (
-							<article key={i} className="stack-card" style={{ "--i": i, "--a": img.angle }}>
-								<h2 className="stack-title">{img.title}</h2>
-								<em className="stack-sub">{img.sub}</em>
-								<img src={img.src} alt={img.alt} className="stack-img" />
-							</article>
-						))}
+				{/* background image — always full bleed behind everything */}
+				<div className="banner-background-image">
+					<img src={front} alt="Front of the store" />
+				</div>
 
-						<div className="stack-controls">
-							<button className="stack-btn" aria-label="previous" onClick={prev} />
-							<button className="stack-btn stack-btn--next" aria-label="next" onClick={next} />
+				{/* foreground layout: left pic | right stack */}
+				<div className={`banner-foreground ${expanded ? "expanded" : ""}`}>
+					{/* LEFT — picture slot */}
+					{/* on expand this fades out on desktop, joins stack on mobile */}
+					<div className={`banner-left-panel ${expanded ? "banner-left-hidden" : ""}`}>
+						{/* <img src={blankkeys} alt="Keys" className="banner-left-img" /> */}
+						<img src={front} alt="Keys" className="banner-left-img" />
+					</div>
+					{/* <div className="wrapper-banner-right"> */}
+					{/* RIGHT — stack column */}
+					<div className="banner-right-panel">
+						{/* phone number above stack */}
+						<div className="banner-phone">
+							<h2>(718) 733-2200</h2>
 						</div>
-					</section>
+
+						{/* <div className="banner-email">
+							<p>info@websterlocksmith.com</p>
+						</div> */}
+
+						{/* stack carousel */}
+						<section ref={sectionRef} className="stack-carousel" style={{ "--n": N, "--k": 0 }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
+							{bannerImages.map((img, i) => (
+								<article key={i} className="stack-card" style={{ "--i": i, "--a": img.angle }}>
+									<h2 className="stack-title">{img.title}</h2>
+									<em className="stack-sub">{img.sub}</em>
+
+									<img src={img.src} alt={img.alt} className="stack-img" />
+								</article>
+							))}
+
+							<div className="stack-controls">
+								<button className="stack-btn" aria-label="previous" onClick={prev} />
+								<button className="stack-btn stack-btn--next" aria-label="next" onClick={next} />
+							</div>
+						</section>
+
+						{/* email below stack */}
+						{/* <div className="banner-phone">
+							<h2>(718) 733-2200</h2>
+						</div>*/}
+						<div className="banner-email">
+							<h4>info@websterlocksmith.com</h4>
+						</div>
+
+						{/* expand button */}
+						<button className="banner-expand-btn" onClick={() => setExpanded(!expanded)}>
+							{expanded ? "✕ Close" : "Learn more about us"}
+						</button>
+					</div>
+					{/* </div>y */}
+					{/* ABOUT PANEL — appears on expand to the right of stack */}
+					<div className={`banner-about-panel ${expanded ? "banner-about-visible" : ""}`}>
+						<h3>About Webster Locksmith</h3>
+
+						<p>Family owned and operated since 1949. We've been serving the New York area for over 75 years, providing residential, commercial, and automotive locksmith services.</p>
+
+						<p>Licensed and insured. Our team of certified locksmiths is always ready to help.</p>
+
+						<ul className="banner-about-list">
+							<li>🔑 Residential lockouts</li>
+							<li>🏢 Commercial security</li>
+							<li>🚗 Automotive keys & fobs</li>
+							<li>🔒 Lock installation & rekeying</li>
+							<li>🛡️ Safe installation & repair</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -77,110 +140,3 @@ function Banner() {
 }
 
 export default Banner;
-
-// import "../styles/banner.css";
-// import front from "../assets/banner/Webster-Front.jpg";
-// import banner from "../assets/banner/banner-services.png";
-// import general from "../assets/general/general-1.png";
-// // import general from "../assets/general/general-1.webp";
-// // import blankkeys from "../assets/general/blank-keys-on-wall.png";
-// import blankkeys from "../assets/general/blank-keys-on-wall.webp";
-// import test from "../assets/general/s-l400.webp";
-
-// import { useState, useEffect, useRef } from "react";
-
-// import { useCarousel } from "../hooks/useCarousel";
-
-// function Banner() {
-// 	/*
-// 	//TODO -
-// 	the sizes of the section bellow the navbar  are a little smaller thanks to the scroll bar (the scroll bar will made smaller and change to be position fix or relative  so that it does not matter the size of it )
-
-// 	// TODO
-// 		the banner can be a Carousel
-// 			showing multiple images of product or videos
-
-// 	//TODO -
-// 		the banner-image-container should have a height of at least 450 px in
-// 		the banner title should be inside of the banner
-// 	//Todo
-// 		the about banner show be of set
-// 			example  left side  should be lowered and teh right side higher
-// 				and have the edges (bottom left and the top right ) should be longer
-// 				and there would be longer than the banner
-
-// 		in the about banner section you should put a collapsable  (that will show more information about the company ) use a locked lock to and a btn (or text ) to tell the users that they can click and to expand the text
-
-// 		the about banner will be a vertical carousel
-// 		depending on how tall the collapsable section is render more picture at the same time  in the carousel
-
-// 	*/
-
-// 	const [expanded, setExpanded] = useState(false);
-
-// 	// ── swap these out for your real images
-// 	const bannerImages = [
-// 		{ src: front, alt: "Webster front" },
-// 		{ src: banner, alt: "Services banner" },
-// 		{ src: general, alt: "General" },
-// 	];
-
-// 	const aboutImages = [
-// 		{ src: blankkeys, alt: "Blank keys on wall" },
-// 		{ src: general, alt: "General" },
-// 		{ src: test, alt: "Services" },
-// 		{ src: front, alt: "Webster front" },
-// 		{ src: banner, alt: "Services" },
-// 	];
-
-// 	const horizontal = useCarousel(bannerImages, 4000);
-
-// 	// TODO for the  banner make a different carrousel    use this for inspiration https://freefrontend.com/css-carousels/    also try one for the carrousel c
-
-// 	//TODO  add a section  where you have the logo and some items (keys , locks ,mail boxes)for example are rotating around it
-
-// 	return (
-// 		<div className="banner-container ">
-// 			<div className="banner-title">
-// 				<h1>
-// 					Webster Security <span>Services</span>
-// 				</h1>
-// 			</div>
-// 			<div className="banner-image-container">
-// 				<div className="banner-image">
-// 					{/* <img src={front} alt="Banner" /> */}
-// 					{/* <img src={banner} alt="Banner" /> */}
-// 					<div className="carousel-h">
-// 						<div className="carousel-h-track" style={{ transform: `translateX(-${horizontal.current * 100}%)` }}>
-// 							{bannerImages.map((img, i) => (
-// 								<div className="carousel-h-slide" key={i}>
-// 									<img src={img.src} alt={img.alt} />
-// 								</div>
-// 							))}
-// 						</div>
-// 						<div className="top-left">
-// 							<h1>{/* Webster Security <span>Services</span> */}</h1>
-// 						</div>
-
-// 						{/* arrows */}
-// 						<button className="carousel-arrow carousel-arrow-left" onClick={horizontal.prev}>
-// 							&#8592;
-// 						</button>
-// 						<button className="carousel-arrow carousel-arrow-right" onClick={horizontal.next}>
-// 							&#8594;
-// 						</button>
-
-// 						{/* dots */}
-// 						<div className="carousel-dots">
-// 							{bannerImages.map((_, i) => (
-// 								<button key={i} className={`carousel-dot ${horizontal.current === i ? "active" : ""}`} onClick={() => horizontal.goTo(i)} />
-// 							))}
-// 						</div>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// }
-
-// export default Banner;
