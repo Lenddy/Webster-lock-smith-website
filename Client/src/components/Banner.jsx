@@ -24,7 +24,7 @@ const bannerImages = [
 
 const N = bannerImages.length;
 
-function Banner() {
+function Banner({ screenWidth }) {
 	const [expanded, setExpanded] = useState(false);
 	const sectionRef = useRef(null);
 	const kRef = useRef(0);
@@ -39,13 +39,13 @@ function Banner() {
 	const prev = useCallback(() => goTo(kRef.current - 1), [goTo]);
 
 	useEffect(() => {
-		// timerRef.current = setInterval(next, 3500); //3500
-		// return () => clearInterval(timerRef.current);
+		timerRef.current = setInterval(next, 3000); //3500
+		return () => clearInterval(timerRef.current);
 	}, [next]);
 
 	const pauseAuto = () => clearInterval(timerRef.current);
 	const resumeAuto = () => {
-		// timerRef.current = setInterval(next, 3500); //3500
+		timerRef.current = setInterval(next, 3500); //3500
 	};
 
 	// TODO when expanding is to fast and when closing is almost instant fix that
@@ -57,9 +57,9 @@ function Banner() {
 	return (
 		<div className="banner-container">
 			<div className="banner-title">
-				<h1>
+				{/* <h1>
 					Webster Security <span>Services</span>
-				</h1>
+				</h1> */}
 			</div>
 
 			<div className="banner-image-container">
@@ -68,24 +68,10 @@ function Banner() {
 					<img src={front} alt="Front of the store" />
 				</div>
 
-				{/* foreground layout: left pic | right stack */}
-				<div className={`banner-foreground ${expanded ? "expanded" : ""}`}>
-					{/* LEFT — picture slot */}
-					{/* on expand this fades out on desktop, joins stack on mobile */}
-					<div className={`banner-left-panel ${expanded ? "banner-left-hidden" : ""}`}>
-						{/* <img src={blankkeys} alt="Keys" className="banner-left-img" /> */}
-						<img src={front} alt="Keys" className="banner-left-img" />
-					</div>
-					{/* <div className="wrapper-banner-right"> */}
-					{/* RIGHT — stack column */}
-					<div className="banner-right-panel">
-						{/* phone number above stack */}
-						<div className="banner-phone">
+				<div className={`banner-foreground `}>
+					<div className="banner-left-panel">
+						{/* <div className="banner-phone">
 							<h2>(718) 733-2200</h2>
-						</div>
-
-						{/* <div className="banner-email">
-							<p>info@websterlocksmith.com</p>
 						</div> */}
 
 						{/* stack carousel */}
@@ -105,25 +91,72 @@ function Banner() {
 							</div>
 						</section>
 
-						{/* email below stack */}
-						{/* <div className="banner-phone">
-							<h2>(718) 733-2200</h2>
-						</div>*/}
-						<div className="banner-email">
+						{/* <div className="banner-email">
 							<h4>info@websterlocksmith.com</h4>
-						</div>
-
-						{/* expand button */}
-						<button className="banner-expand-btn" onClick={() => setExpanded(!expanded)}>
-							{expanded ? "✕ Close" : "Learn more about us"}
-						</button>
+						</div> */}
 					</div>
-					{/* </div>y */}
-					{/* ABOUT PANEL — appears on expand to the right of stack */}
-					<div className={`banner-about-panel ${expanded ? "banner-about-visible" : ""}`}>
-						<h3>About Webster Locksmith</h3>
+					{/* <div className={`banner-about-panel banner-about-visible`}> */}
 
-						<p>Family owned and operated since 1949. We've been serving the New York area for over 75 years, providing residential, commercial, and automotive locksmith services.</p>
+					{screenWidth > 1000 && (
+						<div className={`banner-about-panel-wrapper`}>
+							<div className={`banner-about-panel`}>
+								<h2 className="banner-about-panel-title">About Webster Locksmith</h2>
+
+								{/* <br /> */}
+								{/* <h2>(718) 733-2200</h2> */}
+								<div className="banner-contact">
+									<h3>(718) 733-2200</h3>
+									<h3>service@websterlock.com</h3>
+								</div>
+								<br />
+
+								<p>Family owned and operated since 1949. We've been serving the New York city area for over 75 years, providing residential, commercial, and automotive locksmith services.</p>
+								<br />
+
+								<p>Licensed and insured. Our team of certified locksmiths is always ready to help.</p>
+
+								<ul className="banner-about-list">
+									<li>
+										<p>🔑 Residential lockouts</p>
+									</li>
+									<li>
+										<p>🏢 Commercial security</p>{" "}
+									</li>
+									<li>
+										<p>🚗 Automotive keys & fobs</p>
+									</li>
+									<li>
+										<p>🔒 Lock installation & rekeying</p>
+									</li>
+									<li>
+										<p>🛡️ Safe installation & repair</p>
+									</li>
+								</ul>
+
+								{/* <div className="banner-email"> */}
+
+								{/* </div> */}
+							</div>
+						</div>
+					)}
+				</div>
+			</div>
+
+			{screenWidth <= 1000 && (
+				<div className={`banner-about-panel-wrapper`}>
+					<div className={`banner-about-panel`}>
+						<h2 className="banner-about-panel-title">About Webster Locksmith</h2>
+
+						{/* <br /> */}
+						{/* <h2>(718) 733-2200</h2> */}
+						<div className="banner-phone">
+							<h3>(718) 733-2200</h3>
+							<h3>service@websterlock.com</h3>
+						</div>
+						<br />
+
+						<p>Family owned and operated since 1949. We've been serving the New York city area for over 75 years, providing residential, commercial, and automotive locksmith services.</p>
+						<br />
 
 						<p>Licensed and insured. Our team of certified locksmiths is always ready to help.</p>
 
@@ -134,9 +167,13 @@ function Banner() {
 							<li>🔒 Lock installation & rekeying</li>
 							<li>🛡️ Safe installation & repair</li>
 						</ul>
+
+						{/* <div className="banner-email"> */}
+
+						{/* </div> */}
 					</div>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 }

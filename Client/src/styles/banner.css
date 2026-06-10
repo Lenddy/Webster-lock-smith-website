@@ -12,7 +12,7 @@
 .banner-container {
 	/* margin-top: 100px; */
 	/* margin-left: 64px; */
-	background-color: var(--dr);
+	/* background-color: var(--dr); */
 	display: flex;
 	justify-content: start;
 	align-items: center;
@@ -42,8 +42,6 @@
 /* main banner image */
 .banner-image-container {
 	width: 98%;
-	/* height: 98%; */
-	/* min-height: ; */
 	height: 900px;
 	/* max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem); */
 	max-height: clamp(18.75rem, 15.572rem + 25.42vw, 56.25rem);
@@ -53,9 +51,6 @@
 	align-items: center;
 	border-radius: 10px;
 	animation: slide-from-bottom 1200ms ease-out forwards;
-	/* background-image: url("../assets/banner/Webster-Front.jpg");
-	background-repeat: no-repeat;
-	background-size: 100%; */
 	position: relative;
 	overflow: hidden; /* clip the background */
 }
@@ -74,104 +69,49 @@
 	object-fit: cover;
 	border-radius: 10px;
 	/* dim it so foreground is readable */
-	filter: brightness(0.35);
+	filter: brightness(0.45);
 }
 
 /* ── FOREGROUND LAYOUT ── */
-.banner-foreground {
-	/* background-color: darkolivegreen; */
+/* .banner-foreground {
 	position: relative;
 	z-index: 1;
 	width: 100%;
 	height: 100%;
 	display: flex;
-	/* align-items: center; */
 	align-items: end;
 	justify-content: space-around;
-	/* justify-content: end; */
-	/* gap between left pic, stack, and about panel */
-	/* gap: 2rem; */
 	padding: 2rem;
 	box-sizing: border-box;
 	transition: gap 500ms ease;
+} */
+
+.banner-foreground {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: end;
+	justify-content: space-around;
+	padding: 2rem;
+	box-sizing: border-box;
+	/* transition: gap 500ms ease; */
 }
 
 /* ── LEFT PANEL (picture) ── */
 
-.banner-left-panel {
-	flex: 0 450px 750px; /* fixed width, doesn't grow */
-	/* height: 360px; */
-	/* height: 650px; */
-	/* height: 300px; */
-	height: clamp(18.75rem, 8.843rem + 19.86vw, 40.625rem);
-	max-width: 910px;
-	border-radius: 10px;
-	overflow: hidden;
-	border: 1px solid var(--kg);
-	opacity: 1;
-	transform: translateX(0);
-	transition:
-		opacity 400ms ease,
-		transform 400ms ease,
-		flex 400ms ease;
-	/* margin-bottom: 10px; */
-	margin-bottom: clamp(0rem, -1.132rem + 2.27vw, 2.5rem);
-}
-
-/* on expand — slide left out and fade */
-.banner-left-hidden {
-	opacity: 0;
-	transform: translateX(-40px);
-	flex: 0 0 0px; /* collapse width smoothly */
-	overflow: hidden;
-}
-
-.banner-left-img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	filter: brightness(0.35);
-}
-
 /* ── RIGHT PANEL (stack column) ── */
 
-/* .wrapper-banner-right {
+.banner-left-panel {
 	display: flex;
-	width: 100%;
-	justify-content: end;
-} */
-
-.banner-right-panel {
-	/* width: 400px; */
-	/* width: 700px; */
-	min-width: 500px;
-	max-width: 1000px;
-	display: flex;
+	flex: 1;
 	flex-direction: column;
 	align-items: center;
-	/* align-items: start; */
-	/* justify-content: center; */
-	/* justify-content: end; */
-	gap: 20px;
+	gap: 30px;
 	flex-shrink: 0;
-}
-
-/* ── PHONE L ── */
-.banner-phone {
-	display: flex;
-	align-items: start;
-	justify-content: start;
-	/* width: 400px; */
-	width: 50%;
-}
-
-.banner-phone h2 {
-	font-size: clamp(1.2rem, 1rem + 1vw, 2rem);
-	color: var(--kg);
-	font-weight: 600;
-	text-align: center;
-	letter-spacing: 0.02em;
-	/* margin: 0px 70px 0px 0px; */
+	/* margin: auto 0px; */
+	margin-bottom: 50px;
 }
 
 /* test for stack carrousel */
@@ -209,8 +149,6 @@
 
 	/* center inside banner-image */
 	place-self: center;
-	/* justify-content: right; */
-	/* width: 100%; */
 	margin: auto;
 
 	color: var(--wh, #f1f5f9);
@@ -226,7 +164,7 @@
 		grid-area: 1 / 2;
 		content: counter(k) "/" counter(n);
 		font-size: 12px;
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 1);
 		text-align: right;
 		width: 3ch;
 	}
@@ -254,7 +192,7 @@
 	grid-area: 1 / 1 / -1 / -1;
 	display: grid;
 	grid-template: subgrid / subgrid;
-	gap: 0px 15px;
+	gap: 0px 30px;
 	z-index: mod(calc(var(--n) - 1 + var(--i) - var(--k)), var(--n));
 	transition: z-index 0.8s cubic-bezier(1, -0.9, 0, 1.9);
 
@@ -268,6 +206,7 @@
 .stack-title {
 	grid-area: 2 / 2;
 	font-size: clamp(1rem, 0.8rem + 1vw, 1.8rem);
+	/* font-size: 30px; */
 	font-weight: 600;
 	color: var(--wh, #fff);
 	translate: 0 calc(var(--not-top) * 1lh);
@@ -281,7 +220,7 @@
 .stack-sub {
 	grid-area: 3 / 2;
 	font-size: clamp(0.8rem, 0.6rem + 0.5vw, 1rem);
-	color: rgba(255, 255, 255, 0.55);
+	color: rgba(255, 255, 255, 0.8);
 	translate: 0 calc(var(--not-top) * 1lh);
 	opacity: var(--top);
 	transition-duration: 0.4s;
@@ -292,31 +231,22 @@
 /* ── IMAGE — rectangular to match your banner style ── */
 .stack-img {
 	--sin: sin(calc(var(--prg) * 0.5turn));
-
 	grid-area: 1 / 1 / -1;
-
 	/* rectangular — matches your banner proportions */
-	/* height: clamp(200px, 35vh, 480px); */
-	/* from  2560 to 1200*/
-	/* height 550 to 350 looks good*/
-	/* height: 350px; */
 	height: clamp(21.875rem, 10.846rem + 14.71vw, 34.375rem);
-	/* from  2560 to 1200*/
-	/* height 650 to 475 looks good */
-	/* width: 850px; */
 	width: clamp(29.688rem, 9.007rem + 27.57vw, 53.125rem);
 	aspect-ratio: 4 / 3;
 
 	object-fit: cover;
 	border-radius: 10px;
 	border: 1px solid var(--kg);
-	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
 
 	/* slide moving card out and back in */
 	translate: calc(-150% * var(--mov) * sqrt(var(--sin)));
 	/* frozen random rotation, releases during transition */
 	rotate: calc((1 - var(--sin)) * var(--a));
-	filter: brightness(0.35);
+	/* filter: brightness(0.35); */
 }
 
 /* ── CONTROLS ── */
@@ -382,19 +312,6 @@
 }
 
 /* ── EXPAND BUTTON ── */
-/* .banner-expand-btn {
-	background: none;
-	border: 1px solid var(--kg);
-	color: var(--kg);
-	padding: 8px 20px;
-	border-radius: 6px;
-	cursor: pointer;
-	font-size: 13px;
-	transition:
-		background 200ms,
-		color 200ms;
-	margin: 0px 70px 0px 0px;
-} */
 
 .banner-expand-btn {
 	background: none;
@@ -415,40 +332,76 @@
 	color: var(--lb);
 }
 
+/* come here  */
+
 /* ── ABOUT PANEL ── */
-.banner-about-panel {
-	flex: 0 0 0px;
+
+.banner-about-panel-wrapper {
+	flex: 1;
 	overflow: hidden;
-	opacity: 0;
-	transform: scale(0.92) translateX(30px);
-	transition:
-		flex 500ms ease,
-		opacity 400ms ease 150ms,
-		/* slight delay so stack moves first */ transform 400ms ease 150ms;
+	opacity: 1;
 	margin: auto 0px;
-	max-width: 1000px;
+	display: flex;
+	justify-content: center;
+	/* background-color: rgba(4, 4, 4, 0.139); */
 }
 
-/* on expand — pop in from right */
-.banner-about-visible {
-	flex: 1; /* takes remaining space */
-	opacity: 1;
-	transform: scale(1) translateX(0);
-	margin: auto 0px;
+.banner-about-panel {
+	width: 90%;
+	/* padding: 20px 0px; */
+}
+
+.banner-about-panel h2,
+.banner-about-panel h3,
+.banner-about-panel p {
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.banner-about-panel h2 {
+	font-size: clamp(1.25rem, 0.147rem + 1.47vw, 2.5rem);
+	color: var(--kg);
+	margin-bottom: 0.75rem;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	letter-spacing: 0.02em;
+
+	/* text-align: center; */
+	/* letter-spacing: 0.02em; */
 }
 
 .banner-about-panel h3 {
-	font-size: 1.3rem;
-	color: var(--kg);
-	margin-bottom: 0.75rem;
-	font-weight: 500;
+	font-size: clamp(1.125rem, 0.022rem + 1.47vw, 2.375rem);
+	display: inline-block;
+}
+
+/* ── PHONE L ── */
+.banner-contact {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	/* width: 400px; */
+	/* width: 50%; */
+}
+
+.banner-contact h2 {
+	/* font-size: clamp(1.2rem, 1rem + 1vw, 2rem); */
+	/* color: var(--kg); */
+	/* font-weight: 900; */
+	/* text-align: center; */
+	/* letter-spacing: 0.02em; */
+	/* margin: 0px 70px 0px 0px; */
+}
+
+.banner-about-panel-title {
 }
 
 .banner-about-panel p {
-	font-size: 0.9rem;
-	color: rgba(255, 255, 255, 0.8);
+	font-size: clamp(0.938rem, 0.386rem + 0.74vw, 1.563rem);
+	color: rgba(255, 255, 255, 1);
 	line-height: 1.7;
-	margin-bottom: 0.75rem;
+	/* margin-bottom: 0.75rem; */
 }
 
 .banner-about-list {
@@ -468,8 +421,88 @@
 	border-left: 2px solid var(--kg);
 }
 
+@media (max-width: 1000px) {
+	.banner-container {
+		/* margin-top: 100px; */
+		/* margin-left: 64px; */
+		/* background-color: var(--dr); */
+		display: flex;
+		justify-content: start;
+		align-items: center;
+		flex-direction: column;
+
+		/* min-height: 300px; */
+		/* min-height instead of height */
+		padding-bottom: 20px;
+		/* height: clamp(12.5rem, 8.263rem + 33.9vw, 62.5rem); */
+		/* height: clamp(12.5rem, 7.203rem + 42.37vw, 75rem); */
+		/* height: 1000px; */
+		/* max-height: 1000px; */
+		/* height: 1500px; */
+	}
+
+	.banner-foreground {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: end;
+		justify-content: space-around;
+		padding: 2rem;
+		box-sizing: border-box;
+		/* transition: gap 500ms ease; */
+	}
+
+	.banner-image-container {
+		width: 98%;
+		/* height: 1500px; */
+		/* max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem); */
+		/* max-height: clamp(18.75rem, 15.572rem + 25.42vw, 56.25rem); */
+		/* height: 90%; */
+		background-color: var(--lb);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		animation: slide-from-bottom 1200ms ease-out forwards;
+		position: relative;
+		overflow: hidden; /* clip the background */
+	}
+
+	.banner-foreground {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: end;
+		justify-content: space-around;
+		padding: 2rem;
+		box-sizing: border-box;
+		flex-direction: column;
+		/* transition: gap 500ms ease; */
+	}
+}
+
 /* ── MOBILE ── */
 @media (max-width: 768px) {
+	/* .banner-image-container {
+		width: 98%;
+		height: 700px;
+		max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem);
+		background-color: var(--lb);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		animation: slide-from-bottom 1200ms ease-out forwards;
+	} */
+
+	.banner-container {
+		margin-top: 57px;
+	}
+
 	.stack-carousel {
 		gap: 0.5em 1.5em;
 	}
@@ -488,9 +521,6 @@
 	}
 
 	/* on mobile left panel is always hidden — image joins the stack */
-	.banner-left-panel {
-		display: none;
-	}
 
 	/* about panel appears below stack on mobile */
 	.banner-about-panel {
@@ -505,27 +535,9 @@
 	}
 
 	/* stack stays centered */
-	.banner-right-panel {
+	.banner-left-panel {
 		width: 100%;
 		align-items: center;
-	}
-}
-
-@media (max-width: 768px) {
-	/* .banner-image-container {
-		width: 98%;
-		height: 700px;
-		max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem);
-		background-color: var(--lb);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 10px;
-		animation: slide-from-bottom 1200ms ease-out forwards;
-	} */
-
-	.banner-container {
-		margin-top: 57px;
 	}
 }
 

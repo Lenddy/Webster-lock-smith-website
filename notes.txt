@@ -37,6 +37,17 @@ use a lightbulb svg and use gradient color  with blur to simulate the light turn
 
 
 
+i have a problem with the animation (and transition) on the close about (expand false) the on expand is fine it could be better but the problem is that the close or the hidden is almost instant and there should be a little more of a transition 
+
+
+
+and also when the width is 1200px the left picture will be in the stack and not in the left anymore and the expantion of the about  will be going down instead of from the side  and the banner container will need to grown so that i can house the extra height 
+
+
+
+
+
+
 
 
 banner-container
@@ -60,3 +71,99 @@ banner-email
 banner-expand-btn
 banner-about-panel ${expanded ? "banner-about-visible
 banner-about-list
+
+
+
+/* ── ABOUT PANEL ── */
+.banner-about-panel {
+  flex: 0 0 0px;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.92) translateX(30px);
+
+  /* OPEN: flex expands first, then opacity fades in */
+  transition:
+    flex       500ms ease,
+    max-width  500ms ease,
+    opacity    400ms ease 150ms,
+    transform  400ms ease 150ms;
+}
+
+/* on expand — pop in from right */
+.banner-about-visible {
+  flex: 1;
+  max-width: 600px;          /* give it a real max so transition has target */
+  opacity: 1;
+  transform: scale(1) translateX(0);
+
+  /* CLOSE: opacity fades out first, THEN flex collapses */
+  transition:
+    flex       500ms ease   300ms,   /* delay — waits for opacity to finish */
+    max-width  500ms ease   300ms,
+    opacity    300ms ease,            /* no delay — fades immediately */
+    transform  300ms ease;
+}
+
+
+actual
+
+
+
+/* ── ABOUT PANEL ── */
+.banner-about-panel {
+	flex: 0 0 0px;
+	overflow: hidden;
+	opacity: 0;
+	transform: scale(0.92) translateX(30px);
+	transition:
+		opacity 400ms ease 150ms,
+		flex 500ms ease,
+		transform 400ms ease 150ms; 
+		/* slight delay so stack moves first  */
+	margin: auto 0px;
+	max-width: 1000px;
+}
+
+/* .banner-about-panel {
+	flex: 0 0 0px;
+	max-width: 0;
+	overflow: hidden;
+	opacity: 0;
+	transform: scale(0.92) translateX(30px);
+	 OPEN: flex expands first, then opacity fades in 
+	transition:
+		flex 500ms ease,
+		max-width 500ms ease,
+		opacity 400ms ease 150ms,
+		transform 400ms ease 150ms;
+} */
+
+
+
+
+
+/* on expand — pop in from right */
+/* .banner-about-visible {
+	flex: 1;  takes remaining space 
+	opacity: 1;
+	transform: scale(1) translateX(0);
+	margin: auto 0px;
+} */
+
+.banner-about-visible {
+	flex: 1;
+	max-width: 600px; /* give it a real max so transition has target */
+	opacity: 1;
+	transform: scale(1) translateX(0);
+
+	/* CLOSE: opacity fades out first, THEN flex collapses */
+	transition:
+		flex 500ms ease 300ms,
+		/* delay — waits for opacity to finish */ max-width 500ms ease 300ms,
+		opacity 300ms ease,
+		/* no delay — fades immediately */ transform 300ms ease;
+}
+
+
+

@@ -140,11 +140,11 @@ function App() {
 							<div className={`app-content ${navPosition} ${isPinned ? "isPinned" : ""}`}>
 								{/* each div: one ref, one id, checks its own id */}
 								<div ref={homeRef} id="banner" className={visibleSections.banner ? "show" : ""}>
-									<Banner />
+									<Banner screenWidth={screenWidth} />
 								</div>
 
 								<div ref={aboutRef} id="about" className={visibleSections.about ? "show" : ""}>
-									<About />
+									{/* <About /> */}
 								</div>
 
 								<div ref={productsRef} id="products" className={visibleSections.products ? "show" : ""}>
