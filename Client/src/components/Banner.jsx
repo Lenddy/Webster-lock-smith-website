@@ -100,7 +100,7 @@ function Banner({ screenWidth }) {
 					{screenWidth > 1000 && (
 						<div className={`banner-about-panel-wrapper`}>
 							<div className={`banner-about-panel`}>
-								<h2 className="banner-about-panel-title">About Webster Locksmith</h2>
+								<h2 className="banner-about-panel-title"> Webster Locksmith</h2>
 
 								{/* <br /> */}
 								{/* <h2>(718) 733-2200</h2> */}

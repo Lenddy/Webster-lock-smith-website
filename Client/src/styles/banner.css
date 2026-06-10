@@ -192,7 +192,7 @@
 	grid-area: 1 / 1 / -1 / -1;
 	display: grid;
 	grid-template: subgrid / subgrid;
-	gap: 0px 30px;
+	gap: 0px 40px;
 	z-index: mod(calc(var(--n) - 1 + var(--i) - var(--k)), var(--n));
 	transition: z-index 0.8s cubic-bezier(1, -0.9, 0, 1.9);
 
@@ -233,8 +233,9 @@
 	--sin: sin(calc(var(--prg) * 0.5turn));
 	grid-area: 1 / 1 / -1;
 	/* rectangular — matches your banner proportions */
-	height: clamp(21.875rem, 10.846rem + 14.71vw, 34.375rem);
-	width: clamp(29.688rem, 9.007rem + 27.57vw, 53.125rem);
+	height: clamp(15.625rem, 3.606rem + 19.23vw, 34.375rem);
+	width: clamp(25rem, 6.971rem + 28.85vw, 53.125rem);
+	/* width: 400px; */
 	aspect-ratio: 4 / 3;
 
 	object-fit: cover;
@@ -508,7 +509,7 @@
 	}
 
 	.stack-img {
-		height: clamp(140px, 28vw, 220px);
+		/* height: clamp(140px, 28vw, 220px); */
 	}
 
 	.banner-foreground {

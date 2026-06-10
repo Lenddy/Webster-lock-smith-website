@@ -1,3 +1,26 @@
+add more space between the componets
+
+remove the expanding of the about 
+
+
+put the arrows and the  title and sub title of the stack gallery above and bellow the stack  as the viewport gets smaller
+
+SEE IF YOU WANT TO CHANGE HOW THE BOXH SHADO MAKES THE ABOUT DESCRIPTION IN THE BANNER LOOK IN SMALL PORTS 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1  for the translation  use i18next (and put the json files on the public folder)
  and see if you need import React, { Suspense } from "react";
 this goes on the main.jsx files 
@@ -8,136 +31,3 @@ reference : go to your porfolio project and you can see how to use it
 find out if you will need to use a db for the careers page
 
 
-make the nav bab the body and the footer
-Make a skeleton with the functionality
-
-    1 Nav bar should have 
-        1the logo
-        2 buttons to navegante to the sections 
-        3 should be at the top or in a burger menu
-        transparent and then change colors when scroll (or make it  still to the top and only when yo hover your mouse or scroll down it will show)
-
-    2 Body should have 
-        1 a banner (image or video)
-        2 about section 
-        3 products and services (should have a description of them, have all product and services (on click they should open up(dorp down))) 
-        4 section for pictures
-        5 button to go back to the top (should be fix to the bottom left of the page)
-
-    3 Footer should
-
-
-
-
-
-    make the scroll bar disappear when not in use  
-
-
-    
-how to use them
-
-Primary action (Logo Red #C8102E) — buttons, links, highlights
-
-Backgrounds (Logo Black #1A1A1A) — nav, footer, hero
-
-Accents (Key Gold #D4A843) — icons, badges, borders
-Page bg (White #FFFFFF) — section backgrounds
-
-Hover state (Deep Red #8C0C1F)— darker red on hover
-
-
-
-
-
-
-
-Logo Red
-#C8102E
-Deep Red
-#8C0C1F
-Key Gold
-#D4A843
-Dark Gold
-#B8922A
-Logo Black
-#1A1A1A
-Charcoal
-#2B2B2B
-Mid Gray
-#3D3D3D
-Light Gray
-#F5F5F5
-White
-#FFFFFF
-
-
-
-section backgrounds — light vs dark
-
-Light theme
-Navbar
-#1A1A1A
-Hero banner
-#C8102E
-Services section
-#FFFFFF
-About / info
-#F5F5F5
-Testimonials
-#FFFFFF
-CTA banner
-#C8102E
-Footer
-#1A1A1A
-
-
-
-Dark theme
-Navbar
-#0D0D0D
-Hero banner
-#8C0C1F
-Services section
-#1A1A1A
-About / info
-#2B2B2B
-Testimonials
-#1A1A1A
-CTA banner
-#8C0C1F
-Footer
-#0D0D0D
-
-
-text colors to use on each background
-
-On red → use #FFFFFF white + #D4A843 gold for accents
-On black → use #FFFFFF white + #D4A843 gold for accents
-On light gray → use #1A1A1A black + #C8102E red for accents
-On white → use #1A1A1A black + #C8102E red for 
-
-
-
-
-the core logic behind these choices:
-Your logo is already a strong brand — red, black, white, and gold — so the best website palette just extends those same colors rather than introducing new ones. Red for all your call-to-action buttons keeps the eye moving to what matters (phone number, contact form). The dark charcoal/black works great for a nav bar and footer, which gives the site a professional, trustworthy feel — important for a security business. The gold from the key is perfect as an accent for icons, star ratings, or "since 1949" type badges since it adds warmth without clashing.
-The light gray (#F5F5F5) as a section background is a common trick to break up a page without introducing a color that competes with your branding.
-
-
-
-
-
-
-
-
-
-
-
-Primary action (red #C8102E) exists to answer one question — "where do I click?" Every page should have one dominant action color. Yours is red. Buttons, links, the hero section. In dark mode the hero drops to deep red #8C0C1F because bright red on a dark page is too harsh.
-
-Background (black #1A1A1A) bookends the page — navbar at top, footer at bottom. This creates a visual "frame" around your content. It also makes your logo pop since it already has a white character on dark background.
-
-Accents (gold #D4A843) are never a background — they're highlights. Card borders, your logo text in the nav, phone numbers, copyright text in the footer, badge text, star ratings. Gold says "important but not urgent." Red says "urgent, click me."
-Page bg (white/light gray) is where your content breathes. Alternating #FFFFFF and #F5F5F5 between sections creates separation without using borders.
-
-Hover state (deep red #8C0C1F) only appears when a user's mouse is on a button. You can't see it in a static mockup — try hovering the "Call Now" button to see it darken. This tells users the button is clickable.

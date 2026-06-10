@@ -104,7 +104,9 @@ function App() {
 	// TODO go look at the Bronx locksmith website https://www.bronxlocksmith.com/ for inspiration
 	// TODO go look at the Mr lock website https://mr-locks.com/ for inspiration
 
-	console.log(calcClampBreakpoints("6.25rem", "5.72rem", 4.24, "12.5rem"));
+	console.log(calcClampBreakpoints("29.688rem", "9.007rem", 27.57, "53.125rem"));
+
+	// move the about section lower
 
 	return (
 		<>
@@ -143,16 +145,16 @@ function App() {
 									<Banner screenWidth={screenWidth} />
 								</div>
 
-								<div ref={aboutRef} id="about" className={visibleSections.about ? "show" : ""}>
-									{/* <About /> */}
-								</div>
-
 								<div ref={productsRef} id="products" className={visibleSections.products ? "show" : ""}>
 									<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} />
 								</div>
 
 								<div ref={galleryRef} id="gallery" className={visibleSections.gallery ? "show" : ""}>
 									<Gallery />
+								</div>
+
+								<div ref={aboutRef} id="about" className={visibleSections.about ? "show" : ""}>
+									<About />
 								</div>
 
 								<div ref={footerRef} id="footer" className={visibleSections.footer ? "show" : ""}>
