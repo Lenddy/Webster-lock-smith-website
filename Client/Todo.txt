@@ -1,17 +1,15 @@
 add more space between the componets
 
-remove the expanding of the about 
-
-
-put the arrows and the  title and sub title of the stack gallery above and bellow the stack  as the viewport gets smaller
-
-SEE IF YOU WANT TO CHANGE HOW THE BOXH SHADO MAKES THE ABOUT DESCRIPTION IN THE BANNER LOOK IN SMALL PORTS 
+for most of the sub titles of the sections make them blue or see if you want to alternate between yellow and blue 
 
 
 
+on products and services  be yellow  likes the banners about when close (only on the title section ) figure out if you also want to give a different color to the interior black maybe like the back ground    
 
 
 
+make the  vendors  into the carrousel like version said
+ and see if you want to move it about the products 
 
 
 

@@ -48,11 +48,27 @@ function Banner({ screenWidth }) {
 		timerRef.current = setInterval(next, 3500); //3500
 	};
 
-	// TODO when expanding is to fast and when closing is almost instant fix that
+	// NOTE for the right side about
 
-	//TODO figure out the height problem for the
+	//TODO - 7 for the list see if you would like to dynamically change the text (to add other sections)
+	//TODO - for the light mode  change the yel-low background of the list to r-ed maybe
 
-	//TODO after 1200 px only show the stack  make it wider  , put the left pictures  in the stacked make the expansion go down instead of side ways
+	// NOTE for the right side stack
+
+	//NOTE - done
+	// NOTE for the right side about
+	// - 1 the space(height) needs to be smaller when passing a viewpoint (1150 base) (dynamically if posible ) !!!!!!!!!!(done for now)
+	// - 2 see if the box shadow will be modified? also fix it for the (1000) viewpoint
+	//  NOTE for the right side stacksy
+	// - 1 align and justify in the center (1000) viewpoint done
+	// - 1 is the margin bottom not working now ? above  (1000) viewpoint (yes it is  done)
+	// - 3 move the title and sub tittle control bellow the stack and the  (done)
+	// - 2 make the stack card wider(and taller ?) passing the (1000) viewpoint  to take more spaces (done)
+	// - 3 make the contact have more space between when passing the 1000 viewport (done)
+	// - 3 make content take more height(space) to fit the screen when passing the 1000 viewport(done)
+	// - 4 in smaller viewport (than 1000) make the contact have vertical flex direction (done)
+	// - 5 make the list (li) have a better spacing and width when passing the 1000 viewport(done)
+	// - 6 make the list (li) back ground have more opacity when passing the 1000 viewport (done)
 
 	return (
 		<div className="banner-container">
@@ -100,18 +116,18 @@ function Banner({ screenWidth }) {
 					{screenWidth > 1000 && (
 						<div className={`banner-about-panel-wrapper`}>
 							<div className={`banner-about-panel`}>
-								<h2 className="banner-about-panel-title"> Webster Locksmith</h2>
+								<h2 className="banner-about-panel-title"> Webster Lock</h2>
 
 								{/* <br /> */}
 								{/* <h2>(718) 733-2200</h2> */}
 								<div className="banner-contact">
-									<h3>(718) 733-2200</h3>
+									<h3>(718)733-2200</h3>
 									<h3>service@websterlock.com</h3>
 								</div>
-								<br />
+								{/* <br /> */}
 
 								<p>Family owned and operated since 1949. We've been serving the New York city area for over 75 years, providing residential, commercial, and automotive locksmith services.</p>
-								<br />
+								{/* <br /> */}
 
 								<p>Licensed and insured. Our team of certified locksmiths is always ready to help.</p>
 
@@ -145,27 +161,37 @@ function Banner({ screenWidth }) {
 			{screenWidth <= 1000 && (
 				<div className={`banner-about-panel-wrapper`}>
 					<div className={`banner-about-panel`}>
-						<h2 className="banner-about-panel-title">About Webster Locksmith</h2>
+						<h2 className="banner-about-panel-title"> Webster Lock</h2>
 
 						{/* <br /> */}
 						{/* <h2>(718) 733-2200</h2> */}
-						<div className="banner-phone">
-							<h3>(718) 733-2200</h3>
+						<div className="banner-contact">
+							<h3>(718)733-2200</h3>
 							<h3>service@websterlock.com</h3>
 						</div>
-						<br />
+						{/* <br /> */}
 
 						<p>Family owned and operated since 1949. We've been serving the New York city area for over 75 years, providing residential, commercial, and automotive locksmith services.</p>
-						<br />
+						{/* <br /> */}
 
 						<p>Licensed and insured. Our team of certified locksmiths is always ready to help.</p>
 
 						<ul className="banner-about-list">
-							<li>🔑 Residential lockouts</li>
-							<li>🏢 Commercial security</li>
-							<li>🚗 Automotive keys & fobs</li>
-							<li>🔒 Lock installation & rekeying</li>
-							<li>🛡️ Safe installation & repair</li>
+							<li>
+								<p>🔑 Residential lockouts</p>
+							</li>
+							<li>
+								<p>🏢 Commercial security</p>{" "}
+							</li>
+							<li>
+								<p>🚗 Automotive keys & fobs</p>
+							</li>
+							<li>
+								<p>🔒 Lock installation & rekeying</p>
+							</li>
+							<li>
+								<p>🛡️ Safe installation & repair</p>
+							</li>
 						</ul>
 
 						{/* <div className="banner-email"> */}

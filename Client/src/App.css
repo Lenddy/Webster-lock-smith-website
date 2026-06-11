@@ -9,6 +9,7 @@
 	--dr: #8c0c1f; /* Deep-Red */
 	--kg: #d4a843; /* key-gold */
 	--dg: #b8922a; /* dark-gold */
+	--dgf: rgb(184, 146, 42, 0.6); /* dark-gold faded*/
 	--lb: #1a1a1a; /* logo-black */
 	--ch: #2b2b2b; /* Charcoal*/
 	--mg: #3d3d3d; /* mid-gray*/
@@ -21,6 +22,7 @@
 	--dr: #320c8c; /* Deep-Red */
 	--kg: #735206; /* key-gold */
 	--dg: #443409; /* dark-gold */
+	--dgf: rgb(184, 146, 42, 0.6); /* dark-gold faded*/
 	--lb: #1a1a1a; /* logo-black */
 	--ch: #cfcdcd; /* Charcoal*/
 	--mg: #7d7979; /* mid-gray*/
@@ -62,7 +64,7 @@ body {
 	transition: margin 300ms ease;
 }
 .top {
-	margin-top: 100px;
+	margin-top: 105px;
 	transition: margin 300ms ease;
 }
 
