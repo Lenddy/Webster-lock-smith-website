@@ -51,6 +51,7 @@ function Banner({ screenWidth }) {
 	// NOTE for the right side about
 
 	//TODO - 7 for the list see if you would like to dynamically change the text (to add other sections)
+	//TODO - 8 see if you want to make the about section clickable )
 	//TODO - for the light mode  change the yel-low background of the list to r-ed maybe
 
 	// NOTE for the right side stack

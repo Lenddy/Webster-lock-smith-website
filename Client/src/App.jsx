@@ -145,12 +145,12 @@ function App() {
 									<Banner screenWidth={screenWidth} />
 								</div>
 
-								<div ref={productsRef} id="products" className={visibleSections.products ? "show" : ""}>
-									<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} />
-								</div>
-
 								<div ref={galleryRef} id="gallery" className={visibleSections.gallery ? "show" : ""}>
 									<Gallery />
+								</div>
+
+								<div ref={productsRef} id="products" className={visibleSections.products ? "show" : ""}>
+									<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} />
 								</div>
 
 								<div ref={aboutRef} id="about" className={visibleSections.about ? "show" : ""}>
