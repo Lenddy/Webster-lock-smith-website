@@ -122,3 +122,82 @@
 .carousel-dot.active {
 	background: var(--kg);
 }
+
+
+
+
+/* old */
+/* clip wrapper — sits inside the border, clips top & bottom
+.gallery-conveyor-clip {
+	overflow: hidden;
+	border-radius: 9px; /* 1px less than parent so it sits inside */
+
+	/* exact height of ROWS visible rows + gaps + padding
+     this hides the incoming row above and exiting row below */
+	height: calc(var(--rows) * clamp(60px, 8vw, 110px) + /* card heights */ (var(--rows) - 1) * 8px + /* gaps between rows */ 16px /* top + bottom padding */);
+} */
+
+
+
+
+
+
+
+
+/* ── CONVEYOR ── */
+.gallery-conveyor {
+  width: 98%;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid var(--kg);
+  /* NO overflow here */
+}
+
+.gallery-conveyor-clip {
+  overflow: hidden;
+  border-radius: 9px;
+
+  /* 
+    ROWS visible rows only.
+    Card height = 100px (fixed — easier to reason about than clamp)
+    gap = 8px
+    padding top + bottom = 8px each = 16px total
+    
+    height = (ROWS * cardH) + ((ROWS - 1) * gap) + padding
+           = (3 * 100)      + (2 * 8)             + 16
+           = 300 + 16 + 16 = 332px
+    
+    BUT the grid is shifted up by (1 * cardH + gap) = 108px
+    so the clip must be: ROWS rows tall (not ROWS+1)
+    The shift pushes row-1 above the clip top edge naturally.
+  */
+  height: calc(
+    var(--rows) * var(--card-h) +
+    (var(--rows) - 1) * var(--gap) +
+    var(--pad) * 2
+  );
+}
+
+.gallery-conveyor-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, var(--card-h));  /* fixed row height */
+  gap: var(--gap);
+  padding: var(--pad);
+
+  /*
+    Shift up exactly 1 row + 1 gap.
+    This moves the incoming row (-1) above the clip top.
+    The clip height = ROWS rows, so the bottom ROWS row
+    sits exactly at the clip bottom edge.
+  */
+  transform: translateY(calc(-1 * (var(--card-h) + var(--gap))));
+}
+
+
+
+
+
+T
+
+

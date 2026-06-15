@@ -155,3 +155,185 @@
 		
 	}
 } */
+
+/* ── WRAPPER ── */
+.gallery-wrapper {
+	width: 100%;
+	background-color: var(--lb);
+	padding-bottom: 2rem;
+}
+
+.gallery-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem 1rem 1rem;
+	width: 98%;
+	margin: 0 auto;
+}
+
+.gallery-main-title {
+	font-size: clamp(1.2rem, 1rem + 1vw, 2rem);
+	color: var(--kg);
+}
+
+.gallery-toggle-btn {
+	background: none;
+	border: 1px solid var(--kg);
+	color: var(--kg);
+	padding: 8px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 13px;
+	transition:
+		background 200ms,
+		color 200ms;
+	white-space: nowrap;
+}
+
+.gallery-toggle-btn:hover {
+	background: var(--kg);
+	color: var(--lb);
+}
+
+.gallery-mode-hidden {
+	display: none;
+}
+
+/* ── CONVEYOR GRID ── */
+
+.gallery-conveyor {
+	width: 98%;
+	margin: 0 auto;
+	border-radius: 10px;
+	border: 1px solid var(--kg);
+}
+
+.gallery-conveyor-clip {
+	/* overflow: hidden;
+	border-radius: 9px;
+	margin: 8px; */
+
+	/* height = ROWS rows + gaps between them ONLY — no padding */
+	/* height: calc(var(--rows) * var(--card-h) + (var(--rows) - 1) * var(--gap)); */
+}
+
+.gallery-conveyor-clip {
+	overflow: hidden;
+	border-radius: 9px;
+	margin: 0 8px; /* left/right margin only — you already have those */
+
+	/* ADD gap-sized padding top and bottom to the height */
+	height: calc(var(--rows) * var(--card-h) + (var(--rows) - 1) * var(--gap) + var(--gap) * 2 /* ← this is the top + bottom breathing room */);
+}
+
+/* ── ONE rule only — delete the second .gallery-conveyor-grid ── */
+.gallery-conveyor-grid {
+	/* display: grid; */
+	/* grid-template-columns: repeat(5, 1fr); */
+	/* grid-template-rows: repeat(4, var(--card-h)); */
+	/* gap: var(--gap); */
+	/* padding: 0; */
+	/* no padding here — margin on clip is the gap */
+
+	/* transform: translateY(calc(-1 * (var(--card-h) + var(--gap)))); */
+}
+
+.gallery-conveyor-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(4, var(--card-h));
+	gap: var(--gap);
+	padding: 0;
+
+	/* shift up 1 full row, then shift back DOWN by 1 gap 
+     so the first visible row has gap-sized space above it */
+	transform: translateY(calc(-1 * (var(--card-h) + var(--gap)) /* hide incoming row above */ + var(--gap) /* push down by 1 gap = top breathing room */));
+}
+
+/* ── CELLS ── */
+.conveyor-cell {
+	grid-column: calc(var(--col) + 1);
+	grid-row: var(--row);
+	transition: none;
+}
+
+/* when animating — slide every cell DOWN by one row height */
+.conveyor-cell.conveyor-animating {
+	animation: conveyor-shift var(--anim-ms) ease-in-out var(--delay) forwards;
+}
+
+@keyframes conveyor-shift-old {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(calc(100% + 8px));
+	} /* 8px = gap */
+}
+
+@keyframes conveyor-shift {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(calc(var(--card-h) + var(--gap)));
+	}
+}
+
+/* incoming row starts above and slides down into position */
+/* .conveyor-cell.conveyor-incoming {
+	transform: translateY(calc(-100% - 8px)); 
+}*/
+
+/* incoming cell starts shifted up by exactly 1 row */
+.conveyor-cell.conveyor-incoming {
+	transform: translateY(calc(-1 * (var(--card-h) + var(--gap))));
+}
+
+.conveyor-cell.conveyor-incoming.conveyor-animating {
+	animation: conveyor-enter var(--anim-ms) ease-in-out var(--delay) forwards;
+}
+
+@keyframes conveyor-enter-old {
+	0% {
+		transform: translateY(calc(-100% - 8px));
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes conveyor-enter {
+	0% {
+		transform: translateY(calc(-1 * (var(--card-h) + var(--gap))));
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+/* ── CARDS ── */
+
+.conveyor-card {
+	background: #f5f5f5;
+	border: 1px solid var(--kg);
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	height: var(--card-h); /* uses the same variable as the grid */
+}
+
+.conveyor-card img {
+	width: 100%;
+	height: 100%;
+	/* object-fit: contain; */
+	/* object-fit: contain; */
+}
+
+/* ── GRID SECTION (existing layout) ── */
+.gallery-grid-section {
+	width: 100%;
+}

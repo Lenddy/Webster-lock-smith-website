@@ -16,6 +16,10 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 	one will be for the credit form 
 	*/
 
+	// TODO give indication with litle arrows that the uses can scroll to the left of right (make them be clickable)
+
+	// TODO fix the height of the footer so that is not soo big
+
 	return (
 		<div className="footer-container">
 			<div className="footer-content-container">

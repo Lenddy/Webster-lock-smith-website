@@ -8,6 +8,25 @@
 --lg: ##f5f5f5;  Light-Gray*
 --wh: ##ffffff; /* white-*/
 
+.sticky-header {
+	position: sticky;
+	top: 0;
+	animation: shrink-header linear forwards;
+	animation-timeline: scroll();
+	animation-range: 0px 200px;
+}
+
+@keyframes shrink-header {
+	from {
+		padding-block: 2rem;
+		font-size: 2rem;
+	}
+	to {
+		padding-block: 0.5rem;
+		font-size: 1.2rem;
+	}
+}
+
 /*? nav container */
 .nav-container {
 	display: flex;
