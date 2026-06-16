@@ -198,6 +198,93 @@
 
 
 
-T
 
 
+/* gallery.css — per-row clipping: */
+.gallery-conveyor {
+  width: 98%;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid var(--kg);
+  padding: 8px;          /* outer breathing room */
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);       /* gap between rows */
+}
+
+/* each row wrapper clips exactly one card height + vertical breathing room */
+.conveyor-row-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap);
+
+  /* clips the incoming card above and exiting card below */
+  overflow: hidden;
+  /* height = card + top gap + bottom gap */
+  height: calc(var(--card-h) + var(--gap) * 2);
+
+  /* center the card vertically within the extra gap space */
+  align-items: center;
+}
+
+/* each column slot stacks incoming above current */
+.conveyor-col-slot {
+  position: relative;
+  height: var(--card-h);
+}
+
+/* both cards are absolutely positioned in the slot */
+.conveyor-card-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* incoming starts ABOVE the slot (hidden by wrapper overflow) */
+.conveyor-card-incoming {
+  top: calc(-100% - var(--gap));
+}
+
+/* current starts in place */
+.conveyor-card-current {
+  top: 0;
+}
+
+/* on animate — incoming slides down into view */
+.conveyor-card-incoming.conveyor-animating {
+  animation: row-enter var(--anim-ms) ease-in-out var(--delay) forwards;
+}
+
+/* on animate — current slides down out of view */
+.conveyor-card-current.conveyor-animating {
+  animation: row-exit var(--anim-ms) ease-in-out var(--delay) forwards;
+}
+
+@keyframes row-enter {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(calc(100% + var(--gap))); }
+}
+
+@keyframes row-exit {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(calc(100% + var(--gap))); }
+}
+
+/* ── CARDS ── */
+.conveyor-card {
+  background: #f5f5f5;
+  border: 1px solid var(--kg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  height: var(--card-h);
+  width: 100%;
+}
+
+.conveyor-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

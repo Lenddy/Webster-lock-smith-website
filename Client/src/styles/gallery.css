@@ -160,7 +160,12 @@
 .gallery-wrapper {
 	width: 100%;
 	background-color: var(--lb);
-	padding-bottom: 2rem;
+	padding-bottom: 5rem;
+	/* padding: 2rem 0px; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .gallery-header {
@@ -169,7 +174,8 @@
 	align-items: center;
 	padding: 1.5rem 1rem 1rem;
 	width: 98%;
-	margin: 0 auto;
+	/* width: 96%; */
+	/* margin: 0 auto; */
 }
 
 .gallery-main-title {
@@ -198,24 +204,89 @@
 
 .gallery-mode-hidden {
 	display: none;
+	/* opacity: 0; */
 }
 
 /* ── CONVEYOR GRID ── */
 
+/* gallery.css — per-row clipping: */
 .gallery-conveyor {
 	width: 98%;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	border-radius: 10px;
 	border: 1px solid var(--kg);
+	/* padding: 8px; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--gap); /* gap between rows */
 }
 
-.gallery-conveyor-clip {
-	/* overflow: hidden;
-	border-radius: 9px;
-	margin: 8px; */
+/* each row wrapper clips exactly one card height + vertical breathing room */
+.conveyor-row-wrapper {
+	width: 98%;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: var(--gap);
 
-	/* height = ROWS rows + gaps between them ONLY — no padding */
-	/* height: calc(var(--rows) * var(--card-h) + (var(--rows) - 1) * var(--gap)); */
+	/* clips the incoming card above and exiting card below */
+	overflow: hidden;
+	/* height = card + top gap + bottom gap */
+	height: calc(var(--card-h) + var(--gap) * 1.3);
+
+	/* center the card vertically within the extra gap space */
+	align-items: center;
+}
+
+/* each column slot stacks incoming above current */
+.conveyor-col-slot {
+	position: relative;
+	height: var(--card-h);
+}
+
+/* both cards are absolutely positioned in the slot */
+.conveyor-card-wrap {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+/* incoming starts ABOVE the slot (hidden by wrapper overflow) */
+.conveyor-card-incoming {
+	top: calc(-100% - var(--gap));
+}
+
+/* current starts in place */
+.conveyor-card-current {
+	top: 0;
+}
+
+/* on animate — incoming slides down into view */
+.conveyor-card-incoming.conveyor-animating {
+	animation: row-enter var(--anim-ms) ease-in-out var(--delay) forwards;
+}
+
+/* on animate — current slides down out of view */
+.conveyor-card-current.conveyor-animating {
+	animation: row-exit var(--anim-ms) ease-in-out var(--delay) forwards;
+}
+
+@keyframes row-enter {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(calc(100% + var(--gap)));
+	}
+}
+
+@keyframes row-exit {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(calc(100% + var(--gap)));
+	}
 }
 
 .gallery-conveyor-clip {
@@ -228,16 +299,6 @@
 }
 
 /* ── ONE rule only — delete the second .gallery-conveyor-grid ── */
-.gallery-conveyor-grid {
-	/* display: grid; */
-	/* grid-template-columns: repeat(5, 1fr); */
-	/* grid-template-rows: repeat(4, var(--card-h)); */
-	/* gap: var(--gap); */
-	/* padding: 0; */
-	/* no padding here — margin on clip is the gap */
-
-	/* transform: translateY(calc(-1 * (var(--card-h) + var(--gap)))); */
-}
 
 .gallery-conveyor-grid {
 	display: grid;
@@ -316,22 +377,42 @@
 /* ── CARDS ── */
 
 .conveyor-card {
-	background: #f5f5f5;
+	/* background: #f5f5f5;
 	border: 1px solid var(--kg);
 	border-radius: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 10px;
-	height: var(--card-h); /* uses the same variable as the grid */
+	height: var(--card-h);  */
+	/* uses the same variable as the grid */
+}
+
+.conveyor-card {
+	background: #f5f5f5;
+	border: 1px solid var(--kg);
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* padding: 10px; */
+	padding: 0px 0px;
+	height: var(--card-h);
+	width: 100%;
 }
 
 .conveyor-card img {
 	width: 100%;
 	height: 100%;
-	/* object-fit: contain; */
-	/* object-fit: contain; */
+	object-fit: contain;
 }
+
+/* .conveyor-card img {
+	width: 100%;
+	height: 100%; */
+/* object-fit: contain; */
+/* object-fit: contain; */
+/* } */
 
 /* ── GRID SECTION (existing layout) ── */
 .gallery-grid-section {

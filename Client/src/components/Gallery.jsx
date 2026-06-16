@@ -20,9 +20,13 @@ import { useState, useEffect, useRef } from "react";
 const COLS = 5; // logos per row
 const ROWS = 3; // visible rows
 const CYCLE_MS = 2500; // ms between row shifts
+// const CYCLE_MS = 2000000; // ms between row shifts
 const COL_DELAY = 80; // ms stagger between columns
+// const COL_DELAY = 2000000; // ms stagger between columns
 const ROW_DELAY = 60; // ms stagger between rows within a column
+// const ROW_DELAY = 2000000; // ms stagger between rows within a column
 const ANIM_MS = 600; // ms for the slide animation itself
+// const ANIM_MS = 2000000000; // ms for the slide animation itself
 
 // flatten all logos from every section into one array
 const allLogos = sections.flatMap((s) => s.images);
@@ -101,46 +105,59 @@ function Gallery({ isVisible }) {
 			</div>
 
 			{/* ── CAROUSEL ── */}
+
 			<div
 				className={`gallery-conveyor ${showGrid ? "gallery-mode-hidden" : ""}`}
 				style={{
-					"--rows": ROWS,
-					"--card-h": "100px" /* must match conveyor-card height */,
+					"--card-h": "150px",
 					"--gap": "8px",
-					// "--pad": "8px",
+					display: showGrid ? "none" : "flex",
 				}}
 				onMouseEnter={pause}
 				onMouseLeave={resume}>
-				<div className="gallery-conveyor-clip">
-					<div className="gallery-conveyor-grid">
-						{visibleGrid.map((row, rowIdx) =>
-							row.map((logo, colIdx) => {
-								const delay = colIdx * COL_DELAY + Math.max(0, rowIdx) * ROW_DELAY;
-								const isIncoming = rowIdx === -1;
+				{/* render ROWS wrappers — each clips one visible row */}
+				{Array.from({ length: ROWS }).map((_, rowIdx) => (
+					<div key={rowIdx} className="conveyor-row-wrapper">
+						{/* each wrapper holds 2 rows: the incoming (above) and current */}
+						{/* incoming row for this slot = rowIdx - 1 in visibleGrid */}
+						{Array.from({ length: COLS }).map((_, colIdx) => {
+							// current logo for this cell
+							const currentLogo = visibleGrid[rowIdx + 1][colIdx]; // +1 because row -1 is index 0
+							// incoming logo sliding in from above
+							const incomingLogo = visibleGrid[rowIdx][colIdx];
 
-								return (
+							const delay = colIdx * COL_DELAY + rowIdx * ROW_DELAY;
+
+							return (
+								<div key={colIdx} className="conveyor-col-slot">
+									{/* incoming card — starts above, slides down */}
 									<div
-										key={`${rowIdx}-${colIdx}`}
-										className={`
-											conveyor-cell
-											${animating ? "conveyor-animating" : ""}
-											${isIncoming ? "conveyor-incoming" : ""}
-										`}
+										className={`conveyor-card-wrap conveyor-card-incoming ${animating ? "conveyor-animating" : ""}`}
 										style={{
-											"--col": colIdx,
-											"--row": rowIdx + 1,
 											"--delay": `${delay}ms`,
 											"--anim-ms": `${ANIM_MS}ms`,
 										}}>
 										<div className="conveyor-card">
-											<img src={logo.src} alt={logo.alt} />
+											<img src={incomingLogo.src} alt={incomingLogo.alt} />
 										</div>
 									</div>
-								);
-							})
-						)}
+
+									{/* current card — starts in place, slides down and out */}
+									<div
+										className={`conveyor-card-wrap conveyor-card-current ${animating ? "conveyor-animating" : ""}`}
+										style={{
+											"--delay": `${delay}ms`,
+											"--anim-ms": `${ANIM_MS}ms`,
+										}}>
+										<div className="conveyor-card">
+											<img src={currentLogo.src} alt={currentLogo.alt} />
+										</div>
+									</div>
+								</div>
+							);
+						})}
 					</div>
-				</div>
+				))}
 			</div>
 
 			{/* ── GRID (existing layout) ── */}
@@ -172,6 +189,49 @@ function Gallery({ isVisible }) {
 
 export default Gallery;
 
+// <div
+// 	className={`gallery-conveyor ${showGrid ? "gallery-mode-hidden" : ""}`}
+// 	style={{
+// 		"--rows": ROWS,
+// 		"--card-h": "100px" /* must match conveyor-card height */,
+// 		"--gap": "8px",
+// 		// "--pad": "8px",
+// 	}}
+// 	onMouseEnter={pause}
+// 	onMouseLeave={resume}>
+// 	<div className="gallery-conveyor-clip">
+// 		<div className="gallery-conveyor-grid">
+// 			{visibleGrid.map((row, rowIdx) =>
+// 				row.map((logo, colIdx) => {
+// 					const delay = colIdx * COL_DELAY + Math.max(0, rowIdx) * ROW_DELAY;
+// 					const isIncoming = rowIdx === -1;
+
+// 					return (
+// 						<div
+// 							key={`${rowIdx}-${colIdx}`}
+// 							className={`
+// 								conveyor-cell
+// 								${animating ? "conveyor-animating" : ""}
+// 								${isIncoming ? "conveyor-incoming" : ""}
+// 							`}
+// 							style={{
+// 								"--col": colIdx,
+// 								"--row": rowIdx + 1,
+// 								"--delay": `${delay}ms`,
+// 								"--anim-ms": `${ANIM_MS}ms`,
+// 							}}>
+// 							<div className="conveyor-card">
+// 								<img src={logo.src} alt={logo.alt} />
+// 							</div>
+// 						</div>
+// 					);
+// 				})
+// 			)}
+// 		</div>
+// 	</div>
+// </div>
+
+// old 2 or 3
 // <div className={`gallery-wrapper ${isVisible ? "show" : ""}`}>
 // 	{/* header */}
 // 	<div className="gallery-header">
