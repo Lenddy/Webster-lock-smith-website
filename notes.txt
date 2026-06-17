@@ -1,5 +1,0 @@
-ok so the problem now is that 
-
-if i i dont put 2 or 5 columns  the icons shift to the right i dont mean animation wise but they just change positions 
-
-and my idea was to change the amount render base on the viewport size 

@@ -24,9 +24,9 @@
 	border-radius: 10px;
 }
 
+/* this is to change the column on the left  */
 .section-row {
 	display: grid;
-	/* this is to change the column on the left  */
 	grid-template-columns: clamp(6.25rem, 5.093rem + 4.63vw, 12.5rem) 1fr; /* fixed label col + flexible images col */
 	border-bottom: 1px solid var(--kg);
 	min-width: 0;
@@ -57,9 +57,7 @@
 .images-scroll-wrapper {
 	overflow-x: auto;
 	overflow-y: hidden;
-	/* scroll stops at end of content — no extra space */
-	scroll-padding-right: 12px;
-
+	scroll-padding-right: 12px; /* scroll stops at end of content — no extra space */
 	/* custom scrollbar stays inside this box */
 	scrollbar-width: thin;
 	scrollbar-color: var(--kg) transparent;
@@ -72,23 +70,13 @@
 }
 
 .images-area {
-	/* fixed columns — always same width regardless of screen */
 	display: grid;
-	/* grid-template-columns: repeat(4, 250px); */
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, 1fr); /* grid-template-columns: repeat(4, 250px); */
 	gap: 10px 10px;
 	padding: 12px 5px;
 	justify-items: center;
 	align-items: center;
-	/* border-left: dotted 2px var(--kg); */
-	/* background-color: rgb(5, 62, 17); */
-
-	/* width is exactly 4 items + gaps + padding — scroll stops here */
-	/* width: calc(4 * 250px + 3 * 10px + 10px); */
 	width: 100%;
-	/* width: clamp(18.75rem, 8.284rem + 83.73vw, 142.25rem); */
-	/* margin: 0px 30px; */
-
 	/* no overflow on images-area itself — wrapper handles it */
 	overflow: visible;
 }
@@ -99,20 +87,8 @@
 	display: flex;
 	justify-items: center;
 	align-items: center;
-
-	/* width: clamp(15.625rem, 15.36rem + 2.12vw, 18.75rem); */
-	/* width: clamp(12.5rem, 11.806rem + 5.56vw, 18.75rem); */
-	/* width: clamp(12.5rem, 11.97rem + 4.24vw, 18.75rem); */
 	width: clamp(9.375rem, 8.581rem + 6.36vw, 18.75rem);
-	/* width: 300px; */
-	/* width: 230px; */
-	/* width: 200px; */
-
-	/* height: 150px; */
-
 	height: clamp(6.25rem, 5.72rem + 4.24vw, 12.5rem);
-	/* height: clamp(5.625rem, 5.042rem + 4.66vw, 12.5rem); */
-
 	background-color: #f5f5f5;
 	border: 1px solid var(--kg);
 	border-radius: 10px;
@@ -129,31 +105,6 @@
 	border-radius: 10px;
 	/* object-fit: cover; */
 }
-
-@media (max-width: 500px) {
-	.column-container {
-		/* justify-content: start; */
-	}
-
-	.column-title {
-		font-size: clamp(0.875rem, 0.854rem + 0.17vw, 1.125rem);
-		text-align: left;
-	}
-}
-
-/* @media (max-width: 1336px) {
-	.images-area {
-		grid-template-columns: repeat(4, 1fr);
-		width: calc(4 * 250px + 3 * 10px + 10px);
-
-		width: 100%;
-	}
-
-	.images-scroll-wrapper {
-		overflow-x: hidden;
-		
-	}
-} */
 
 /* ── WRAPPER ── */
 .gallery-wrapper {
@@ -211,30 +162,25 @@
 /* gallery.css — per-row clipping: */
 .gallery-conveyor {
 	width: 98%;
-	/* margin: 0 auto; */
 	border-radius: 10px;
 	border: 1px solid var(--kg);
-	/* padding: 8px; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: var(--gap); /* gap between rows */
+	gap: var(--gap);
 }
 
 /* each row wrapper clips exactly one card height + vertical breathing room */
 .conveyor-row-wrapper {
 	width: 98%;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	/* grid-template-columns: repeat(5, 1fr); */
+	/* use the --cols variable instead of hardcoded repeat(5) */
+	grid-template-columns: repeat(var(--cols), 1fr);
 	gap: var(--gap);
-
-	/* clips the incoming card above and exiting card below */
-	overflow: hidden;
-	/* height = card + top gap + bottom gap */
-	height: calc(var(--card-h) + var(--gap) * 1);
-
-	/* center the card vertically within the extra gap space */
-	align-items: center;
+	overflow: hidden; /* clips the incoming card above and exiting card below */
+	height: calc(var(--card-h) + var(--gap) * 1); /* height = card + top gap + bottom gap */
+	align-items: center; /* center the card vertically within the extra gap space */
 }
 
 /* each column slot stacks incoming above current */
@@ -270,45 +216,22 @@
 	animation: row-exit var(--anim-ms) ease-in-out var(--delay) forwards;
 }
 
-@keyframes row-enter {
-	0% {
-		transform: translateY(0);
-	}
-	100% {
-		transform: translateY(calc(100% + var(--gap)));
-	}
-}
-
-@keyframes row-exit {
-	0% {
-		transform: translateY(0);
-	}
-	100% {
-		transform: translateY(calc(100% + var(--gap)));
-	}
-}
-
 .gallery-conveyor-clip {
 	overflow: hidden;
 	border-radius: 9px;
-	margin: 0 8px; /* left/right margin only — you already have those */
-
 	/* ADD gap-sized padding top and bottom to the height */
 	height: calc(var(--rows) * var(--card-h) + (var(--rows) - 1) * var(--gap) + var(--gap) * 2 /* ← this is the top + bottom breathing room */);
 }
 
 /* ── ONE rule only — delete the second .gallery-conveyor-grid ── */
-
 .gallery-conveyor-grid {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(4, var(--card-h));
 	gap: var(--gap);
 	padding: 0;
-
-	/* shift up 1 full row, then shift back DOWN by 1 gap 
+	transform: translateY(calc(-1 * (var(--card-h) + var(--gap)) + var(--gap))); /* shift up 1 full row, then shift back DOWN by 1 gap 
      so the first visible row has gap-sized space above it */
-	transform: translateY(calc(-1 * (var(--card-h) + var(--gap)) /* hide incoming row above */ + var(--gap) /* push down by 1 gap = top breathing room */));
 }
 
 /* ── CELLS ── */
@@ -323,54 +246,13 @@
 	animation: conveyor-shift var(--anim-ms) ease-in-out var(--delay) forwards;
 }
 
-@keyframes conveyor-shift-old {
-	0% {
-		transform: translateY(0);
-	}
-	100% {
-		transform: translateY(calc(100% + 8px));
-	} /* 8px = gap */
-}
-
-@keyframes conveyor-shift {
-	0% {
-		transform: translateY(0);
-	}
-	100% {
-		transform: translateY(calc(var(--card-h) + var(--gap)));
-	}
-}
-
-/* incoming row starts above and slides down into position */
-/* .conveyor-cell.conveyor-incoming {
-	transform: translateY(calc(-100% - 8px)); 
-}*/
-
-/* incoming cell starts shifted up by exactly 1 row */
+/* incoming cell starts shifted down by exactly 1 row */
 .conveyor-cell.conveyor-incoming {
 	transform: translateY(calc(-1 * (var(--card-h) + var(--gap))));
 }
 
 .conveyor-cell.conveyor-incoming.conveyor-animating {
 	animation: conveyor-enter var(--anim-ms) ease-in-out var(--delay) forwards;
-}
-
-@keyframes conveyor-enter-old {
-	0% {
-		transform: translateY(calc(-100% - 8px));
-	}
-	100% {
-		transform: translateY(0);
-	}
-}
-
-@keyframes conveyor-enter {
-	0% {
-		transform: translateY(calc(-1 * (var(--card-h) + var(--gap))));
-	}
-	100% {
-		transform: translateY(0);
-	}
 }
 
 /* ── CARDS ── */
@@ -393,16 +275,62 @@
 	width: 100%;
 	height: 100%;
 	object-fit: contain;
+	/* object-fit: none; */
 }
-
-/* .conveyor-card img {
-	width: 100%;
-	height: 100%; */
-/* object-fit: contain; */
-/* object-fit: contain; */
-/* } */
 
 /* ── GRID SECTION (existing layout) ── */
 .gallery-grid-section {
 	width: 100%;
+}
+
+@media (max-width: 500px) {
+	.column-container {
+		/* justify-content: start; */
+	}
+
+	.column-title {
+		font-size: clamp(0.875rem, 0.854rem + 0.17vw, 1.125rem);
+		text-align: left;
+	}
+}
+
+/* @media (max-width: 1336px) {
+	.images-area {
+		grid-template-columns: repeat(4, 1fr);
+		width: calc(4 * 250px + 3 * 10px + 10px);
+
+		width: 100%;
+	}
+
+	.images-scroll-wrapper {
+		overflow-x: hidden;
+		
+	}
+} */
+
+@keyframes row-enter {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(calc(100% + var(--gap)));
+	}
+}
+
+@keyframes row-exit {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(calc(100% + var(--gap)));
+	}
+}
+
+@keyframes conveyor-enter {
+	0% {
+		transform: translateY(calc(-1 * (var(--card-h) + var(--gap))));
+	}
+	100% {
+		transform: translateY(0);
+	}
 }
