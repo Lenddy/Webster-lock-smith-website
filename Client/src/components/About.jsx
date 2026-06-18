@@ -47,15 +47,31 @@ export default function About({ isVisible }) {
 
 	// dynamic thickness: more pages = thicker spine
 	// const thickness = Math.max(3, Math.round(N * 1.2));
-	const thickness = Math.max(20, Math.round(N * 1.2));
+	const thickness = Math.max(12, Math.round(N * 1.2));
 
 	//NOTE Polish the book components
-	//* TODO - see if you can make the book thicker
-	//* TODO - make the book more visible for when is close
-	//* TODO - make the book bigger
-	//* TODO - make the book size adapt better to the screen
-	//* TODO - make the book have a more 3d effect  where is tilted  and looks thicker  (you could also give it an animation  that tilts the book as you arte changing pages )
-	//* TODO - see if it would be posible to have the pages have a slight curve when they are changing (no required)
+
+	//* TODO - go over every page and on the inner edge make sure to dynamically change the border radius to make it look like is actually staking the pages
+
+	//* TODO - for smaller screens make the book open downwards instead of sideways(toke keep the same effect of staking you would have to do different rotate: 1 0 0 25deg; for the top and bottom so when they on the top the pages look like they are shorter )
+
+	//* TODO - make the book have a more 3d effect  where is tilted  and looks thicker  (you could also give it an animation that tilts the book as you are changing pages )
+
+	//* TODO - see if it would be posible to have the pages have a slight curve when they are changing this would have to be when they are going left and right (no required)
+
+	//* TODO - as the screen gets smaller you also have to change how the perspective looks like
+
+	//* TODO - for smaller screens make the book open downwards instead of sideways
+
+	//* TODO - for big screens make it like a pamphlet that as you keep going forward it keeps unfolding  (the biggest height should be 600px and width 450px see if you want it bigger )
+
+	// * TODO - i think that there would also need to be a inspect back btn to see the back (it can be integrated in the arrow controls as you keep pressing next it wil flip at the end ) would have to do something similar to the smaller screen stacking but for one or 2 sides depending how you make the pamphlet
+
+	// NOTE - DONE
+	//* make the book bigger
+	//* see if you can make the book thicker
+	//* make the book more visible for when is close
+	//* make the book size adapt better to the screen
 
 	return (
 		<div className={`about-wrapper ${isVisible ? "show" : ""}`}>

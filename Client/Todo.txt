@@ -1,6 +1,42 @@
 add more space between the componets
 
-fix the animation of everything to show their dedicated animation when they come into view
+for the animation give a promp that shows later in the site that aks if the animation ar too distracting you can reduce or turn them oof completely
+
+
+
+
+this is really minor but when i am on the inspect tool and make the screen shrink or grow i takes its time i have delays in transforms and animation that thats the most likely cause 
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!
+!for the animations! 
+
+when you add the new components for the ball (logo that that is suppose to have the icons rotation)  
+use this  https://jsfiddle.net/BYossarian/Frg74/2/  
+there are more interesting links here https://stackoverflow.com/questions/18900414/css-animation-for-falling-vibrations-etc
+ ,provided by Ben Jackson  https://stackoverflow.com/users/1937302/ben-jackson
+
+here is also a falling leafs effect looks great this would be put in the products and services  i think https://codepen.io/dudleystorey/pen/kKBOmV
+
+this one also has greater specially the last one animation you can for like a effect of double doors opening (you can use it in the products and services where they talk about the iron work ) https://www.smashingmagazine.com/2024/04/sliding-3d-image-frames-css/
+
+about component
+for the book 
+i would really like to make an animation where the book is falling from the top(no really top more like a tall z depth if that makes sense ) and then stopping (as if you drop something ) it would be a 3 d effect 
+
+another pasible animation would be not falling from a big height but having the book standing up and then falling horizontally (have the book or the pam pamphlet or the top opening book) have them on their side (as in standing up straight ) and then falling flat on the page (and have the book be visible) 
+
+another one could be  starting small and coming to the user in a 3 d effect 
+
+
+!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!
 
 use a lightbulb svg and use gradient color  with blur to simulate the light turning on and of
 
