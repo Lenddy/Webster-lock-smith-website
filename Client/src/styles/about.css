@@ -60,55 +60,19 @@
 .book {
 	display: flex;
 	/* perspective: clamp(25rem, 9.615rem + 123.08vw, 125rem); */
-	/* width: clamp(240px, 40vw, 320px); */
-	/* biggest width 450px */
-	/* width: 450px; */
-	/* width: 205px; */
-	/* width: 158px; */
-	/* width: 95px; */
 	width: clamp(9.875rem, 7.067rem + 22.46vw, 28.125rem);
-	/* biggest height  600px*/
-	/* height: 600px; */
-	/* height: 250px; */
-	/* height: 150px; */
-	/* height: clamp(9.375rem, 5.048rem + 34.62vw, 37.5rem); */
 	height: clamp(10.938rem, 6.851rem + 32.69vw, 37.5rem);
 	pointer-events: none; /* pass-through so pages get clicks */
 	transform-style: preserve-3d;
 	transition: translate 0.8s ease;
 	/* shift right when open so spine stays centered */
-	animation: book-fall 2.5s ease-in forwards;
+	animation: book-fall 1500ms ease-in forwards;
+	/* animation: book-transition 1500ms ease-in forwards; */
 	translate: calc(min(var(--c), 1) * 50%) 0%;
 	/* border: yellow 1px solid;
 	border-radius: 10px; */
 	rotate: 1 0 0 25deg;
 	/* rotate: 0 10 1 20deg; */
-}
-
-/* update the animation a bit so that it looks like the book is about to flip a bit  and then lay it flat  */
-
-/* you will have to move the book to the right a bit   */
-
-/* and you will also have to change the thickness of the book as it falls */
-
-@keyframes book-fall {
-	0% {
-		rotate: 0 -1000 50 85deg;
-		/* transform: translateY(-100px); */
-		transform: translateZ(200px);
-	}
-
-	60% {
-		rotate: 0 10 1 20deg;
-		/* transform: translateY(0px); */
-		transform: translateZ(-100px);
-	}
-
-	100% {
-		rotate: 1 0 0 25deg;
-		/* transform: translateY(0px); */
-		transform: translateZ(0px);
-	}
 }
 
 /* ── PAGE ── */
@@ -123,7 +87,10 @@
 	pointer-events: all;
 	user-select: none;
 	transform-style: preserve-3d;
-	border: 1px solid rgba(0, 0, 0, 0.25);
+	/* border: 1px solid rgba(0, 0, 0, 0.25); */
+	/* border: 2px solid var(--mg); */
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 	/* border: 1px solid #0008; */
 	transform-origin: left center;
 	cursor: pointer;
@@ -132,8 +99,9 @@
 	translate: calc(var(--i) * -100%) 0px 0px;
 
 	/* Z depth — creates the book thickness effect */
-	/* transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 1px))); */
-	transform: translateZ(calc((var(--c) - var(--i) - 0.5) * var(--z)));
+	/* animation: book-fall 1500ms ease-in; */
+	transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 1px)));
+	/* transform: translateZ(calc((var(--c) - var(--i) - 0.5) * var(--z))); */
 
 	/* rotate 180° if this page has been turned (--c > --i) */
 	rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
@@ -150,25 +118,50 @@
 	flex: none;
 	width: 100%;
 	height: 100%;
-	/* min-height: clamp(300px, 45vw, 420px); */
-	/* biggest height  600px*/
-	/* min-height: 600px; */
-	/* min-height: 125px; */
-	/* height: 325px; */
 	backface-visibility: hidden;
 	overflow: hidden;
-	border-radius: 2px 8px 8px 2px;
+	/* border-radius: 2px 8px 8px 2px; */
 	/* border-radius: 10px 8px 8px 2px; */
 	/* border-radius: ; */
 	/* Fix backface visibility Firefox: */
 	translate: 0px;
 }
 
+/*! add shading to the pages that are closer to the espine of the book in the middle (inside ) 
+
+you already do this  but only for front (or right) background-image: linear-gradient(to right, #f0ece0 0%, #faf8f2 8%);
+
+
+how ever you would have to doit on the left (back) too  but 
+
+it would have to be reverse or put in the right side for the left  side and on the left side for the right 
+
+this might need to be dynamic base on the stack of the pages 
+
+*/
+
 .page-front {
 	background: #faf8f2;
 	/* subtle page gradient */
 	background-image: linear-gradient(to right, #f0ece0 0%, #faf8f2 8%);
+	/* background-image: linear-gradient(to right, #f0ece0 0%, #b6b5b3 0%); */
+	border: 2px solid var(--mg);
+	/* top-left spine | top-right outer | bottom-right outer | bottom-left spine */
+	/* border-radius: calc(var(--i) * (25 / var(--n)) * 1px) 8px 8px calc(var(--i) * (15 / var(--n)) * 1px); */
+	/*! original */
+	/* border-radius: calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px); */
+
+	/** when opening (on the first page )  the stack is on the right */
+	/* border-radius: calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px); */
+
+	/** (on the second  page )  2 on the left 3 on the right the stack is on the right */
+	border-radius: calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px);
+
+	/** (on the second  page )  2 on the left 3 on the right the stack is on the right */
+	/* border-radius: calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px); */
 }
+
+/* and could a type of shading be added to the pages that ar bending to make it look more real  */
 
 .page-back {
 	background: #f5f1e6;
@@ -176,6 +169,10 @@
 	/* flip back face */
 	translate: -100% 0;
 	rotate: 0 1 0 180deg;
+	border: 2px solid var(--mg);
+	/* top-left spine | top-right outer | bottom-right outer | bottom-left spine */
+	/* border-radius: 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px) 8px; */
+	border-radius: 8px calc(var(--i) * (30 / var(--n)) * 1px) calc(var(--i) * (12 / var(--n)) * 1px) 8px;
 }
 
 /* ── PAGE CONTENT TYPES ── */
@@ -339,5 +336,28 @@
 	.book {
 		/* width: clamp(180px, 80vw, 260px); */
 		/* width: 207px; */
+	}
+}
+
+/* update the animation a bit so that it looks like the book is about to flip a bit  and then lay it flat  */
+
+/* you will have to move the book to the right a bit   */
+
+/* and you will also have to change the thickness of the book as it falls */
+
+@keyframes book-fall {
+	0% {
+		rotate: 0 -1000 50 85deg;
+		/* transform: translateY(-100px); */
+		/* var(--thickness) */
+		transform: translateZ(200px);
+		/* transform: translateX(200px); */
+	}
+
+	100% {
+		rotate: 1 0 0 25deg;
+
+		transform: translateZ(0px);
+		/* transform: translateX(0px); */
 	}
 }

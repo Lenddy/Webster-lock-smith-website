@@ -154,7 +154,10 @@ function App() {
 								</div>
 
 								<div ref={aboutRef} id="about" className={visibleSections.about ? "show" : ""}>
-									<About />
+									<About
+										// isVisible={visibleSections.about}
+										isVisible={false}
+									/>
 								</div>
 
 								<div ref={footerRef} id="footer" className={visibleSections.footer ? "show" : ""}>

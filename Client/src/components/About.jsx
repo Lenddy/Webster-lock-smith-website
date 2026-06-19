@@ -49,29 +49,49 @@ export default function About({ isVisible }) {
 	// const thickness = Math.max(3, Math.round(N * 1.2));
 	const thickness = Math.max(12, Math.round(N * 1.2));
 
+	// start/stop timer
+	// const startTimer = () => {
+	// 	let thickness;
+	// 	setTimeout(() => {
+	// 		thickness = Math.max(10, Math.round(N * 1.2));
+	// 	}, 1500);
+	// 	return thickness;
+	// };
+
+	// const thickness = Math.max(10, Math.round(N * 1.2));
+	// console.log("this is the thickness", thickness);
+	console.log("THIS IS IS VISIBLE", isVisible);
+
 	//NOTE Polish the book components
+
+	// TODO make the pages have round edges on the outside  but not the covers
+
+	// MAKE THE BOOK HAVE THIS rotate /* rotate: 10 -4 1 25deg; */ when it is in the front close  and
 
 	//* TODO - go over every page and on the inner edge make sure to dynamically change the border radius to make it look like is actually staking the pages
 
+	//* TODO - see if you could make the inner part(spine) to be tilted back to make it look more like a book
+
+	//* TODO - you could also give it an animation that tilts the book as you are changing pages
+
+	//* TODO - see if it would be posible to have the pages have a slight curve when they are changing this would have to be when they are going left and right (not required)
+
+	// NOTE for smaller viewports
 	//* TODO - for smaller screens make the book open downwards instead of sideways(toke keep the same effect of staking you would have to do different rotate: 1 0 0 25deg; for the top and bottom so when they on the top the pages look like they are shorter )
 
-	//* TODO - make the book have a more 3d effect  where is tilted  and looks thicker  (you could also give it an animation that tilts the book as you are changing pages )
-
-	//* TODO - see if it would be posible to have the pages have a slight curve when they are changing this would have to be when they are going left and right (no required)
-
-	//* TODO - as the screen gets smaller you also have to change how the perspective looks like
-
-	//* TODO - for smaller screens make the book open downwards instead of sideways
-
+	// NOTE for bigger viewports
 	//* TODO - for big screens make it like a pamphlet that as you keep going forward it keeps unfolding  (the biggest height should be 600px and width 450px see if you want it bigger )
 
 	// * TODO - i think that there would also need to be a inspect back btn to see the back (it can be integrated in the arrow controls as you keep pressing next it wil flip at the end ) would have to do something similar to the smaller screen stacking but for one or 2 sides depending how you make the pamphlet
+
+	// TODO you can use this rotate for the flip up book rotate: -50 10 -1 25deg;
 
 	// NOTE - DONE
 	//* make the book bigger
 	//* see if you can make the book thicker
 	//* make the book more visible for when is close
 	//* make the book size adapt better to the screen
+	//* as the screen gets smaller you also have to change how the perspective looks like
 
 	return (
 		<div className={`about-wrapper ${isVisible ? "show" : ""}`}>
@@ -84,6 +104,7 @@ export default function About({ isVisible }) {
 				<div className="book" style={{ "--c": current, "--n": N }}>
 					{PAGES.map((page, i) => (
 						<div key={i} className="page" style={{ "--i": i, "--thickness": thickness }}>
+							{/* <div key={i} className="page" style={{ "--i": i, "--thickness": isVisible ? startTimer : 10 }}> */}
 							{/* FRONT — clicking advances */}
 							<div className="page-front" onClick={() => goToPage(i + 1)}>
 								<PageSide data={page.front} />
