@@ -138,6 +138,9 @@ it would have to be reverse or put in the right side for the left  side and on t
 
 this might need to be dynamic base on the stack of the pages 
 
+and i change my mind so on the first page it should be that they both the side haave the rounders inner corner  but mor so in the right side (where the stak is ) ans as the the stak keeps moving make bosh the side have the same amount and the again rever the effet as the stack changest position 
+
+
 */
 
 .page-front {
@@ -149,13 +152,13 @@ this might need to be dynamic base on the stack of the pages
 	/* top-left spine | top-right outer | bottom-right outer | bottom-left spine */
 	/* border-radius: calc(var(--i) * (25 / var(--n)) * 1px) 8px 8px calc(var(--i) * (15 / var(--n)) * 1px); */
 	/*! original */
-	/* border-radius: calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px); */
+	border-radius: calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px);
 
 	/** when opening (on the first page )  the stack is on the right */
 	/* border-radius: calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px); */
 
 	/** (on the second  page )  2 on the left 3 on the right the stack is on the right */
-	border-radius: calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px);
+	/* border-radius: calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px); */
 
 	/** (on the second  page )  2 on the left 3 on the right the stack is on the right */
 	/* border-radius: calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px); */
@@ -171,8 +174,8 @@ this might need to be dynamic base on the stack of the pages
 	rotate: 0 1 0 180deg;
 	border: 2px solid var(--mg);
 	/* top-left spine | top-right outer | bottom-right outer | bottom-left spine */
-	/* border-radius: 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px) 8px; */
-	border-radius: 8px calc(var(--i) * (30 / var(--n)) * 1px) calc(var(--i) * (12 / var(--n)) * 1px) 8px;
+	border-radius: 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px) 8px;
+	/* border-radius: 8px calc(var(--i) * (30 / var(--n)) * 1px) calc(var(--i) * (12 / var(--n)) * 1px) 8px; */
 }
 
 /* ── PAGE CONTENT TYPES ── */
