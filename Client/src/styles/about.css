@@ -68,11 +68,13 @@
 	/* shift right when open so spine stays centered */
 	animation: book-fall 1500ms ease-in forwards;
 	/* animation: book-transition 1500ms ease-in forwards; */
-	translate: calc(min(var(--c), 1) * 50%) 0%;
+	/* translate: calc(min(var(--c), 1) * 50%) 0%; */
+	/* translate: calc((min(var(--c), 1) - max(var(--c) - var(--n) + 1, 0)) * 50%) 0%; */
+	translate: calc((min(var(--c), 1) + max(var(--c) - var(--n) + 1, 0)) * 50%) 0%;
 	/* border: yellow 1px solid;
 	border-radius: 10px; */
 	rotate: 1 0 0 25deg;
-	/* rotate: 0 10 1 20deg; */
+	/* rotate: 10 90 90deg; */
 }
 
 /* ── PAGE ── */
@@ -87,11 +89,8 @@
 	pointer-events: all;
 	user-select: none;
 	transform-style: preserve-3d;
-	/* border: 1px solid rgba(0, 0, 0, 0.25); */
-	/* border: 2px solid var(--mg); */
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	/* border: 1px solid #0008; */
 	transform-origin: left center;
 	cursor: pointer;
 
@@ -110,6 +109,8 @@
 	transition:
 		transform 0.9s ease,
 		rotate 0.9s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms); /* 60ms */
+	/* border: yellow 1px solid;
+	border-radius: 10px; */
 }
 
 /* ── FRONT & BACK FACES ── */
@@ -120,28 +121,11 @@
 	height: 100%;
 	backface-visibility: hidden;
 	overflow: hidden;
-	/* border-radius: 2px 8px 8px 2px; */
-	/* border-radius: 10px 8px 8px 2px; */
-	/* border-radius: ; */
 	/* Fix backface visibility Firefox: */
 	translate: 0px;
 }
 
-/*! add shading to the pages that are closer to the espine of the book in the middle (inside ) 
-
-you already do this  but only for front (or right) background-image: linear-gradient(to right, #f0ece0 0%, #faf8f2 8%);
-
-
-how ever you would have to doit on the left (back) too  but 
-
-it would have to be reverse or put in the right side for the left  side and on the left side for the right 
-
-this might need to be dynamic base on the stack of the pages 
-
-and i change my mind so on the first page it should be that they both the side haave the rounders inner corner  but mor so in the right side (where the stak is ) ans as the the stak keeps moving make bosh the side have the same amount and the again rever the effet as the stack changest position 
-
-
-*/
+/* and could a type of ,shading be added to the pages that ar bending to make it look more real  */
 
 .page-front {
 	background: #faf8f2;
@@ -152,19 +136,18 @@ and i change my mind so on the first page it should be that they both the side h
 	/* top-left spine | top-right outer | bottom-right outer | bottom-left spine */
 	/* border-radius: calc(var(--i) * (25 / var(--n)) * 1px) 8px 8px calc(var(--i) * (15 / var(--n)) * 1px); */
 	/*! original */
-	border-radius: calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px);
 
-	/** when opening (on the first page )  the stack is on the right */
-	/* border-radius: calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px); */
+	/** on the front when is not open */
+	/* border-radius: calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px); */
 
-	/** (on the second  page )  2 on the left 3 on the right the stack is on the right */
-	/* border-radius: calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px); */
+	/** page-front */
+	/* border-radius: calc((var(--n) - var(--i)) * (25 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px);
 
-	/** (on the second  page )  2 on the left 3 on the right the stack is on the right */
-	/* border-radius: calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px); */
+	border-radius: calc((var(--n) - var(--i)) * (30 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px);
+
+	border-radius: calc((var(--n) - var(--i)) * (35 / var(--n)) * 1px) 8px 8px calc((var(--n) - var(--i)) * (15 / var(--n)) * 1px); */
+	transition: border-radius 450ms ease-in;
 }
-
-/* and could a type of shading be added to the pages that ar bending to make it look more real  */
 
 .page-back {
 	background: #f5f1e6;
@@ -174,8 +157,41 @@ and i change my mind so on the first page it should be that they both the side h
 	rotate: 0 1 0 180deg;
 	border: 2px solid var(--mg);
 	/* top-left spine | top-right outer | bottom-right outer | bottom-left spine */
-	border-radius: 8px calc((var(--n) - var(--i)) * (20 / var(--n)) * 1px) calc((var(--n) - var(--i)) * (10 / var(--n)) * 1px) 8px;
-	/* border-radius: 8px calc(var(--i) * (30 / var(--n)) * 1px) calc(var(--i) * (12 / var(--n)) * 1px) 8px; */
+
+	/* this is the correct one that i want */
+	/* 
+
+	/*! page back  */
+	/* border-radius: 8px calc((var(--n) - var(--i)) * (16 / var(--n)) * 1px) calc((var(--n) - var(--i)) * (5 / var(--n)) * 1px) 8px;
+
+	border-radius: 8px calc((var(--n) - var(--i)) * (22 / var(--n)) * 1px) calc((var(--n) - var(--i)) * (5 / var(--n)) * 1px) 8px;
+
+	border-radius: 8px calc((var(--n) - var(--i)) * (30 / var(--n)) * 1px) calc((var(--n) - var(--i)) * (5 / var(--n)) * 1px) 8px;
+
+	border-radius: 8px calc((var(--n) - var(--i)) * (45 / var(--n)) * 1px) calc((var(--n) - var(--i)) * (5 / var(--n)) * 1px) 8px;  */
+	transition: border-radius 450ms ease-in-out;
+}
+
+/* Spine shadow on front face — fades as pages turn away */
+.page-front::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.23) 0%, transparent 27%);
+	opacity: calc((var(--n) - var(--i)) / var(--n));
+	pointer-events: none;
+	/* border-radius: ; */
+}
+
+/* Spine shadow on back face — grows as pages stack on left */
+.page-back::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	/* back face is flipped, so shadow goes to the LEFT visually = gradient to left */
+	background: linear-gradient(to left, rgba(0, 0, 0, 0.25) 0%, transparent 33%);
+	opacity: calc((var(--n) - var(--i)) / var(--n));
+	pointer-events: none;
 }
 
 /* ── PAGE CONTENT TYPES ── */
