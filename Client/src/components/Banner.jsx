@@ -1,31 +1,14 @@
 import "../styles/banner.css";
-// import front from "../assets/banner/Webster-Front.jpg";
-// import front from "../assets/banner/front-store.jpg";
-// import front from "../assets/banner/front-store-new.jpg";
-// import front from "../assets/banner/front-store-new-1.jpg";
 import front from "../assets/banner/front-store-1.jpg";
-// import front from "../assets/banner/front-store-2.jpg";
-import banner from "../assets/banner/banner-services.png";
-import general from "../assets/general/general-1.png";
-import blankkeys from "../assets/general/blank-keys-on-wall.webp";
-import test from "../assets/general/s-l400.webp";
-import { useState, useRef, useCallback, useEffect } from "react";
 
-const bannerImages = [
-	{ src: front, alt: "Webster front", title: "Since 1949", sub: "Trusted security" },
-	{ src: banner, alt: "Services banner", title: "Full Service", sub: "Lock & security solutions" },
-	{ src: general, alt: "General", title: "Residential", sub: "Home locksmith services" },
-	{ src: blankkeys, alt: "Blank keys", title: "Key Cutting", sub: "All key types" },
-	{ src: test, alt: "Services", title: "Commercial", sub: "Business security" },
-].map((item) => ({
-	...item,
-	angle: `${(Math.random() * 20 - 10).toFixed(2)}deg`,
-}));
+import { useState, useRef, useCallback, useEffect } from "react";
+import { bannerImages } from "../utilities/banner-section";
 
 const N = bannerImages.length;
 
 function Banner({ screenWidth }) {
 	const [expanded, setExpanded] = useState(false);
+	const [pause, setPause] = useState(false);
 	const sectionRef = useRef(null);
 	const kRef = useRef(0);
 	const timerRef = useRef(null);
@@ -39,14 +22,23 @@ function Banner({ screenWidth }) {
 	const prev = useCallback(() => goTo(kRef.current - 1), [goTo]);
 
 	useEffect(() => {
-		timerRef.current = setInterval(next, 3000); //3500
+		timerRef.current = setInterval(next, 2000); //3500
 		return () => clearInterval(timerRef.current);
 	}, [next]);
 
 	const pauseAuto = () => clearInterval(timerRef.current);
 	const resumeAuto = () => {
-		timerRef.current = setInterval(next, 3500); //3500
+		timerRef.current = setInterval(next, 2000); //3500
 	};
+
+	// const startStop = (pause) => {
+	// 	console.log("is pause active ? ", pause);
+	// 	if (pause) {
+	// 		pauseAuto();
+	// 	} else if (pause === false) {
+	// 		resumeAuto();
+	// 	}
+	// };
 
 	// NOTE for the right side about
 
@@ -104,6 +96,13 @@ function Banner({ screenWidth }) {
 
 							<div className="stack-controls">
 								<button className="stack-btn" aria-label="previous" onClick={prev} />
+								{/* <button
+									className="stack-btn"
+									aria-label="Pause"
+									onClick={() => {
+										// (setPause((prev) => !prev), startStop(pause));
+									}}
+								/> */}
 								<button className="stack-btn stack-btn--next" aria-label="next" onClick={next} />
 							</div>
 						</section>

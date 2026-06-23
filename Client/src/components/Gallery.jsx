@@ -10,7 +10,8 @@ function Gallery({ isVisible }) {
 
 	// ── outside component — stable, never re-created
 	const ROWS = 3;
-	const CYCLE_MS = 2500;
+	// const CYCLE_MS = 2500;
+	const CYCLE_MS = 1700;
 	const COL_DELAY = 80;
 	const ROW_DELAY = 60;
 	const ANIM_MS = 600;

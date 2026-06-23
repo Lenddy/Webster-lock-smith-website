@@ -1,5 +1,9 @@
 add more space between the componets
 
+change the title names for the gallery section 
+
+
+
 for the animation give a promp that shows later in the site that aks if the animation ar too distracting you can reduce or turn them oof completely
 
 
