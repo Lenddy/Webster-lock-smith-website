@@ -396,3 +396,5 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 }
 
 export default Navbar;
+
+// hello
