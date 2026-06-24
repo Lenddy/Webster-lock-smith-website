@@ -83,8 +83,6 @@ import vonDuprin from "../assets/lock-company-logos/vonDuprin.png";
 import yale from "../assets/lock-company-logos/yale.png";
 import zero from "../assets/lock-company-logos/zero.png";
 
-// import mulTLock from "../assets/lock-company-logos/mulTLock.png";
-// import mulTLock from "../assets/lock-company-logos/mulTLock2.png";
 import mulTLock from "../assets/lock-company-logos/mulTLock3.png";
 import adamsrite from "../assets/lock-company-logos/adamsrite.png";
 import secoLarm from "../assets/lock-company-logos/secoLarm.png";
