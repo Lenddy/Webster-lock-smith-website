@@ -319,6 +319,36 @@
 	color: var(--lb);
 }
 
+/* pause icon: two vertical bars via box-shadow trick */
+.stack-btn--pause::before {
+	content: "";
+	display: block;
+	width: 28%;
+	aspect-ratio: unset;
+	height: 38%;
+	border: none;
+	border-left: 2px solid currentColor;
+	border-right: 2px solid currentColor;
+	translate: none;
+	rotate: none;
+	scale: none;
+}
+
+/* play icon: CSS triangle */
+.stack-btn--play::before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	border: none;
+	border-style: solid;
+	border-width: 30% 0 30% 45%;
+	border-color: transparent transparent transparent currentColor;
+	translate: 15% 0;
+	rotate: none;
+	scale: none;
+}
+
 /* EMAIl */
 .banner-email {
 	display: flex;

@@ -84,7 +84,8 @@ function Banner({ screenWidth }) {
 						</div> */}
 
 						{/* stack carousel */}
-						<section ref={sectionRef} className="stack-carousel" style={{ "--n": N, "--k": 0 }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
+						{/* <section ref={sectionRef} className="stack-carousel" style={{ "--n": N, "--k": 0 }} onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}> */}
+						<section ref={sectionRef} className="stack-carousel" style={{ "--n": N, "--k": 0 }}>
 							{bannerImages.map((img, i) => (
 								<article key={i} className="stack-card" style={{ "--i": i, "--a": img.angle }}>
 									<h2 className="stack-title">{img.title}</h2>
@@ -96,13 +97,21 @@ function Banner({ screenWidth }) {
 
 							<div className="stack-controls">
 								<button className="stack-btn" aria-label="previous" onClick={prev} />
-								{/* <button
-									className="stack-btn"
-									aria-label="Pause"
+
+								<button
+									className={`stack-btn stack-btn--pause ${pause ? "stack-btn--play" : ""}`}
+									aria-label={pause ? "Play" : "Pause"}
 									onClick={() => {
-										// (setPause((prev) => !prev), startStop(pause));
+										if (pause) {
+											resumeAuto();
+											setPause(false);
+										} else {
+											pauseAuto();
+											setPause(true);
+										}
 									}}
-								/> */}
+								/>
+
 								<button className="stack-btn stack-btn--next" aria-label="next" onClick={next} />
 							</div>
 						</section>

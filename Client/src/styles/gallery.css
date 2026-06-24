@@ -133,6 +133,89 @@
 	color: var(--kg);
 }
 
+.gallery-btn-wrapper {
+	display: flex;
+	gap: 10px;
+}
+
+.stack-controls {
+	display: flex;
+	gap: 1.5em;
+	/* grid-area: 4 / 2; */
+	grid-area: 5 / 1;
+	justify-content: center; /* center the arrows */
+	/* disable clicks during animation */
+	z-index: calc((1 - min(1, var(--abs-p))) * var(--n));
+}
+
+.stack-btn {
+	--sgn: -1;
+	/* width: 2.5rem; */
+	width: clamp(1.25rem, 0.938rem + 2.5vw, 2.5rem);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	border: 1px solid var(--kg);
+	background: rgba(26, 26, 26, 0.7);
+	color: var(--kg);
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	transition:
+		background 200ms,
+		color 200ms;
+}
+
+.stack-btn::before {
+	content: "";
+	display: block;
+	border: solid 2px currentColor;
+	border-width: 2px 2px 0 0;
+	width: 35%;
+	aspect-ratio: 1;
+	translate: calc(var(--sgn) * -15%);
+	rotate: 45deg;
+	scale: var(--sgn);
+}
+
+.stack-btn--next {
+	--sgn: 1;
+}
+
+.stack-btn:hover {
+	background: var(--kg);
+	color: var(--lb);
+}
+
+/* pause icon: two vertical bars via box-shadow trick */
+.stack-btn--pause::before {
+	content: "";
+	display: block;
+	width: 28%;
+	aspect-ratio: unset;
+	height: 38%;
+	border: none;
+	border-left: 2px solid currentColor;
+	border-right: 2px solid currentColor;
+	translate: none;
+	rotate: none;
+	scale: none;
+}
+
+/* play icon: CSS triangle */
+.stack-btn--play::before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	border: none;
+	border-style: solid;
+	border-width: 30% 0 30% 45%;
+	border-color: transparent transparent transparent currentColor;
+	translate: 15% 0;
+	rotate: none;
+	scale: none;
+}
+
 .gallery-toggle-btn {
 	background: none;
 	border: 1px solid var(--kg);

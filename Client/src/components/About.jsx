@@ -96,6 +96,8 @@ export default function About({ isVisible }) {
 	// NOTE - change later
 	// the page indicate when the is close (front of the book) have a extra circle page 0/6 or have not circle at al
 
+	const isVertical = window.innerWidth <= 400;
+
 	return (
 		<div className={`about-wrapper ${isVisible ? "show" : ""}`}>
 			<div className="about-header">
@@ -119,13 +121,28 @@ export default function About({ isVisible }) {
 
 						return (
 							<div key={i} className="page" style={{ "--i": i, "--thickness": thickness }}>
-								<div className="page-front" style={{ borderRadius: page.front.type === "cover" ? "10px  10px  5px  10px" : `${frontRadius}px 8px 8px ${frontRadius * 0.4}px` }} onClick={() => goToPage(i + 1)}>
+								{/* <div className="page-front" style={{ borderRadius: page.front.type === "cover" ? "10px  10px  5px  10px" : `${frontRadius}px 8px 8px ${frontRadius * 0.4}px` }} onClick={() => goToPage(i + 1)}> */}
+
+								<div
+									className="page-front"
+									style={{
+										borderRadius: isVertical ? `8px 8px ${frontRadius}px ${frontRadius}px` : page.front.type === "cover" ? "10px 10px 5px 10px" : `${frontRadius}px 8px 8px ${frontRadius * 0.4}px`,
+									}}
+									onClick={() => goToPage(i + 1)}>
 									<PageSide data={page.front} />
 								</div>
-								<div
+
+								{/* <div
 									className="page-back"
 									style={{
 										borderRadius: page.back.type === "closing" ? "10px  10px  5px  10px" : `8px ${backRadius}px ${backRadius * 0.25}px 8px`,
+									}}
+									onClick={() => goToPage(i)}> */}
+
+								<div
+									className="page-back"
+									style={{
+										borderRadius: isVertical ? `${backRadius}px ${backRadius}px 8px 8px` : page.back.type === "closing" ? "10px 10px 5px 10px" : `8px ${backRadius}px ${backRadius * 0.25}px 8px`,
 									}}
 									onClick={() => goToPage(i)}>
 									<PageSide data={page.back} />

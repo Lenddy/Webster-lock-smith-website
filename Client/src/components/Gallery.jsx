@@ -77,6 +77,8 @@ function Gallery({ isVisible }) {
 		return () => clearInterval(timerRef.current);
 	}, [showGrid, cols, total]);
 
+	const [stop, setStop] = useState(false);
+
 	const pause = () => clearInterval(timerRef.current);
 	const resume = () => startTimer();
 
@@ -84,15 +86,37 @@ function Gallery({ isVisible }) {
 		<div className={`gallery-wrapper ${isVisible ? "show" : ""}`}>
 			<div className="gallery-header">
 				<h2 className="gallery-main-title">Our Vendors</h2>
-				<button className="gallery-toggle-btn" onClick={() => setShowGrid(!showGrid)}>
-					{showGrid ? "Show Carousel ▲" : "Browse All Vendors ▼"}
-				</button>
+
+				<div className="gallery-btn-wrapper">
+					<button
+						className={`stack-btn stack-btn--pause ${stop ? "stack-btn--play" : ""}`}
+						aria-label={stop ? "Play" : "Pause"}
+						onClick={() => {
+							if (stop) {
+								resume();
+								setStop(false);
+							} else {
+								pause();
+								setStop(true);
+							}
+						}}>
+						{" "}
+					</button>
+
+					<button className="gallery-toggle-btn" onClick={() => setShowGrid(!showGrid)}>
+						{showGrid ? "Show Carousel ▲" : "Browse All Vendors ▼"}
+					</button>
+				</div>
 			</div>
 
 			{/* ── CAROUSEL ── */}
 			{/* <div className={`gallery-conveyor ${showGrid ? "gallery-mode-hidden" : ""}`} style={{ "--card-h": "150px", "--gap": "8px" }} onMouseEnter={pause} onMouseLeave={resume}> */}
 
-			<div className={`gallery-conveyor ${showGrid ? "gallery-mode-hidden" : ""}`} style={{ "--card-h": "150px", "--gap": "8px", display: showGrid ? "none" : "flex" }} onMouseEnter={pause} onMouseLeave={resume}>
+			<div
+				className={`gallery-conveyor ${showGrid ? "gallery-mode-hidden" : ""}`}
+				style={{ "--card-h": "150px", "--gap": "8px", display: showGrid ? "none" : "flex" }}
+				//  onMouseEnter={pause} onMouseLeave={resume}
+			>
 				{Array.from({ length: ROWS }).map((_, rowIdx) => (
 					<div
 						key={rowIdx}
