@@ -59,7 +59,7 @@ import supra from "../assets/lock-company-logos/supra.png";
 import trimco from "../assets/lock-company-logos/trimco.png";
 import trine from "../assets/lock-company-logos/trine.png";
 
-// import majorManufacturing from "../assets/lock-company-logos/majorManufacturing.png";
+import majorManufacturing from "../assets/lock-company-logos/majorManufacturing.png";
 
 import markarNew from "../assets/lock-company-logos/markar-new.png";
 import McKinney from "../assets/lock-company-logos/McKinney.png";
