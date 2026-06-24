@@ -1,3 +1,0 @@
-a-z.js*.exe
-git add .gitignore
-git commit -m "remove large exe file and ignore executables"
