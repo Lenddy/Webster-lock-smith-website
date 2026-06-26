@@ -1,0 +1,197 @@
+/* old */
+/* new */
+
+.fv-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 1rem;
+}
+
+.fv-scene {
+	width: 100%;
+	perspective: 600px;
+	display: flex;
+	justify-content: center;
+}
+
+/* ── BOOK — tilted on X so you see top/bottom stacks ── */
+.fv-book {
+	position: relative;
+	width: clamp(200px, 80vw, 300px);
+	height: clamp(240px, 100vw, 360px);
+	pointer-events: none;
+	transform-style: preserve-3d;
+	/* tilt — no forwards animation, so this just works */
+	rotate: 1 0 0 25deg;
+	/* shift UP when open, back to center when closed or fully turned */
+	translate: 0 calc((min(var(--c), 1) + max(var(--c) - var(--n) + 1, 0)) * -50%);
+	transition: translate 0.8s ease;
+}
+
+/* ── PAGE — each page stacks at center, only Z separates them ── */
+.fv-page {
+	position: absolute;
+	inset: 0;
+	pointer-events: all;
+	transform-style: preserve-3d;
+	/* Z depth — same formula as horizontal book */
+	transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 1px)));
+	transition: transform 0.9s ease;
+}
+
+/* ── BOTTOM HALF — front face, flips UP when turned ── */
+.fv-bottom-half {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50%;
+	transform-style: preserve-3d;
+	transform-origin: center top; /* folds from spine */
+	cursor: pointer;
+	/* flip: 0 when not turned, -180deg when turned */
+	rotate: 1 0 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+	transition: rotate 0.9s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+}
+
+/* ── TOP HALF — static, shows back of turned page ── */
+.fv-top-half {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50%;
+	overflow: hidden;
+	/* only visible once this page has been turned */
+	opacity: calc(clamp(0, var(--c) - var(--i), 1));
+	transition: opacity 0s; /* instant — rotation handles the visual */
+}
+
+/* ── FACES ── */
+.fv-face {
+	position: absolute;
+	inset: 0;
+	backface-visibility: hidden;
+	overflow: hidden;
+	border: 2px solid var(--mg);
+}
+
+/* front face — shown before flip */
+.fv-face-front {
+	background: #faf8f2;
+	background-image: linear-gradient(to bottom, #f0ece0 0%, #faf8f2 8%);
+	border-radius: 0 0 8px 8px;
+}
+
+/* back face — shown after flip (rotated 180 on X so it faces down initially) */
+.fv-face-back {
+	background: #f5f1e6;
+	background-image: linear-gradient(to top, #faf8f2 80%, #e8e2d0 100%);
+	rotate: 1 0 0 180deg;
+	border-radius: 8px 8px 0 0;
+}
+
+/* top half front — the revealed back content */
+.fv-top-front {
+	background: #f5f1e6;
+	background-image: linear-gradient(to bottom, #e8e2d0 0%, #faf8f2 20%);
+	border-radius: 8px 8px 0 0;
+}
+
+/* spine shadow */
+.fv-face-front::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, transparent 30%);
+	pointer-events: none;
+}
+
+.fv-face-back::before,
+.fv-top-front::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, transparent 30%);
+	pointer-events: none;
+}
+
+/* spine line in the middle */
+.fv-book::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	height: 3px;
+	background: linear-gradient(to right, var(--mg), var(--lb), var(--mg));
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+	z-index: 10;
+	pointer-events: none;
+}
+
+/* ── NAV ── */
+.fv-nav {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.fv-btn {
+	background: none;
+	border: 1px solid var(--kg);
+	color: var(--kg);
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	font-size: 18px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition:
+		background 200ms,
+		color 200ms;
+	line-height: 1;
+}
+
+.fv-btn:hover:not(:disabled) {
+	background: var(--kg);
+	color: var(--lb);
+}
+
+.fv-btn:disabled {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.fv-dots {
+	display: flex;
+	gap: 6px;
+}
+
+.fv-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: 1px solid var(--kg);
+	background: transparent;
+	cursor: pointer;
+	padding: 0;
+	transition: background 200ms;
+}
+
+.fv-dot.turned {
+	background: var(--kg);
+}
+.fv-dot.current {
+	background: var(--dg);
+	border-color: var(--dg);
+}
+
+.fv-hint {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.35);
+}
