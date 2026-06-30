@@ -49,8 +49,16 @@ function PageSide({ data }) {
 
 export default function About({ isVisible }) {
 	const [current, setCurrent] = useState(0); // --c value
+	const [flippingIndex, setFlippingIndex] = useState(); // --c value
 
-	const goToPage = (c) => setCurrent(Math.max(0, Math.min(c, N)));
+	// const goToPage = (c) => setCurrent(Math.max(0, Math.min(c, N)));
+
+	const goToPage = (c) => {
+		const targetIndex = c > current ? current : c; // the page actually flipping
+		setFlippingIndex(targetIndex);
+		setCurrent(Math.max(0, Math.min(c, N)));
+		setTimeout(() => setFlippingIndex(null), 900); // matches your 0.9s transition
+	};
 
 	// dynamic thickness: more pages = thicker spine
 	// const thickness = Math.max(3, Math.round(N * 1.2));
@@ -75,8 +83,6 @@ export default function About({ isVisible }) {
 
 	// MAKE THE BOOK HAVE THIS rotate /* rotate: 10 -4 1 25deg; */ when it is in the front close  and
 
-	//* TODO - go over every page and on the inner edge make sure to dynamically change the border radius to make it look like is actually staking the pages
-
 	//* TODO - see if you could make the inner part(spine) to be tilted back to make it look more like a book
 
 	//* TODO - you could also give it an animation that tilts the book as you are changing pages
@@ -99,6 +105,7 @@ export default function About({ isVisible }) {
 	//* make the book more visible for when is close
 	//* make the book size adapt better to the screen
 	//* as the screen gets smaller you also have to change how the perspective looks like
+	//* go over every page and on the inner edge make sure to dynamically change the border radius to make it look like is actually staking the pages
 
 	// NOTE - change later
 	// the page indicate when the is close (front of the book) have a extra circle page 0/6 or have not circle at al
@@ -115,7 +122,7 @@ export default function About({ isVisible }) {
 	// 	</div>
 	// </div>;
 
-	const isVertical = window.innerWidth <= 440;
+	// const isVertical = window.innerWidth <= 440;
 
 	// for now i would like to put the flip book for later so i would like to continue with it later
 
@@ -161,7 +168,11 @@ export default function About({ isVisible }) {
 								const frontRadius = frontStops[Math.min(c, frontStops.length - 1)];
 
 								return (
-									<div key={i} className="page" style={{ "--i": i, "--thickness": thickness }}>
+									<div
+										key={i}
+										className={`page ${flippingIndex === i ? "is-flipping" : ""}`}
+										// className="page"
+										style={{ "--i": i, "--thickness": thickness }}>
 										<div className="page-front" style={{ borderRadius: page.front.type === "cover" ? "10px  10px  5px  10px" : `${frontRadius}px 8px 8px ${frontRadius * 0.4}px` }} onClick={() => goToPage(i + 1)}>
 											{/* <div
 												className="page-front"
@@ -170,6 +181,8 @@ export default function About({ isVisible }) {
 												}}
 												onClick={() => goToPage(i + 1)}> */}
 											<PageSide data={page.front} />
+
+											{/* {flippingIndex === i && page.front.type !== "cover" ? <CurveOverlay data={page.front} /> : <PageSide data={page.front} />} */}
 										</div>
 
 										<div
@@ -184,7 +197,10 @@ export default function About({ isVisible }) {
 													borderRadius: isVertical ? `${backRadius}px ${backRadius}px 8px 8px` : page.back.type === "closing" ? "10px 10px 5px 10px" : `8px ${backRadius}px ${backRadius * 0.25}px 8px`,
 												}}
 												onClick={() => goToPage(i)}> */}
+
 											<PageSide data={page.back} />
+
+											{/* {flippingIndex === i && page.back.type !== "closing" ? <CurveOverlay data={page.back} /> : <PageSide data={page.back} />} */}
 										</div>
 									</div>
 								);

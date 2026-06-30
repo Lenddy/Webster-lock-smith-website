@@ -1,0 +1,306 @@
+this is what i would like to do 
+
+
+when the book is open it has to be push more to the right (in smaller screens, around 530px and bellow (or the book could be made smaller)) (the book container is able  scroll left and right )
+
+
+you have to tilt both side of the bock  to make it look like the espine is being really use (is holding pages ) 
+
+
+you have to some how add the animation for the page turning (curving the page )
+https://codepen.io/amit_sheen/pen/WNweryv
+
+
+
+
+this is  for later 
+
+see how will you add the pamphlet (for bigger screen) and the flip book (for smaller screens)
+
+
+(the pamphlet)
+    dont know if you will make it  that it will be open to one side or both  
+    it need to open(unfold) to keep showing more information  
+    where is folder it 
+    and has to flip sides when the full front is unfolded  and ther is nothing more  so iit will flip side 
+
+    the flip book is just the book  but flip 90 deg and with a change in the rounding of corner  and the staking will be different 
+
+
+
+
+//*NOTE - !!!!!
+!!!!!
+!!!!!
+!!!!!
+!!!!!
+//*NOTE - !!!!!
+
+
+
+You're right that the skew approach looks bad — skewing the entire flat page face just distorts it like a parallelogram, it doesn't read as a curve at all. Also, in your CSS, transform: skewX() followed by transform: skewY() on the same selector means the second line overwrites the first entirely — only skewY was ever applying.
+Let's go with the real nested-strip technique from the CodePen instead, adapted to work with your React content. Here's the actual reasoning for why it looks convincing there and a flat skew doesn't: the CodePen splits the page into ~7 thin vertical strips, each independently rotated on the Y axis by a slightly different amount. Because each strip is a separate flat plane in 3D space, the silhouette they form together reads as a curve to the eye — that's the only way to fake a curve using flat CSS elements.
+
+To adapt this for your content (not just background images), the strips need to each show a clipped slice of the actual page content, not a repositioned background. That means using clip-path on copies of the content.
+Here's the approach:
+
+const CURVE_STRIPS = 6; // number of slices
+
+function CurveOverlay({ data, isFront }) {
+  return (
+    <div className="curve-overlay">
+      {Array.from({ length: CURVE_STRIPS }).map((_, s) => (
+        <div
+          key={s}
+          className="curve-strip"
+          style={{
+            "--s": s,
+            "--total": CURVE_STRIPS,
+            clipPath: `inset(0 ${100 - ((s + 1) / CURVE_STRIPS) * 100}% 0 ${(s / CURVE_STRIPS) * 100}%)`,
+          }}
+        >
+          <PageSide data={data} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
+
+css.curve-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.curve-strip {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  /* each strip rotates slightly more than the last during flip */
+  animation: strip-curve 0.9s ease-in-out;
+  animation-delay: calc(var(--s) * 15ms);
+}
+
+@keyframes strip-curve {
+  0%   { transform: rotateY(0deg); }
+  50%  { transform: rotateY(calc(-8deg - (var(--s) * 2deg))); }
+  100% { transform: rotateY(0deg); }
+}
+Honestly though — given the complexity-to-payoff ratio here, and that your existing flip animation already looks solid without it, I'd lean toward not pursuing the curve effect unless it's a must-have. The nested-strip technique requires real tuning time (clip-path precision, z-fighting between strips, performance with 6 live React content duplicates per flipping page) for a fairly subtle visual payoff.
+Given where you are, would you rather I help tune this further, or move it to the "nice to have, later" pile and focus on the spine tilt and scroll positioning which have more visible impact for less risk?
+
+
+
+
+
+Based on what you described, it sounds like there are two separate issues:
+
+The printer itself is not being detected by Windows.
+The correct driver is not being associated with the printer.
+
+Let's go through it step by step.
+
+Step 1: Check how the printer is connected
+
+Is your Kyocera ECOSYS M5521cdw connected by:
+
+USB cable?
+Ethernet cable (network)?
+Wi-Fi?
+
+You mentioned it might be connected by wire, so let's assume USB first.
+
+Step 2: Verify Windows detects the printer
+
+Open:
+
+Settings → Bluetooth & devices → Printers & scanners
+
+Do you see:
+
+The Kyocera printer?
+An Unknown Device?
+A printer with a yellow warning?
+Nothing at all?
+
+If you don't see anything, open Device Manager.
+
+Press:
+
+Windows + X
+Device Manager
+
+Look under:
+
+Printers
+Print queues
+USB devices
+Other devices
+
+See if anything has a yellow exclamation mark.
+
+Step 3: Make sure the driver actually installed
+
+The Kyocera KX Universal Printer Driver installs the driver files, but it does not always add the printer automatically.
+
+So installing it alone isn't enough.
+
+Step 4: Add the printer manually
+
+Go to:
+
+Settings
+Bluetooth & devices
+Printers & scanners
+Add device
+
+Wait about 30 seconds.
+
+If Windows doesn't find it, click:
+
+The printer that I want isn't listed
+
+Then try:
+
+Add a local printer or network printer with manual settings
+
+If USB:
+
+Choose the USB port (usually USB001).
+
+When Windows asks for the driver:
+
+Choose:
+
+Kyocera
+
+or
+
+Have Disk...
+
+and browse to the folder where the KX Universal Driver extracted.
+
+Step 5: If it's actually a network printer
+
+If the printer is connected with Ethernet or Wi-Fi, don't use USB.
+
+Instead choose:
+
+Add printer using TCP/IP address
+
+Then enter the printer's IP address.
+
+You can usually find it by printing the printer's network configuration page or checking the display on the printer.
+
+Step 6: Check the Print Spooler
+
+Sometimes Windows gets stuck after removing drivers.
+
+Press:
+
+Windows + R
+services.msc
+
+Find:
+
+Print Spooler
+
+Make sure it is:
+
+Running
+Startup Type: Automatic
+
+If it's running, right-click it and choose Restart.
+
+Step 7: If Windows still can't see the printer
+
+Disconnect the USB cable.
+
+Restart the PC.
+
+Reconnect the USB cable.
+
+You should hear the Windows "device connected" sound.
+
+If you don't, then the problem is probably one of these:
+
+Bad USB cable
+Bad USB port
+Printer isn't communicating with the computer
+A few questions that will help narrow it down:
+Which version of Windows are you using (10 or 11)?
+Is the printer connected by:
+USB
+Ethernet
+Wi-Fi
+Does the printer appear in Device Manager?
+When you plug it in, do you hear the Windows USB connection sound?
+Before you uninstalled the driver, did the printer appear in Printers & Scanners with a "Driver unavailable" message, or did it disappear completely?
+
+Once I know those answers, we can determine whether this is a driver problem, a Windows print spooler problem, or a connection (USB/network) problem.
+
+
+!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+Yes the edge curve is doable — and it's actually simpler than the strip approach. Instead of slicing the whole page, you just animate the edge of the page with a pseudo-element that creates a subtle curl illusion as the page rotates.
+The idea: during the flip, add a thin shadow/highlight strip along the right edge of .page-front (the leading edge as it turns) that curves slightly using border-radius animation. It doesn't actually deform the page — it suggests a curve to the eye via a gradient strip that appears, bows, and disappears.
+Here's the CSS only approach — no DOM changes needed, just add to your existing .page-front::after and trigger it with .is-flipping:
+css
+
+
+.page-front::after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  right: 0;
+  width: 18px;
+  height: 90%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(to left, rgba(0,0,0,0.15) 0%, transparent 100%);
+  border-radius: 0 4px 4px 0;
+  transition: opacity 0.1s;
+}
+
+.is-flipping .page-front::after {
+  opacity: 1;
+  animation: edge-curl 0.9s ease-in-out forwards;
+}
+
+@keyframes edge-curl {
+  0%   { 
+    width: 8px;
+    border-radius: 0 2px 2px 0;
+    opacity: 0;
+  }
+  25%  { 
+    width: 22px;
+    border-radius: 0 40px 40px 0;
+    opacity: 1;
+  }
+  60%  { 
+    width: 18px;
+    border-radius: 0 20px 20px 0;
+    opacity: 0.6;
+  }
+  100% { 
+    width: 4px;
+    border-radius: 0 2px 2px 0;
+    opacity: 0;
+  }
+}
+And your goToPage stays the same with flippingIndex. The ::after is already a separate layer so no content duplication, no z-fighting, no layout issues.
+The page-front::before you already have is the spine shadow — ::after is free so this doesn't conflict.
+Try this — it's very lightweight. The visual effect is a soft shadow bulge on the turning edge that peaks at mid-flip then collapses, which reads as a paper curl without actually deforming anything.

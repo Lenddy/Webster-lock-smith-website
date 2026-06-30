@@ -7,3 +7,9 @@ so i would have to change what the height and with position for some items
 so let me put it like this i have the text center but the pictures  and in the text the under line (border that i have it not as long as it has to be  it should be around 80-90%  of the width ( height this time)) i would also like to make the with of the book (the pages actually ) be t 90% of the screen width and also make the book a little taller 
  
  also the 
+
+
+
+
+
+ 

@@ -24,7 +24,7 @@
 	align-items: center;
 	justify-content: center;
 	/* flex-direction: column; */
-	min-height: 400px;
+	min-height: 530px;
 	/* gap: 10px; */
 }
 
@@ -68,6 +68,12 @@
 		/* add more moargin as the size of the view port keeps decresion  */
 	}
 }
+
+/* @media (max-width: 530px) {
+	.book {
+		translate: calc((min(var(--c), 1) + max(var(--c) - var(--n) + 1, 0)) * 70%) 0%;
+	}
+} */
 
 /* i would like to dynamically add margin so that  when the book is open  it can allow me to also move it more to the left  however the must be open for this to happen  the problem is that is not pushing the left (there is no space for it   so when is open it can be move  there is not space to tshow the full page  )*/
 
@@ -687,5 +693,116 @@ i have to flip the bock 90deg now the problem is tilting the bock back because i
 
 		transform: translateZ(0px);
 		/* transform: translateX(0px); */
+	}
+}
+
+@media (max-width: 530px) {
+	.book {
+		/* background-color: red; */
+		/* have to find a way on how to get it to its original position  */
+		translate: calc((min(var(--c), 1) + max(var(--c) - var(--n) + 1, 0)) * 80%) 0%;
+		/* translate: calc((min(var(--c), 1) + max(var(--c) - var(--n) + 1, 0)) * 50%) 0%; */
+	}
+
+	.book-nav {
+		translate: calc((min(var(--c), 1) + max(var(--c) - var(--n) + 1, 0)) * 80%) 0%;
+	}
+}
+
+/* this will be for when the book is open  */
+.page-front {
+	rotate: 0 -5 0 3deg; /* slight outward tilt */
+}
+
+.page-back {
+	rotate: 0 -1 0 178deg; /* slightly less than 180, same outward tilt */
+}
+
+.page.is-flipping .page-front,
+.page.is-flipping .page-back {
+	background-color: red;
+	animation: page-curve 0.9s ease-in-out;
+}
+
+/* @keyframes page-curve {
+	0% {
+		transform: skewY(0deg);
+	}
+	30% {
+		transform: skewY(-10deg);
+	}
+	60% {
+		transform: skewY(10deg);
+	}
+	100% {
+		transform: skewY(0deg);
+	}
+} */
+
+.page-front::after {
+	content: "";
+	position: absolute;
+	top: 5%;
+	right: 0;
+	width: 18px;
+	height: 90%;
+	opacity: 0;
+	pointer-events: none;
+	background: linear-gradient(to left, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
+	border-radius: 0 4px 4px 0;
+	transition: opacity 0.1s;
+}
+
+.is-flipping .page-front::after {
+	opacity: 1;
+	animation: edge-curl 0.9s ease-in-out forwards;
+}
+
+/* @keyframes edge-curl {
+  0%   { 
+    width: 8px;
+    border-radius: 0 2px 2px 0;
+    opacity: 0;
+  }
+  25%  { 
+    width: 22px;
+    border-radius: 0 40px 40px 0;
+    opacity: 1;
+  }
+  60%  { 
+    width: 18px;
+    border-radius: 0 20px 20px 0;
+    opacity: 0.6;
+  }
+  100% { 
+    width: 4px;
+    border-radius: 0 2px 2px 0;
+    opacity: 0;
+  }
+} */
+
+@keyframes edge-curl {
+	0% {
+		width: 20px;
+		/* border-radius: 0 2px 2px 0; */
+		border-radius: 0 20px 20px 0;
+		opacity: 0;
+	}
+	25% {
+		width: 60px;
+		/* border-radius: 0 40px 40px 0; */
+		border-radius: 0 60px 60px 0;
+		opacity: 1;
+	}
+	60% {
+		width: 40px;
+		/* border-radius: 0 20px 20px 0; */
+		border-radius: 0 40px 40px 0;
+		opacity: 0.6;
+	}
+	100% {
+		width: 4px;
+		border-radius: 0 2px 2px 0;
+		opacity: 0;
 	}
 }

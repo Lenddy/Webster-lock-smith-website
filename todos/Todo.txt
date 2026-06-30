@@ -2,6 +2,7 @@ add more space between the componets
 
 change the title names for the gallery section 
 
+figure out why there is soo much play (i am able to scroll so much the entire page ) it could be because of about (i doubt it )
 
 
 for the animation give a promp that shows later in the site that aks if the animation ar too distracting you can reduce or turn them oof completely
