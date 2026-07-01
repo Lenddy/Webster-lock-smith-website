@@ -1,1 +1,0 @@
-make the component abe to scroll on the x axis for smaller screen around 370 px more or less

@@ -157,6 +157,7 @@ function App() {
 									<About
 										// isVisible={visibleSections.about}
 										isVisible={false}
+										screenWidth={screenWidth}
 									/>
 								</div>
 

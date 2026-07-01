@@ -1,68 +1,175 @@
-add more space between the componets
+make the book tilt when the is open  
 
-change the title names for the gallery section 
+when close it should be not tilted (from the spine)
 
-figure out why there is soo much play (i am able to scroll so much the entire page ) it could be because of about (i doubt it )
+also make the displacement of the book to the right when the view port is smaller be bigger the smaller the view port is  
 
-
-for the animation give a promp that shows later in the site that aks if the animation ar too distracting you can reduce or turn them oof completely
-
-
-
-
-this is really minor but when i am on the inspect tool and make the screen shrink or grow i takes its time i have delays in transforms and animation that thats the most likely cause 
+so a way will have to be found in css to do it other wise it has to be done in the component
 
 
 
 
+import "../styles/about.css";
+import { useState, useEffect, useRef } from "react";
 
-!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!
-!for the animations! 
-
-when you add the new components for the ball (logo that that is suppose to have the icons rotation)  
-use this  https://jsfiddle.net/BYossarian/Frg74/2/  
-there are more interesting links here https://stackoverflow.com/questions/18900414/css-animation-for-falling-vibrations-etc
- ,provided by Ben Jackson  https://stackoverflow.com/users/1937302/ben-jackson
-
-here is also a falling leafs effect looks great this would be put in the products and services  i think https://codepen.io/dudleystorey/pen/kKBOmV
-
-this one also has greater specially the last one animation you can for like a effect of double doors opening (you can use it in the products and services where they talk about the iron work ) https://www.smashingmagazine.com/2024/04/sliding-3d-image-frames-css/
-
-about component
-for the book 
-i would really like to make an animation where the book is falling from the top(no really top more like a tall z depth if that makes sense ) and then stopping (as if you drop something ) it would be a 3 d effect 
-
-another pasible animation would be not falling from a big height but having the book standing up and then falling horizontally (have the book or the pam pamphlet or the top opening book) have them on their side (as in standing up straight ) and then falling flat on the page (and have the book be visible) 
-
-another one could be  starting small and coming to the user in a 3 d effect 
+import PAGES from "../utilities/book-pages";
 
 
-!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!
 
-use a lightbulb svg and use gradient color  with blur to simulate the light turning on and of
+const N = PAGES.length; // number of pages
 
-for most of the sub titles of the sections make them blue or see if you want to alternate between yellow and blue 
+function PageSide({ data }) {
+	if (data.type === "cover")
+		return (
+			<div className="book-cover-side">
+				<div className="book-cover-badge">EST. 1949</div>
+				<h1 className="book-cover-title">{data.title}</h1>
+				<p className="book-cover-sub">{data.sub}</p>
+				<div className="book-cover-key">🔑</div>
+			</div>
+		);
 
-on products and services  be yellow  likes the banners about when close (only on the title section ) figure out if you also want to give a different color to the interior black maybe like the back ground    
+	if (data.type === "closing")
+		return (
+			<div className="book-cover-side book-closing">
+				<h2 className="book-cover-title">{data.title}</h2>
+				<p className="book-cover-sub">{data.sub}</p>
+			</div>
+		);
 
-make the  vendors  into the carrousel like version said and see if you want to move it about the products 
+	if (data.type === "image")
+		return (
+			<div className="book-image-side">
+				<img src={data.src} alt={data.alt} />
+			</div>
+		);
 
-for the nav bar for in the side bar configuration make sure that the setting ar visible  for example in chrome i have to scroll down a bit for me to be able to see it (that is chrome problem or phone ) be cause of the search bar at the to or the browser 
+	if (data.type === "text")
+		return (
+			<div className="book-text-side">
+				<h2 className="book-page-heading">{data.heading}</h2>
+				<p className="book-page-body">{data.body}</p>
+			</div>
+		);
+}
 
-make a logo component to put bellow the banner (in place of the gallery ) or after gallery bellow its original place or see if you want to put it on the  with the about on the logo put keys locks and any other thing yo think would look good 
+export default function About({ isVisible }) {
+	const [current, setCurrent] = useState(0); // --c value
+	const [flippingIndex, setFlippingIndex] = useState(); // --c value
+
+	// const goToPage = (c) => setCurrent(Math.max(0, Math.min(c, N)));
+
+	const goToPage = (c) => {
+		const targetIndex = c > current ? current : c; // the page actually flipping
+		setFlippingIndex(targetIndex);
+		setCurrent(Math.max(0, Math.min(c, N)));
+		setTimeout(() => setFlippingIndex(null), 900); // matches your 0.9s transition
+	};
+
+	// dynamic thickness: more pages = thicker spine
+	// const thickness = Math.max(3, Math.round(N * 1.2));
+	const thickness = Math.max(12, Math.round(N * 1.2));
+
+	// start/stop timer
+	// const startTimer = () => {
+	// 	let thickness;
+	// 	setTimeout(() => {
+	// 		thickness = Math.max(10, Math.round(N * 1.2));
+	// 	}, 1500);
+	// 	return thickness;
+	// };
+
+	// const thickness = Math.max(10, Math.round(N * 1.2));
+	// console.log("this is the thickness", thickness);
+	console.log("THIS IS IS VISIBLE", isVisible);
 
 
-for the about see if you can make a time line from the start of the company to know 
 
-1  for the translation  use i18next (and put the json files on the public folder)
- and see if you need import React, { Suspense } from "react";
-this goes on the main.jsx files 
-reference : go to your porfolio project and you can see how to use it 
+	return (
+		//  ref={scrollRef}
+		<div className="book-scene-scroll">
+			<div className={`about-wrapper ${isVisible ? "show" : ""}`}>
+				<div className="about-header">
+					<h2 className="about-section-title">About Us</h2>
+				</div>
 
-2 you can copy and past the scroll to function from the coin-mania project
 
-find out if you will need to use a db for the careers page
+					<div className="book-scene">
+						<div className="book" style={{ "--c": current, "--n": N }}>
+							{PAGES.map((page, i) => {
+								// how far through the book we are (0 to N)
+								const c = current;
+
+								// left stack (page-back): 16 → 22 → 30 → 45 as c increases
+								const backStops = [23, 30, 32, 33];
+								const backRadius = backStops[Math.min(c, backStops.length - 1)];
+
+								// right stack (page-front): 35 → 30 → 25 → 15 as c increases
+								const frontStops = [33, 32, 30, 22];
+								const frontRadius = frontStops[Math.min(c, frontStops.length - 1)];
+
+								return (
+									<div
+										key={i}
+										className={`page ${flippingIndex === i ? "is-flipping" : ""}`}
+										// className="page"
+										style={{ "--i": i, "--thickness": thickness }}>
+										<div className="page-front" style={{ borderRadius: page.front.type === "cover" ? "10px  10px  5px  10px" : `${frontRadius}px 8px 8px ${frontRadius * 0.4}px` }} onClick={() => goToPage(i + 1)}>
+											
+											<PageSide data={page.front} />
+
+											
+										</div>
+
+										<div
+											className="page-back"
+											style={{
+												borderRadius: page.back.type === "closing" ? "10px  10px  5px  10px" : `8px ${backRadius}px ${backRadius * 0.25}px 8px`,
+											}}
+											onClick={() => goToPage(i)}>
+		
+
+											<PageSide data={page.back} />
+
+							
+										</div>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+
+					{/* navigation dots + arrows */}
+					<div className="book-nav">
+						<button className="book-nav-btn" onClick={() => goToPage(current - 1)} disabled={current === 0} aria-label="Previous page">
+							‹
+						</button>
+
+						<div className="book-nav-dots">
+							{PAGES.map((_, i) => (
+								<button key={i} className={`book-nav-dot ${current > i ? "turned" : ""} ${current === i ? "current" : ""}`} onClick={() => goToPage(i)} aria-label={`Go to page ${i + 1}`} />
+							))}
+						</div>
+
+						<button className="book-nav-btn" onClick={() => goToPage(current + 1)} disabled={current === N} aria-label="Next page">
+							›
+						</button>
+					</div>
+
+					<p className="book-nav-hint">{current === 0 ? "Click the page to turn →" : `Page ${current} of ${N}`}</p>
+		
+			</div>
+		</div>
+	);
+}
+
+
+
+
+
+about
+
+// NOTE - change later
+	// the page indicate when the is close (front of the book) have a extra circle page 0/6 or have not circle at al
+
+	// NOTE - is there a way to make the book be above the container ? be still have it in the container  (z-index ? position )

@@ -1,1 +1,0 @@
-1 the images load slow (this might be be cause of the internet (has to be tested ))
