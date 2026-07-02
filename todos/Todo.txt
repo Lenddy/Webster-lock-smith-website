@@ -9,6 +9,9 @@ so a way will have to be found in css to do it other wise it has to be done in t
 
 
 
+
+
+
 import "../styles/about.css";
 import { useState, useEffect, useRef } from "react";
 
@@ -27,7 +30,7 @@ function PageSide({ data }) {
 				<p className="book-cover-sub">{data.sub}</p>
 				<div className="book-cover-key">🔑</div>
 			</div>
-		);
+		);;l
 
 	if (data.type === "closing")
 		return (
