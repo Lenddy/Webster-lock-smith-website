@@ -11,6 +11,7 @@
 .product-services-container {
 	/* background-color: var(--ch); */
 	background-color: var(--lb);
+
 	/* margin-top: 50px; */
 	width: 100%;
 	display: flex;
@@ -58,6 +59,22 @@
 	/* border: solid 1px white; */
 
 	border-radius: clamp(0.313rem, 0.066rem + 0.35vw, 0.625rem);
+}
+
+/* section reveal */
+
+#products,
+#services {
+	opacity: 0;
+	transform: translateY(40px);
+	transition:
+		opacity 0.8s ease,
+		transform 0.8s ease;
+}
+
+.show {
+	opacity: 1 !important;
+	transform: translateY(0) !important;
 }
 
 .products-container,

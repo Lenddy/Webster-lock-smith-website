@@ -318,6 +318,18 @@ h4 {
 	animation: slide-from-center-right 400ms ease-out 900ms forwards;
 }
 
+.product-service-title-p {
+	padding-right: 15px;
+}
+
+.product-service-title-s {
+	padding-left: 15px;
+}
+
+.product-service-title-and {
+	cursor: default;
+}
+
 /* ── SIDEBAR BASE (rail — collapsed) ── */
 .sidebar {
 	position: fixed;

@@ -174,8 +174,12 @@ Scroll Bug
         - Test with touchpad.
         - Test with mouse wheel.
 
-GitHub
+About
     Issue
+        -to turn pages on touch it need be one by click the outer edge
+
+GitHub
+    Issue (done)
         - Repository won't push.
         - Infinite loading.
         - 408 timeout.

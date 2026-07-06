@@ -73,6 +73,7 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 
 					<div className="links-container">
 						<h2
+							className="links-container-pointer"
 							onClick={() => {
 								onProductsClick();
 							}}>
@@ -109,7 +110,13 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 						</ul>
 					</div>
 					<div className="links-container">
-						<h2>Services</h2>
+						<h2
+							className="links-container-pointer"
+							onClick={() => {
+								onProductsClick();
+							}}>
+							Services
+						</h2>
 						<ul>
 							<li>
 								<p

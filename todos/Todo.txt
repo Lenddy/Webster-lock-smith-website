@@ -1,3 +1,905 @@
+on the smaller viewport  the go to product section is not working  after the changes 
+
+
+
+nav bar 
+make sure that click products takes you to product  and that clicking  on service takes you to services 
+
+the problem 
+service and product are in the same component
+
+the click to scroll to section in on the app components (parent) 
+
+products and services are conjoin the click to open the service works but  not  to go to service 
+
+there is a outer div that that has a ref
+
+and in inside of the  nav bar  component 
+
+i have 2 (3 actually) way to render the nav bar the once on the side and the once above 
+
+so i will have to do the ix 2 times ? 
+
+
+
+
+also this is for later but the service component should also have its own show function (because for smaller screens the services section is bellow the products )
+
+
+
+I can see the problem clearly. In the navbar, the Services button calls onProductsClick() instead of onServicesClick():
+In the sidebar (mobile) Services button:
+jsx// WRONG — calls products
+onClick={() => {
+  onProductsClick();
+  toggleMenu("services");
+}}
+
+// FIX
+onClick={() => {
+  onServicesClick();
+  toggleMenu("services");
+}}
+
+In the desktop sidebar Services button:
+jsx// WRONG
+onClick={() => {
+  onServicesClick(); // this one is actually correct already
+  toggleMenu("services");
+}}
+
+Now the second problem — onServicesClick in App.jsx points to serviceRef:
+
+jsx 
+onServicesClick={() => scrollTo(serviceRef)}
+But serviceRef is passed into Product_services as ref={serviceRef} on the services inner div — that part looks correct.
+The issue is serviceRef in App.jsx is defined but the outer productsRef wraps the entire Product_services component. So when you scroll to serviceRef, if the services section is below the fold inside the component, it should work — but only if serviceRef is actually attached.
+Check this line in Product_services:
+jsx<div className="services-container" ref={serviceRef} id="service">
+That looks correct. So the only real bug is the mobile sidebar Services button calling onProductsClick instead of onServicesClick. Fix that one line and it should work.
+
+
+
+
+
+
+
+
+I can see the bug right away. In your navbar, the Services button is calling onProductsClick instead of onServicesClick in two places (sidebar and mobile), and in App.jsx onServicesClick is pointing to serviceRef but the outer wrapper ref is productsRef.
+Here's the full fix:
+
+Problem 1 — App.jsx: onServicesClick scrolls to the wrong ref
+Right now:
+jsonServicesClick={() => scrollTo(serviceRef)}
+serviceRef is the inner ref inside Product_services. But the outer div that wraps the whole component uses productsRef. You need to scroll to the outer div first, then let the inner ref handle the rest. Change it to:
+jsonServicesClick={() => scrollTo(productsRef)}
+The serviceRef is already being used correctly inside onServiceItemClick for the dropdown items.
+
+Problem 2 — Navbar.jsx: Services button calls onProductsClick
+In the sidebar (desktop):
+js// wrong
+onClick={() => {
+    onProductsClick();   // ← should be onServicesClick
+    toggleMenu("services");
+}}
+Change to:
+jsonClick={() => {
+    onServicesClick();
+    toggleMenu("services");
+}}
+Same fix in the mobile sidebar:
+js// wrong
+onClick={() => {
+    onProductsClick();   // ← same bug
+    toggleMenu("services");
+}}
+Change to:
+jsonClick={() => {
+    onServicesClick();
+    toggleMenu("services");
+}}
+
+To answer your question — do you need to do the fix twice?
+Yes, but only for the Services button click handler — once in the mobile sidebar and once in the desktop sidebar. The top navbar doesn't have a separate Services button so it's fine as-is.
+
+About the later task (services below products on mobile)
+You're already set up for it. Since serviceRef is on the services div inside Product_services, calling scrollTo(serviceRef) on mobile will scroll past products directly to services. You just need onServicesClick to actually call that instead of onProductsClick, which is exactly what the fix above does.
+
+
+
+
+
+this is 
+
+
+
+
+
+
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Banner from "./components/Banner";
+import About from "./components/About";
+import Product_services from "./components/Product_services";
+import Gallery from "./components/Gallery";
+import Footer from "./components/Footer";
+import Test from "./components/Test";
+import { useEffect, useState, useRef } from "react";
+
+import calcClampBreakpoints from "../../min-max-calculator";
+
+function App() {
+	const [scrolled, setScrolled] = useState(false);
+	const [showBtn, setShowBtn] = useState(false);
+	const [visibleSections, setVisibleSections] = useState({ banner: true });
+
+	const homeRef = useRef(null);
+	const aboutRef = useRef(null);
+	const productsRef = useRef(null);
+	const servicesRef = useRef(null);
+	const galleryRef = useRef(null);
+	const footerRef = useRef(null);
+
+	// for later
+	const productRef = useRef(null); // scrolls to products specifically
+	const serviceRef = useRef(null); // scrolls to services specifically
+
+	// add expand state to pass down
+	const [expandProduct, setExpandProduct] = useState(null);
+	const [expandService, setExpandService] = useState(null);
+
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+	// navbar scroll state + show scroll-to-top btn
+	useEffect(() => {
+		const handleScroll = () => {
+			setScrolled(window.scrollY > 0);
+			setShowBtn(window.scrollY > 0);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	const scrollTo = (ref) => {
+		ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+	};
+
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+	};
+
+	const [navPosition, setNavPosition] = useState(
+		() => localStorage.getItem("navPosition") || "top" // "top" | "left" | "right"
+	);
+
+	const [isPinned, setIsPinned] = useState();
+
+	const changeNavPosition = (pos) => {
+		setNavPosition(pos);
+		localStorage.setItem("navPosition", pos);
+	};
+
+	useEffect(() => {
+		const handleResize = () => setScreenWidth(window.innerWidth);
+		window.addEventListener("resize", handleResize);
+
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					console.log("this is the entry", entry);
+					if (entry.isIntersecting) {
+						console.log("this is the entry isIntersecting", entry.isIntersecting);
+						setVisibleSections((prev) => ({
+							...prev,
+							[entry.target.id]: true, // key = the div's id
+						}));
+						observer.unobserve(entry.target); // only trigger once
+					}
+				});
+			},
+			{ threshold: 0.35 } // 3
+			// 5% visible is enough to trigger
+		);
+
+		const sections = [homeRef.current, aboutRef.current, productsRef.current, servicesRef.current, galleryRef.current, footerRef.current];
+
+		sections.forEach((section) => {
+			if (section) observer.observe(section);
+		});
+
+		return () => observer.disconnect();
+	}, []);
+
+	useEffect(() => {
+		console.log("visibleSections updated:", visibleSections);
+	}, [visibleSections]);
+
+	// TODO go look at the Bronx locksmith website https://www.bronxlocksmith.com/ for inspiration
+	// TODO go look at the Mr lock website https://mr-locks.com/ for inspiration
+
+	console.log(calcClampBreakpoints("15.625rem", "14.831rem", 6.35, "25rem"));
+
+	// move the about section lower
+
+	return (
+		<>
+			<Routes>
+				<Route
+					path="*"
+					element={
+						<div className="app-wrapper">
+							{/* <div className="app-nav-bar"> */}
+							<Navbar
+								scrolled={scrolled}
+								onHomeClick={() => scrollTo(homeRef)}
+								onAboutClick={() => scrollTo(aboutRef)}
+								oneGalleryClick={() => scrollTo(galleryRef)}
+								onProductsClick={() => scrollTo(productsRef)}
+								onServicesClick={() => scrollTo(serviceRef)}
+								onProductItemClick={(item) => {
+									scrollTo(productRef);
+									setExpandProduct(item); // tells the component which item to open
+								}}
+								onServiceItemClick={(item) => {
+									scrollTo(serviceRef);
+									setExpandService(item);
+								}}
+								scrollToTop={scrollToTop}
+								navPosition={navPosition}
+								onChangeNavPosition={changeNavPosition}
+								setIsPinned={setIsPinned}
+								screenWidth={screenWidth}
+							/>
+							{/* </div> */}
+
+							<div className={`app-content ${navPosition} ${isPinned ? "isPinned" : ""}`}>
+								{/* each div: one ref, one id, checks its own id */}
+								<div ref={homeRef} id="banner" className={visibleSections.banner ? "show" : ""}>
+									<Banner screenWidth={screenWidth} />
+								</div>
+
+								<div ref={galleryRef} id="gallery" className={visibleSections.gallery ? "show" : ""}>
+									<Gallery />
+								</div>
+
+
+								this is the Product_services component
+
+								<div ref={productsRef} id="products" className={visibleSections.products ? "show" : ""}>
+									<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} />
+								</div>
+
+								<div ref={aboutRef} id="about" className={visibleSections.about ? "show" : ""}>
+									<About
+										// isVisible={visibleSections.about}
+										isVisible={false}
+										screenWidth={screenWidth}
+									/>
+								</div>
+
+								<div ref={footerRef} id="footer" className={visibleSections.footer ? "show" : ""}>
+									<Footer
+										scrolled={scrolled}
+										onHomeClick={() => scrollTo(homeRef)}
+										onAboutClick={() => scrollTo(aboutRef)}
+										oneGalleryClick={() => scrollTo(galleryRef)}
+										onProductsClick={() => scrollTo(productsRef)}
+										onProductItemClick={(item) => {
+											scrollTo(productRef);
+											setExpandProduct(item); // tells the component which item to open
+										}}
+										onServiceItemClick={(item) => {
+											scrollTo(serviceRef);
+											setExpandService(item);
+										}}
+										scrollToTop={scrollToTop}
+									/>
+								</div>
+
+								<Test />
+							</div>
+						</div>
+					}
+				/>
+			</Routes>
+
+			{/* scroll to top button */}
+			{showBtn && (
+				<button className={`scroll-to-top-btn ${navPosition}`} onClick={scrollToTop}>
+					↑
+				</button>
+			)}
+		</>
+	);
+}
+
+export default App;
+
+
+this is the nav bar component
+
+
+
+
+
+
+import "../styles/navbar.css";
+import Logo from "../assets/WebsterSiteLogo.png";
+import video from "../assets/logo.mp4";
+import { useEffect, useState } from "react";
+
+function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryClick, onProductsClick, onProductItemClick, onServicesClick, onServiceItemClick, navPosition, onChangeNavPosition, setIsPinned, screenWidth }) {
+	const [sidebarExpanded, setSidebarExpanded] = useState(false);
+	const [mobileOpen, setMobileOpen] = useState(false);
+
+	const [pinned, setPinned] = useState(false);
+	const [hovered, setHovered] = useState(false);
+	const [openMenu, setOpenMenu] = useState(null);
+
+	const isExpanded = pinned || hovered;
+
+	const toggleMenu = (key) => setOpenMenu(openMenu === key ? null : key);
+
+	if (screenWidth <= 768) {
+		return (
+			<>
+				{/* fixed top bar with burger + logo */}
+				<div className={`burger-menu-container ${navPosition === "right" ? "right" : ""}`}>
+					<button className="burger-btn" onClick={() => setHovered(!hovered)}>
+						{hovered ? "✕" : "☰"}
+					</button>
+					<div className="burger-logo" onClick={scrollToTop}>
+						<video src={video} autoPlay muted playsInline />
+					</div>
+				</div>
+
+				{/* dark overlay — click to close */}
+				<div
+					className={`sidebar-overlay ${hovered ? "visible" : ""}`}
+					onClick={() => {
+						setHovered(false);
+						setOpenMenu(null);
+					}}
+				/>
+
+				{/* sidebar — slides in from left or right */}
+				<div className={`sidebar ${navPosition === "right" ? "sidebar-right-pos" : "sidebar-left-pos"} ${hovered ? "sidebar-open" : ""}`}>
+					{/* top: logo + close btn */}
+					<div className={`sidebar-top ${navPosition === "right" ? "right" : ""}`}>
+						<button
+							className="sidebar-close-btn"
+							onClick={() => {
+								setHovered(false);
+								setOpenMenu(null);
+							}}>
+							✕
+						</button>
+
+						<div className="sidebar-logo" onClick={scrollToTop}>
+							<video src={video} autoPlay muted playsInline className="sidebar-logo-img" />
+						</div>
+					</div>
+
+					{/* nav items */}
+					<nav className="sidebar-nav">
+						<div className="sidebar-menu">
+							<button
+								className="sidebar-menu-title"
+								onClick={() => {
+									onHomeClick();
+									setHovered(false);
+								}}>
+								<span className="sidebar-icon">🏠</span>
+								<span className="sidebar-menu-label">Home</span>
+							</button>
+						</div>
+
+						<div className="sidebar-menu">
+							<button
+								className="sidebar-menu-title"
+								onClick={() => {
+									onAboutClick();
+									setHovered(false);
+								}}>
+								<span className="sidebar-icon">ℹ️</span>
+								<span className="sidebar-menu-label">About</span>
+							</button>
+						</div>
+
+						<div className="sidebar-menu">
+							<button
+								className={`sidebar-menu-title ${openMenu === "products" ? "active" : ""}`}
+								// className={`sidebar-menu-title `}
+								onClick={() => {
+									onProductsClick();
+									toggleMenu("products");
+								}}>
+								<span className="sidebar-icon">🔒</span>
+								<span className="sidebar-menu-label">Products</span>
+								<span className="sidebar-menu-chevron">{openMenu === "products" ? "▴" : "▾"}</span>
+							</button>
+							{/* <div className={`sidebar-menu-links open ${openMenu === "products" ? "open" : ""}`}> */}
+							<div className={`sidebar-menu-links open`}>
+								<a
+									onClick={() => {
+										onProductItemClick(0);
+										setHovered(false);
+									}}>
+									Residential Locks
+								</a>
+								<a
+									onClick={() => {
+										onProductItemClick(1);
+										setHovered(false);
+									}}>
+									Commercial Locks
+								</a>
+								<a
+									onClick={() => {
+										onProductItemClick(2);
+										setHovered(false);
+									}}>
+									Smart Locks
+								</a>
+
+								<a
+									onClick={() => {
+										onProductItemClick(3);
+										setHovered(false);
+									}}>
+									Safes & Vaults
+								</a>
+							</div>
+						</div>
+
+						<div className="sidebar-menu">
+							<button
+								className={`sidebar-menu-title ${openMenu === "services" ? "active" : ""}`}
+								onClick={() => {
+									onProductsClick();
+									toggleMenu("services");
+								}}>
+								<span className="sidebar-icon">🔑</span>
+								<span className="sidebar-menu-label">Services</span>
+								<span className="sidebar-menu-chevron">{openMenu === "services" ? "▴" : "▾"}</span>
+							</button>
+							{/* <div className={`sidebar-menu-links ${openMenu === "services" ? "open" : ""}`}> */}
+							<div className={`sidebar-menu-links open `}>
+								<a
+									onClick={() => {
+										onServiceItemClick(0);
+										setHovered(false);
+									}}>
+									Emergency Lockout
+								</a>
+								<a
+									onClick={() => {
+										onServiceItemClick(1);
+										setHovered(false);
+									}}>
+									Lock Installation
+								</a>
+								<a
+									onClick={() => {
+										onServiceItemClick(2);
+										setHovered(false);
+									}}>
+									Rekeying
+								</a>
+
+								<a
+									onClick={() => {
+										onServiceItemClick(3);
+										setHovered(false);
+									}}>
+									Key Duplication
+								</a>
+							</div>
+						</div>
+
+						<div className="sidebar-menu">
+							<button
+								className="sidebar-menu-title"
+								onClick={() => {
+									oneGalleryClick();
+									setHovered(false);
+								}}>
+								<span className="sidebar-icon">🖼️</span>
+								<span className="sidebar-menu-label">Gallery</span>
+							</button>
+						</div>
+					</nav>
+
+					{/* bottom settings */}
+					<div className="sidebar-bottom">
+						<div className="sidebar-menu">
+							<button className={`sidebar-menu-title ${openMenu === "settings" ? "active" : ""}`} onClick={() => toggleMenu("settings")}>
+								<span className="sidebar-icon">⚙️</span>
+								<span className="sidebar-menu-label">Settings</span>
+								<span className="sidebar-menu-chevron">{openMenu === "settings" ? "▴" : "▾"}</span>
+							</button>
+							<div className={`sidebar-menu-links ${openMenu === "settings" ? "open" : ""}`}>
+								<a onClick={() => onChangeNavPosition("left")}>◀ Sidebar left</a>
+								<a onClick={() => onChangeNavPosition("right")}>Sidebar right ▶</a>
+								<a href="#">🌐 English</a>
+								<a href="#">🌐 Español</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</>
+		);
+	}
+
+	// top navbar
+	if (navPosition === "top") {
+		return (
+			<div className={`nav-container ${scrolled ? "nav-scrolled" : ""}`}>
+				<div className="nav-items">
+					<ul>
+						<li className="nav-left-2">
+							<h4 onClick={onHomeClick}>
+								Home <span className="chevron">▾</span>
+							</h4>
+							<div className="nav-dropdown-menu">
+								<a onClick={onHomeClick}>Overview</a>
+							</div>
+						</li>
+
+						<li className="nav-left-1">
+							<h4 onClick={onProductsClick}>
+								Products & Services <span className="chevron">▾</span>
+							</h4>
+							<div className="nav-dropdown-menu">
+								<div>
+									<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
+									<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
+									<a onClick={() => onProductItemClick(2)}>Smart Locks</a>
+									<a onClick={() => onProductItemClick(3)}> Safes & Vaults</a>
+								</div>
+
+								<div>
+									<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
+									<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
+									<a onClick={() => onServiceItemClick(2)}>Rekeying</a>
+									<a onClick={() => onServiceItemClick(3)}> Key Duplication</a>
+								</div>
+							</div>
+						</li>
+
+						<li>
+							<div className="logo-container logo-animate" onClick={scrollToTop}>
+								<video src={video} autoPlay muted playsInline className="logo" />
+							</div>
+						</li>
+
+						<li className="nav-right-1">
+							<h4 onClick={onAboutClick}>About</h4>
+						</li>
+
+						{/* settings dropdown with position switcher */}
+						<li className="nav-right-2">
+							<h4>
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="settingIcon">
+									<path fillRule="evenodd" d="M11.828 2.25c-.916 0-1.699.663-1.85 1.567l-.091.549a.798.798 0 0 1-.517.608 7.45 7.45 0 0 0-.478.198.798.798 0 0 1-.796-.064l-.453-.324a1.875 1.875 0 0 0-2.416.2l-.243.243a1.875 1.875 0 0 0-.2 2.416l.324.453a.798.798 0 0 1 .064.796 7.448 7.448 0 0 0-.198.478.798.798 0 0 1-.608.517l-.55.092a1.875 1.875 0 0 0-1.566 1.849v.344c0 .916.663 1.699 1.567 1.85l.549.091c.281.047.508.25.608.517.06.162.127.321.198.478a.798.798 0 0 1-.064.796l-.324.453a1.875 1.875 0 0 0 .2 2.416l.243.243c.648.648 1.67.733 2.416.2l.453-.324a.798.798 0 0 1 .796-.064c.157.071.316.137.478.198.267.1.47.327.517.608l.092.55c.15.903.932 1.566 1.849 1.566h.344c.916 0 1.699-.663 1.85-1.567l.091-.549a.798.798 0 0 1 .517-.608 7.52 7.52 0 0 0 .478-.198.798.798 0 0 1 .796.064l.453.324a1.875 1.875 0 0 0 2.416-.2l.243-.243c.648-.648.733-1.67.2-2.416l-.324-.453a.798.798 0 0 1-.064-.796c.071-.157.137-.316.198-.478.1-.267.327-.47.608-.517l.55-.091a1.875 1.875 0 0 0 1.566-1.85v-.344c0-.916-.663-1.699-1.567-1.85l-.549-.091a.798.798 0 0 1-.608-.517 7.507 7.507 0 0 0-.198-.478.798.798 0 0 1 .064-.796l.324-.453a1.875 1.875 0 0 0-.2-2.416l-.243-.243a1.875 1.875 0 0 0-2.416-.2l-.453.324a.798.798 0 0 1-.796.064 7.462 7.462 0 0 0-.478-.198.798.798 0 0 1-.517-.608l-.091-.55a1.875 1.875 0 0 0-1.85-1.566h-.344ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" clipRule="evenodd" />
+								</svg>
+								<span className="chevron">▾</span>
+							</h4>
+							<div className="nav-dropdown-menu">
+								<a onClick={() => onChangeNavPosition("left")}>◀ Sidebar left</a>
+								<a onClick={() => onChangeNavPosition("right")}>Sidebar right ▶</a>
+								<a href="#">English</a>
+								<a href="#">Español</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		);
+	}
+
+	// sidebar (left or right)
+
+	// sidebar JSX
+	return (
+		<div
+			className={`sidebar ${navPosition === "right" ? "sidebar-right-pos" : "sidebar-left-pos"} ${isExpanded ? "sidebar-expanded" : ""} ${pinned ? "sidebar-pinned" : "sidebar-hover"}`}
+			onMouseEnter={() => setHovered(true)}
+			onMouseLeave={() => {
+				setHovered(false);
+				setOpenMenu(null);
+			}}>
+			{/* top: pin button + logo */}
+			<div className="sidebar-top">
+				<div className="sidebar-logo" onClick={scrollToTop}>
+					<video src={video} autoPlay muted playsInline className="sidebar-logo-img" />
+				</div>
+				{/* pin button — only visible when expanded */}
+				{isExpanded && (
+					<button
+						className={`sidebar-pin-btn ${pinned ? "pinned" : ""}`}
+						onClick={() => {
+							(setPinned(!pinned), setIsPinned(!pinned));
+						}}
+						title={pinned ? "Unpin sidebar" : "Pin sidebar"}>
+						{pinned ? "📌" : "📍"}
+					</button>
+				)}
+			</div>
+
+			{/* nav items */}
+			<nav className="sidebar-nav">
+				{/* Home */}
+				<div className="sidebar-menu">
+					<button className="sidebar-menu-title" onClick={onHomeClick}>
+						<span className="sidebar-icon">🏠</span>
+						<span className="sidebar-menu-label">Home</span>
+					</button>
+				</div>
+
+				{/* About */}
+				<div className="sidebar-menu">
+					<button className="sidebar-menu-title" onClick={onAboutClick}>
+						<span className="sidebar-icon">ℹ️</span>
+						<span className="sidebar-menu-label">About</span>
+					</button>
+				</div>
+
+				{/* Products */}
+				<div className="sidebar-menu">
+					<button
+						// className={`sidebar-menu-title ${openMenu === "products" ? "active" : ""}`}
+						className={`sidebar-menu-title  `}
+						onClick={() => {
+							onProductsClick();
+							toggleMenu("products");
+						}}>
+						<span className="sidebar-icon">🔒</span>
+						<span className="sidebar-menu-label">Products</span>
+						<span className="sidebar-menu-chevron">{openMenu === "products" ? "▴" : "▾"}</span>
+					</button>
+					{/* <div className={`sidebar-menu-links ${openMenu === "products" ? "open" : ""}`}> */}
+					<div className={`sidebar-menu-links open `}>
+						<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
+						<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
+						<a onClick={() => onProductItemClick(2)}>Smart Locks</a>
+						<a onClick={() => onProductItemClick(3)}> Safes & Vaults</a>
+					</div>
+				</div>
+
+				{/* Services */}
+				<div className="sidebar-menu">
+					<button
+						// className={`sidebar-menu-title ${openMenu === "services" ? "active" : ""}`}
+						className={`sidebar-menu-title `}
+						onClick={() => {
+							onServicesClick();
+							toggleMenu("services");
+						}}>
+						<span className="sidebar-icon">🔑</span>
+						<span className="sidebar-menu-label">Services</span>
+						<span className="sidebar-menu-chevron">{openMenu === "services" ? "▴" : "▾"}</span>
+					</button>
+					{/* <div className={`sidebar-menu-links ${openMenu === "services" ? "open" : ""}`}> */}
+					<div className={`sidebar-menu-links open `}>
+						<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
+						<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
+						<a onClick={() => onServiceItemClick(2)}>Rekeying</a>
+						<a onClick={() => onServiceItemClick(3)}> Key Duplication</a>
+					</div>
+				</div>
+
+				{/* About */}
+				<div className="sidebar-menu">
+					<button className="sidebar-menu-title" onClick={oneGalleryClick}>
+						<span className="sidebar-icon">🖼️</span>
+						<span className="sidebar-menu-label">Gallery</span>
+					</button>
+				</div>
+			</nav>
+
+			{/* bottom settings */}
+			<div className="sidebar-bottom">
+				<div className="sidebar-menu">
+					<button className={`sidebar-menu-title ${openMenu === "settings" ? "active" : ""}`} onClick={() => toggleMenu("settings")}>
+						<span className="sidebar-icon">⚙️</span>
+						<span className="sidebar-menu-label">Settings</span>
+						<span className="sidebar-menu-chevron">{openMenu === "settings" ? "▴" : "▾"}</span>
+					</button>
+					{/* <div className={`sidebar-menu-links ${openMenu === "settings" ? "open" : ""}`}> */}
+					<div className={`sidebar-menu-links open`}>
+						<a onClick={() => onChangeNavPosition("top")}>⬆ Top navbar</a>
+						<a onClick={() => onChangeNavPosition("left")}>◀ Sidebar left</a>
+						<a onClick={() => onChangeNavPosition("right")}>Sidebar right ▶</a>
+						<a href="#">🌐 English</a>
+						<a href="#">🌐 Español</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+export default Navbar;
+
+
+
+
+this is the Product_services full component 
+import "../styles/products-services.css";
+import { useState, useEffect } from "react";
+import { products } from "../utilities/products-services";
+import { services } from "../utilities/products-services";
+import blankkeys from "../assets/general/blank-keys-on-wall.webp";
+
+//! in the title make an animation that change products and services (our Products ===> Services)
+
+// ! put pictures inside of the dropdown of the products and services (done)
+// ! on out products and services page, we need to add a dropdown for each product and service(done)
+// ! and then we need to add a picture for each product and service
+// ! and then we need to add a description for each product and service
+// ! and then we need to add a link for each product and service
+
+{
+	/* for the collapsable section put locks on the collapsable header (that are lock) and open when the collapsable section is open */
+}
+
+// function Product_services() {
+// 	const [expanded, setExpanded] = useState(false);
+
+// 	const [openProduct, setOpenProduct] = useState(null);
+// 	const [openService, setOpenService] = useState(null);
+
+// 	const toggleProduct = (index) => {
+// 		setOpenProduct(openProduct === index ? null : index);
+// 	};
+
+// 	const toggleService = (index) => {
+// 		setOpenService(openService === index ? null : index);
+// 	};
+
+function Product_services({ productRef, serviceRef, expandProduct, expandService }) {
+	const [openProduct, setOpenProduct] = useState(null);
+	const [openService, setOpenService] = useState(null);
+
+	// when navbar dropdown item is clicked, open that item
+	useEffect(() => {
+		if (expandProduct !== null) setOpenProduct(expandProduct);
+	}, [expandProduct]);
+
+	useEffect(() => {
+		if (expandService !== null) setOpenService(expandService);
+	}, [expandService]);
+
+	const toggleProduct = (index) => {
+		setOpenProduct(openProduct === index ? null : index);
+	};
+
+	const toggleService = (index) => {
+		setOpenService(openService === index ? null : index);
+	};
+
+	return (
+		<div className="product-services-container">
+			<div className="products-services-title">
+				<h1>
+					<span className="blink">Our</span> <span className="blink-2"> Products</span> <span className="blink-3">And</span> <span className="blink-4">Services</span>{" "}
+				</h1>
+			</div>
+
+			<div className="products-services-wrapper">
+				<div className="products-container" ref={productRef} id="product">
+					<div className="products-title">
+						<h2>Products</h2>
+					</div>
+					<div className="products-description">
+						<p>
+							Webster Locksmiths is home to a super-store and onsite warehouse stocked with hundreds of items available for your purchase.
+							<br />
+							Whether you are looking for a decorative lockset, mailbox system, safe, plumbing and electrical supplies, or general hardware, we have it.
+							<br />
+							Webster Locksmiths is a one-stop-shop for all your security product needs.
+							<br />
+							Check out some of our great products below:
+						</p>
+					</div>
+
+					<div className="products">
+						<ul>
+							{products.map((product, index) => (
+								<li key={index} className={`slide-${index} ${openProduct === index ? "expanded" : ""} `} onClick={() => setOpenProduct(openProduct === index ? null : index)}>
+									<div className="item-header">
+										<h3>{product.name}</h3>
+										<span className="item-chevron">{openProduct === index ? "🔓" : "🔒"}</span>
+									</div>
+									<div className="item-body">
+										<p>{product.description}</p>
+										{/* <div className="image-wrapper"> */}
+										<img src={blankkeys} alt="blankkeys" />
+										{/* </div> */}
+									</div>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+
+				<div className="services-container" ref={serviceRef} id="service">
+					<div className="services-title">
+						{" "}
+						<h2>Services</h2>
+					</div>
+					<div className="services-description">
+						<p>
+							Webster Lock has a complete suite of services to keep your home, business, and automobiles safe and secure. Our team of over 50 uniformed service technicians and more than 40 vehicles cover the 5 boroughs of New York City with the state-of-the-art equipment needed to solve your problems professionally and quickly.
+							<br />
+							Here is a list of our major service areas.!
+						</p>
+					</div>
+					<div className="services">
+						<ul>
+							{services.map((service, index) => (
+								<li key={index} className={`service-slide-${index} ${openService === index ? "expanded" : ""} `} onClick={() => setOpenService(openService === index ? null : index)}>
+									<div className="item-header">
+										<h3>{service.name}</h3>
+										<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
+									</div>
+									<div className="item-body">
+										<p>{service.description}</p>
+										<div>
+											<img src={blankkeys} alt="blankkeys" />
+										</div>
+									</div>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+export default Product_services;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
 make the book tilt when the is open  
 
 when close it should be not tilted (from the spine)
@@ -7,164 +909,6 @@ also make the displacement of the book to the right when the view port is smalle
 so a way will have to be found in css to do it other wise it has to be done in the component
 
 
-
-
-
-
-
-import "../styles/about.css";
-import { useState, useEffect, useRef } from "react";
-
-import PAGES from "../utilities/book-pages";
-
-
-
-const N = PAGES.length; // number of pages
-
-function PageSide({ data }) {
-	if (data.type === "cover")
-		return (
-			<div className="book-cover-side">
-				<div className="book-cover-badge">EST. 1949</div>
-				<h1 className="book-cover-title">{data.title}</h1>
-				<p className="book-cover-sub">{data.sub}</p>
-				<div className="book-cover-key">🔑</div>
-			</div>
-		);;l
-
-	if (data.type === "closing")
-		return (
-			<div className="book-cover-side book-closing">
-				<h2 className="book-cover-title">{data.title}</h2>
-				<p className="book-cover-sub">{data.sub}</p>
-			</div>
-		);
-
-	if (data.type === "image")
-		return (
-			<div className="book-image-side">
-				<img src={data.src} alt={data.alt} />
-			</div>
-		);
-
-	if (data.type === "text")
-		return (
-			<div className="book-text-side">
-				<h2 className="book-page-heading">{data.heading}</h2>
-				<p className="book-page-body">{data.body}</p>
-			</div>
-		);
-}
-
-export default function About({ isVisible }) {
-	const [current, setCurrent] = useState(0); // --c value
-	const [flippingIndex, setFlippingIndex] = useState(); // --c value
-
-	// const goToPage = (c) => setCurrent(Math.max(0, Math.min(c, N)));
-
-	const goToPage = (c) => {
-		const targetIndex = c > current ? current : c; // the page actually flipping
-		setFlippingIndex(targetIndex);
-		setCurrent(Math.max(0, Math.min(c, N)));
-		setTimeout(() => setFlippingIndex(null), 900); // matches your 0.9s transition
-	};
-
-	// dynamic thickness: more pages = thicker spine
-	// const thickness = Math.max(3, Math.round(N * 1.2));
-	const thickness = Math.max(12, Math.round(N * 1.2));
-
-	// start/stop timer
-	// const startTimer = () => {
-	// 	let thickness;
-	// 	setTimeout(() => {
-	// 		thickness = Math.max(10, Math.round(N * 1.2));
-	// 	}, 1500);
-	// 	return thickness;
-	// };
-
-	// const thickness = Math.max(10, Math.round(N * 1.2));
-	// console.log("this is the thickness", thickness);
-	console.log("THIS IS IS VISIBLE", isVisible);
-
-
-
-	return (
-		//  ref={scrollRef}
-		<div className="book-scene-scroll">
-			<div className={`about-wrapper ${isVisible ? "show" : ""}`}>
-				<div className="about-header">
-					<h2 className="about-section-title">About Us</h2>
-				</div>
-
-
-					<div className="book-scene">
-						<div className="book" style={{ "--c": current, "--n": N }}>
-							{PAGES.map((page, i) => {
-								// how far through the book we are (0 to N)
-								const c = current;
-
-								// left stack (page-back): 16 → 22 → 30 → 45 as c increases
-								const backStops = [23, 30, 32, 33];
-								const backRadius = backStops[Math.min(c, backStops.length - 1)];
-
-								// right stack (page-front): 35 → 30 → 25 → 15 as c increases
-								const frontStops = [33, 32, 30, 22];
-								const frontRadius = frontStops[Math.min(c, frontStops.length - 1)];
-
-								return (
-									<div
-										key={i}
-										className={`page ${flippingIndex === i ? "is-flipping" : ""}`}
-										// className="page"
-										style={{ "--i": i, "--thickness": thickness }}>
-										<div className="page-front" style={{ borderRadius: page.front.type === "cover" ? "10px  10px  5px  10px" : `${frontRadius}px 8px 8px ${frontRadius * 0.4}px` }} onClick={() => goToPage(i + 1)}>
-											
-											<PageSide data={page.front} />
-
-											
-										</div>
-
-										<div
-											className="page-back"
-											style={{
-												borderRadius: page.back.type === "closing" ? "10px  10px  5px  10px" : `8px ${backRadius}px ${backRadius * 0.25}px 8px`,
-											}}
-											onClick={() => goToPage(i)}>
-		
-
-											<PageSide data={page.back} />
-
-							
-										</div>
-									</div>
-								);
-							})}
-						</div>
-					</div>
-
-					{/* navigation dots + arrows */}
-					<div className="book-nav">
-						<button className="book-nav-btn" onClick={() => goToPage(current - 1)} disabled={current === 0} aria-label="Previous page">
-							‹
-						</button>
-
-						<div className="book-nav-dots">
-							{PAGES.map((_, i) => (
-								<button key={i} className={`book-nav-dot ${current > i ? "turned" : ""} ${current === i ? "current" : ""}`} onClick={() => goToPage(i)} aria-label={`Go to page ${i + 1}`} />
-							))}
-						</div>
-
-						<button className="book-nav-btn" onClick={() => goToPage(current + 1)} disabled={current === N} aria-label="Next page">
-							›
-						</button>
-					</div>
-
-					<p className="book-nav-hint">{current === 0 ? "Click the page to turn →" : `Page ${current} of ${N}`}</p>
-		
-			</div>
-		</div>
-	);
-}
 
 
 

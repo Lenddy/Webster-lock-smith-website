@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import About from "./components/About";
 import Product_services from "./components/Product_services";
+import Services from "./components/Services";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import Test from "./components/Test";
@@ -20,6 +21,7 @@ function App() {
 	const aboutRef = useRef(null);
 	const productsRef = useRef(null);
 	const servicesRef = useRef(null);
+	const products_servicesRef = useRef(null);
 	const galleryRef = useRef(null);
 	const footerRef = useRef(null);
 
@@ -88,8 +90,8 @@ function App() {
 			// 5% visible is enough to trigger
 		);
 
-		const sections = [homeRef.current, aboutRef.current, productsRef.current, servicesRef.current, galleryRef.current, footerRef.current];
-
+		const sections = [homeRef.current, aboutRef.current, products_servicesRef.current, galleryRef.current, footerRef.current];
+		// productsRef.current, servicesRef.current,
 		sections.forEach((section) => {
 			if (section) observer.observe(section);
 		});
@@ -121,7 +123,7 @@ function App() {
 								onHomeClick={() => scrollTo(homeRef)}
 								onAboutClick={() => scrollTo(aboutRef)}
 								oneGalleryClick={() => scrollTo(galleryRef)}
-								onProductsClick={() => scrollTo(productsRef)}
+								onProductsClick={() => scrollTo(productRef)}
 								onServicesClick={() => scrollTo(serviceRef)}
 								onProductItemClick={(item) => {
 									scrollTo(productRef);
@@ -149,7 +151,7 @@ function App() {
 									<Gallery />
 								</div>
 
-								<div ref={productsRef} id="products" className={visibleSections.products ? "show" : ""}>
+								<div ref={products_servicesRef} id="products_services" className={visibleSections.products_services ? "show" : ""}>
 									<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} />
 								</div>
 
@@ -167,7 +169,7 @@ function App() {
 										onHomeClick={() => scrollTo(homeRef)}
 										onAboutClick={() => scrollTo(aboutRef)}
 										oneGalleryClick={() => scrollTo(galleryRef)}
-										onProductsClick={() => scrollTo(productsRef)}
+										onProductsClick={() => scrollTo(productRef)}
 										onProductItemClick={(item) => {
 											scrollTo(productRef);
 											setExpandProduct(item); // tells the component which item to open

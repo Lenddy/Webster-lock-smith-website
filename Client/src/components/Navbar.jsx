@@ -100,21 +100,24 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 										onProductItemClick(0);
 										setHovered(false);
 									}}>
-									Residential Locks
+									{/* Residential Locks */}
+									Mailboxes
 								</a>
 								<a
 									onClick={() => {
 										onProductItemClick(1);
 										setHovered(false);
 									}}>
-									Commercial Locks
+									{/* Commercial Locks */}
+									Safes & Vaults
 								</a>
 								<a
 									onClick={() => {
 										onProductItemClick(2);
 										setHovered(false);
 									}}>
-									Smart Locks
+									{/* Smart Locks */}
+									Decorative Hardware
 								</a>
 
 								<a
@@ -122,7 +125,16 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 										onProductItemClick(3);
 										setHovered(false);
 									}}>
-									Safes & Vaults
+									{/* Safes & Vaults */}
+									Hardware
+								</a>
+
+								<a
+									onClick={() => {
+										onProductItemClick(3);
+										setHovered(false);
+									}}>
+									Security/Intercom
 								</a>
 							</div>
 						</div>
@@ -131,7 +143,8 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 							<button
 								className={`sidebar-menu-title ${openMenu === "services" ? "active" : ""}`}
 								onClick={() => {
-									onProductsClick();
+									// onProductsClick();
+									onServicesClick();
 									toggleMenu("services");
 								}}>
 								<span className="sidebar-icon">🔑</span>
@@ -145,21 +158,24 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 										onServiceItemClick(0);
 										setHovered(false);
 									}}>
-									Emergency Lockout
+									{/* Emergency Lockout */}
+									Automotive Security
 								</a>
 								<a
 									onClick={() => {
 										onServiceItemClick(1);
 										setHovered(false);
 									}}>
-									Lock Installation
+									{/* Lock Installation */}
+									Automotive Transponder Key
 								</a>
 								<a
 									onClick={() => {
 										onServiceItemClick(2);
 										setHovered(false);
 									}}>
-									Rekeying
+									{/* Rekeying */}
+									Door and Frames
 								</a>
 
 								<a
@@ -167,7 +183,17 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 										onServiceItemClick(3);
 										setHovered(false);
 									}}>
-									Key Duplication
+									{/* Key Duplication */}
+									Iron Fabrication
+								</a>
+
+								<a
+									onClick={() => {
+										onServiceItemClick(3);
+										setHovered(false);
+									}}>
+									{/* Key Duplication */}
+									Locksmith Service
 								</a>
 							</div>
 						</div>
@@ -222,22 +248,31 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 						</li>
 
 						<li className="nav-left-1">
-							<h4 onClick={onProductsClick}>
-								Products & Services <span className="chevron">▾</span>
+							<h4>
+								<span className="product-service-title-p" onClick={onProductsClick}>
+									Products
+								</span>{" "}
+								<span className="product-service-title-and">& </span>
+								<span className="product-service-title-s" onClick={onServicesClick}>
+									Services
+								</span>{" "}
+								<span className="chevron">▾</span>
 							</h4>
 							<div className="nav-dropdown-menu">
 								<div>
-									<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
-									<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
-									<a onClick={() => onProductItemClick(2)}>Smart Locks</a>
-									<a onClick={() => onProductItemClick(3)}> Safes & Vaults</a>
+									<a onClick={() => onProductItemClick(0)}>Mailboxes</a>
+									<a onClick={() => onProductItemClick(1)}>Safes & Vaults</a>
+									<a onClick={() => onProductItemClick(2)}>Decorative Hardware</a>
+									<a onClick={() => onProductItemClick(3)}>Hardware</a>
+									<a onClick={() => onProductItemClick(4)}> Security/Intercom</a>
 								</div>
 
 								<div>
-									<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
-									<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
-									<a onClick={() => onServiceItemClick(2)}>Rekeying</a>
-									<a onClick={() => onServiceItemClick(3)}> Key Duplication</a>
+									<a onClick={() => onServiceItemClick(0)}>Automotive Security</a>
+									<a onClick={() => onServiceItemClick(1)}>Automotive Transponder Key</a>
+									<a onClick={() => onServiceItemClick(2)}>Door and Frames</a>
+									<a onClick={() => onServiceItemClick(3)}>Iron Fabrication</a>
+									<a onClick={() => onServiceItemClick(4)}>Locksmith Service</a>
 								</div>
 							</div>
 						</li>
@@ -335,12 +370,26 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 					</button>
 					{/* <div className={`sidebar-menu-links ${openMenu === "products" ? "open" : ""}`}> */}
 					<div className={`sidebar-menu-links open `}>
-						<a onClick={() => onProductItemClick(0)}>Residential Locks</a>
-						<a onClick={() => onProductItemClick(1)}>Commercial Locks</a>
-						<a onClick={() => onProductItemClick(2)}>Smart Locks</a>
-						<a onClick={() => onProductItemClick(3)}> Safes & Vaults</a>
+						<a onClick={() => onProductItemClick(0)}>Mailboxes</a>
+						<a onClick={() => onProductItemClick(1)}>Safes & Vaults</a>
+						<a onClick={() => onProductItemClick(2)}>Decorative Hardware</a>
+						<a onClick={() => onProductItemClick(3)}>Hardware</a>
+						<a onClick={() => onProductItemClick(4)}>Security/Intercom</a>
 					</div>
 				</div>
+
+				{/* Mailboxes
+Safes & Vaults
+Decorative Hardware
+Hardware 
+Security/Intercom
+*/}
+
+				{/* // Automotive Security
+// Automotive Transponder Key
+// Door and Frames
+// Iron Fabrication
+// Locksmith Service */}
 
 				{/* Services */}
 				<div className="sidebar-menu">
@@ -357,10 +406,11 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 					</button>
 					{/* <div className={`sidebar-menu-links ${openMenu === "services" ? "open" : ""}`}> */}
 					<div className={`sidebar-menu-links open `}>
-						<a onClick={() => onServiceItemClick(0)}>Emergency Lockout</a>
-						<a onClick={() => onServiceItemClick(1)}>Lock Installation</a>
-						<a onClick={() => onServiceItemClick(2)}>Rekeying</a>
-						<a onClick={() => onServiceItemClick(3)}> Key Duplication</a>
+						<a onClick={() => onServiceItemClick(0)}>Automotive Security</a>
+						<a onClick={() => onServiceItemClick(1)}>Automotive Transponder Key</a>
+						<a onClick={() => onServiceItemClick(2)}>Door and Frames</a>
+						<a onClick={() => onServiceItemClick(3)}>Iron Fabrication</a>
+						<a onClick={() => onServiceItemClick(4)}>Locksmith Service</a>
 					</div>
 				</div>
 
