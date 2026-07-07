@@ -1,14 +1,2 @@
-will split the products and service (done)
-
-will have to add the same functionality from products to services (done)
-
-
-make the clicking on the titles takes you to section (done)
-
-make the  show on scroll  for each section done
-
-
-
-see if you can make the products services  have their own dropdown 
-(it will be the same just onw side is for  products and the other is for services ) 
-so  it will be divided by  a  border ()
+making component appear:
+you might want to change the the show function from the app component to be in every individual component  (or find a way to send the information of being show (props)) so that you can have unique animations to show every sections

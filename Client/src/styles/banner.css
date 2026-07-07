@@ -11,9 +11,6 @@
 
 /* container */
 .banner-container {
-	/* margin-top: 100px; */
-	/* margin-left: 64px; */
-	/* background-color: var(--dr); */
 	display: flex;
 	justify-content: start;
 	align-items: center;
@@ -26,6 +23,7 @@
 	/* height: clamp(12.5rem, 7.203rem + 42.37vw, 75rem); */
 	/* height: 1000px; */
 	/* max-height: 1000px; */
+	/* margin-bottom: 50px; */
 }
 
 /* title */
@@ -539,7 +537,7 @@
 		/* max-height: clamp(18.75rem, 9.963rem + 70.3vw, 43.75rem); */
 		/* max-height: clamp(18.75rem, 15.572rem + 25.42vw, 56.25rem); */
 		/* height: 90%; */
-		background-color: var(--lb);
+		/* background-color: var(--lb); */
 		display: flex;
 		justify-content: center;
 		align-items: center;

@@ -89,6 +89,7 @@
 	/* padding: 0px; */
 	/* border: solid 1px var(--wh); */
 	padding: 5px;
+	justify-content: space-between;
 }
 
 .services-container {

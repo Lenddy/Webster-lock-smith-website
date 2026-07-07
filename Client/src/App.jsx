@@ -11,6 +11,7 @@ import Test from "./components/Test";
 import { useEffect, useState, useRef } from "react";
 
 import calcClampBreakpoints from "../../min-max-calculator";
+import Filler from "./components/Filler";
 
 function App() {
 	const [scrolled, setScrolled] = useState(false);
@@ -23,6 +24,7 @@ function App() {
 	const servicesRef = useRef(null);
 	const products_servicesRef = useRef(null);
 	const galleryRef = useRef(null);
+	const fillerRef = useRef(null);
 	const footerRef = useRef(null);
 
 	// for later
@@ -90,7 +92,7 @@ function App() {
 			// 5% visible is enough to trigger
 		);
 
-		const sections = [homeRef.current, aboutRef.current, products_servicesRef.current, galleryRef.current, footerRef.current];
+		const sections = [homeRef.current, aboutRef.current, products_servicesRef.current, galleryRef.current, fillerRef.current, footerRef.current];
 		// productsRef.current, servicesRef.current,
 		sections.forEach((section) => {
 			if (section) observer.observe(section);
@@ -143,19 +145,19 @@ function App() {
 
 							<div className={`app-content ${navPosition} ${isPinned ? "isPinned" : ""}`}>
 								{/* each div: one ref, one id, checks its own id */}
-								<div ref={homeRef} id="banner" className={visibleSections.banner ? "show" : ""}>
+								<div ref={homeRef} id="banner" className={`outer-container ${visibleSections.banner ? "show" : ""}`}>
 									<Banner screenWidth={screenWidth} />
 								</div>
 
-								<div ref={galleryRef} id="gallery" className={visibleSections.gallery ? "show" : ""}>
+								<div ref={galleryRef} id="gallery" className={`outer-container ${visibleSections.gallery ? "show" : ""}`}>
 									<Gallery />
 								</div>
 
-								<div ref={products_servicesRef} id="products_services" className={visibleSections.products_services ? "show" : ""}>
+								<div ref={products_servicesRef} id="products_services" className={`outer-container ${visibleSections.products_services ? "show" : ""}`}>
 									<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} />
 								</div>
 
-								<div ref={aboutRef} id="about" className={visibleSections.about ? "show" : ""}>
+								<div ref={aboutRef} id="about" className={`outer-container ${visibleSections.about ? "show" : ""}`}>
 									<About
 										// isVisible={visibleSections.about}
 										isVisible={false}
@@ -163,7 +165,11 @@ function App() {
 									/>
 								</div>
 
-								<div ref={footerRef} id="footer" className={visibleSections.footer ? "show" : ""}>
+								<div ref={fillerRef} id="filler" className={`outer-container ${visibleSections.filler ? "show" : ""}`}>
+									<Filler />
+								</div>
+
+								<div ref={footerRef} id="footer" className={` ${visibleSections.footer ? "show" : ""}`}>
 									<Footer
 										scrolled={scrolled}
 										onHomeClick={() => scrollTo(homeRef)}
@@ -182,7 +188,7 @@ function App() {
 									/>
 								</div>
 
-								<Test />
+								{/* <Test /> */}
 							</div>
 						</div>
 					}

@@ -80,12 +80,17 @@ body {
 	transition: margin 300ms ease;
 }
 
+.outer-container {
+	margin-bottom: 100px;
+}
+
 /* section reveal */
 #banner,
 #about,
-/* #products-services, */
+#products_services,
 /* #products, */
 #gallery,
+#filler,
 #footer {
 	opacity: 0;
 	transform: translateY(40px);

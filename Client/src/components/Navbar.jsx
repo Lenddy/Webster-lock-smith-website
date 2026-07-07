@@ -131,7 +131,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 
 								<a
 									onClick={() => {
-										onProductItemClick(3);
+										onProductItemClick(4);
 										setHovered(false);
 									}}>
 									Security/Intercom
@@ -189,7 +189,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 
 								<a
 									onClick={() => {
-										onServiceItemClick(3);
+										onServiceItemClick(4);
 										setHovered(false);
 									}}>
 									{/* Key Duplication */}

@@ -1,6 +1,8 @@
 import "../styles/gallery.css";
 import { sections } from "../utilities/gallery-sections";
 import { useState, useEffect, useRef, useMemo } from "react";
+import play from "../assets/svgs/play-svgrepo-com.svg";
+import pause from "../assets/svgs/play-svgrepo-com.svg";
 
 function Gallery({ isVisible }) {
 	const [showGrid, setShowGrid] = useState(false);
@@ -88,20 +90,22 @@ function Gallery({ isVisible }) {
 				<h2 className="gallery-main-title">Our Vendors</h2>
 
 				<div className="gallery-btn-wrapper">
-					<button
-						className={`stack-btn stack-btn--pause ${stop ? "stack-btn--play" : ""}`}
-						aria-label={stop ? "Play" : "Pause"}
-						onClick={() => {
-							if (stop) {
-								resume();
-								setStop(false);
-							} else {
-								pause();
-								setStop(true);
-							}
-						}}>
-						{" "}
-					</button>
+					{showGrid == false && (
+						<button
+							className={`stack-btn stack-btn--pause ${stop ? "stack-btn--play" : ""}`}
+							aria-label={stop ? "Play" : "Pause"}
+							onClick={() => {
+								if (stop) {
+									resume();
+									setStop(false);
+								} else {
+									pause();
+									setStop(true);
+								}
+							}}>
+							{" "}
+						</button>
+					)}
 
 					<button className="gallery-toggle-btn" onClick={() => setShowGrid(!showGrid)}>
 						{showGrid ? "Show Carousel ▲" : "Browse All Vendors ▼"}
