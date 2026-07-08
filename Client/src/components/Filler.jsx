@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Filler.css";
-import logo from "../assets/websterSiteLogo.png";
+import logo from "../assets/WebsterSiteLogo.png";
 import logoVid from "../assets/logo.mp4";
 
 export default function Filler() {
