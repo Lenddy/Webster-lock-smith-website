@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/footer.css";
 import creditAplication from "../assets/webster_lock_credit_application.pdf";
 
-import email from "../assets/general/email-1573-svgrepo-com.svg";
+import email from "../assets/svgs/email-1573-svgrepo-com.svg";
 import linkedIn from "../assets/general/linkedin-svgrepo-com.svg";
 import yelp from "../assets/general/yelp-color-svgrepo-com.svg";
 

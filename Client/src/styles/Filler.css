@@ -21,10 +21,14 @@
 }
 
 .filler-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: white;
 	text-align: center;
 	padding: 20px;
 	border: 1px solid white;
+	background-color: rgb(5, 5, 72);
 }
 
 .filler-logo {

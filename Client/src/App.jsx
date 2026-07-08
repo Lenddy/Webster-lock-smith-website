@@ -165,9 +165,9 @@ function App() {
 									/>
 								</div>
 
-								<div ref={fillerRef} id="filler" className={`outer-container ${visibleSections.filler ? "show" : ""}`}>
+								{/* <div ref={fillerRef} id="filler" className={`outer-container ${visibleSections.filler ? "show" : ""}`}>
 									<Filler />
-								</div>
+								</div> */}
 
 								<div ref={footerRef} id="footer" className={` ${visibleSections.footer ? "show" : ""}`}>
 									<Footer
