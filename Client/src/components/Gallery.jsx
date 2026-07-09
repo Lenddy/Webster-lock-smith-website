@@ -17,6 +17,7 @@ function Gallery({ isVisible }) {
 	const COL_DELAY = 80;
 	const ROW_DELAY = 60;
 	const ANIM_MS = 600;
+	const [stop, setStop] = useState(false);
 
 	const allLogos = sections.flatMap((s) => s.images);
 
@@ -58,10 +59,26 @@ function Gallery({ isVisible }) {
 		return grid;
 	}, [offset, cols, total, getLogoAt]);
 
+	// !! old start/stop timer
 	// start/stop timer
+	// const startTimer = () => {
+	// 	clearInterval(timerRef.current);
+	// 	if (showGrid) return;
+	// 	timerRef.current = setInterval(() => {
+	// 		setAnimating(true);
+	// 		setTimeout(
+	// 			() => {
+	// 				setOffset((prev) => (prev - cols + total) % total);
+	// 				setAnimating(false);
+	// 			},
+	// 			ANIM_MS + COL_DELAY * (cols - 1) + ROW_DELAY * (ROWS - 1) + 50
+	// 		);
+	// 	}, CYCLE_MS);
+	// };
+
 	const startTimer = () => {
 		clearInterval(timerRef.current);
-		if (showGrid) return;
+		if (showGrid || stop) return; //  also bail out if paused
 		timerRef.current = setInterval(() => {
 			setAnimating(true);
 			setTimeout(
@@ -77,9 +94,12 @@ function Gallery({ isVisible }) {
 	useEffect(() => {
 		startTimer();
 		return () => clearInterval(timerRef.current);
-	}, [showGrid, cols, total]);
+	}, [showGrid, cols, total, stop]);
 
-	const [stop, setStop] = useState(false);
+	// useEffect(() => {
+	// 	startTimer();
+	// 	return () => clearInterval(timerRef.current);
+	// }, [showGrid, cols, total]);
 
 	const pause = () => clearInterval(timerRef.current);
 	const resume = () => startTimer();
@@ -91,23 +111,41 @@ function Gallery({ isVisible }) {
 
 				<div className="gallery-btn-wrapper">
 					{showGrid == false && (
-						<button
-							className={`stack-btn stack-btn--pause ${stop ? "stack-btn--play" : ""}`}
-							aria-label={stop ? "Play" : "Pause"}
-							onClick={() => {
-								if (stop) {
-									resume();
-									setStop(false);
-								} else {
-									pause();
-									setStop(true);
-								}
-							}}>
+						// <button
+						// 	className={`stack-btn stack-btn--pause ${stop == true ? "stack-btn--play" : ""}`}
+						// 	aria-label={stop == true ? "Play" : "Pause"}
+						// 	onClick={() => {
+						// 		if (stop == false) {
+						// 			resume();
+						// 			setStop(false);
+						// 		} else {
+						// 			pause();
+						// 			setStop(true);
+						// 		}
+						// 	}}>
+						// 	{" "}
+						// </button>
+
+						<button className={`stack-btn stack-btn--pause ${stop ? "stack-btn--play" : ""}`} aria-label={stop ? "Play" : "Pause"} onClick={() => setStop((s) => !s)}>
 							{" "}
 						</button>
 					)}
 
-					<button className="gallery-toggle-btn" onClick={() => setShowGrid(!showGrid)}>
+					{/* <button
+						className="gallery-toggle-btn"
+						onClick={() => {
+							(setShowGrid(!showGrid), pause());
+							setStop(true);
+						}}>
+						{showGrid ? "Show Carousel ▲" : "Browse All Vendors ▼"}
+					</button> */}
+
+					<button
+						className="gallery-toggle-btn"
+						onClick={() => {
+							setShowGrid((g) => !g);
+							setStop(true); // always show paused when switching modes
+						}}>
 						{showGrid ? "Show Carousel ▲" : "Browse All Vendors ▼"}
 					</button>
 				</div>

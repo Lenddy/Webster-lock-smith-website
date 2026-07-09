@@ -2,6 +2,10 @@
 
 change the pause play icons
 
+when click playing and pause on the gallery i need to make the btn reset to the play version (where )
+
+
+when first loading the logo  on the top vabar does a wierd expand (the out line ) it shoud scale the logo but in this case if the logo is not render yet the aut line just expand horizontally 
 
 inside the products and services (change how it looks ) (added a links array of  objects to the  product services objects) from that a new tab should be show  and decide if as you click the tabs  a pictures will be changing or it they would just be links to take you to the manufacturers page  
 
@@ -11,7 +15,7 @@ finish the footer
 
 make the products and services tab on the top navbar have different dropdown (have the dropdown side by side)
 
-fix the problem when skipping to the next or prev  on the stack 
+dinamicaly adjust the magring that there is between all the component
 
 
 
@@ -25,6 +29,7 @@ fix the pause play btn when shrinking (smaller viewport) done
 
 products and service section need to be align properly
 
+fix the problem when skipping to the next or prev  on the stack 
 
 
 
@@ -59,3 +64,9 @@ about
 	// the page indicate when the is close (front of the book) have a extra circle page 0/6 or have not circle at al
 
 	// NOTE - is there a way to make the book be above the container ? be still have it in the container  (z-index ? position )
+
+
+
+
+
+

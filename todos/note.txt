@@ -1,2 +1,15 @@
+make the 
+
+for the gallery 
+see how the items int the carousel would look like if they where taller 
+
+for the smaller viewport in the side bar make the settings be higher (on the browser the phones  have to scroll a little more  to hide the serchar bar and then the  settings options shows at the end ) 
+
 making component appear:
 you might want to change the the show function from the app component to be in every individual component  (or find a way to send the information of being show (props)) so that you can have unique animations to show every sections
+
+
+
+
+when click playing and pause on the gallery i need to make the btn reset to the play version (where )
+

@@ -12,23 +12,78 @@ function Banner({ screenWidth }) {
 	const sectionRef = useRef(null);
 	const kRef = useRef(0);
 	const timerRef = useRef(null);
+	const isAnimatingRef = useRef(false);
 
+	const AUTOPLAY_MS = 2000;
+	// const ANIMATION_MS = 600; //! match this to the actual CSS transition/animation duration
+
+	// allows call mid tranctition
 	const goTo = useCallback((next) => {
 		kRef.current = ((next % N) + N) % N;
 		sectionRef.current?.style.setProperty("--k", kRef.current);
 	}, []);
 
+	// new goTo function
+	// const goTo = useCallback((next) => {
+	// 		if (isAnimatingRef.current) return; // ignore calls mid-transition
+	// 		isAnimatingRef.current = true;
+
+	// 		kRef.current = ((next % N) + N) % N;
+	// 		sectionRef.current?.style.setProperty("--k", kRef.current);
+
+	// 		setTimeout(() => {
+	// 			isAnimatingRef.current = false;
+	// 		}, ANIMATION_MS);
+	// 	}, []);
+
 	const next = useCallback(() => goTo(kRef.current + 1), [goTo]);
 	const prev = useCallback(() => goTo(kRef.current - 1), [goTo]);
 
-	useEffect(() => {
-		timerRef.current = setInterval(next, 2000); //3500
-		return () => clearInterval(timerRef.current);
+	//! old outo play
+	// useEffect(() => {
+	// 	timerRef.current = setInterval(next, 2000); //3500
+	// 	return () => clearInterval(timerRef.current);
+	// }, [next]);
+
+	const startAutoplay = useCallback(() => {
+		clearInterval(timerRef.current);
+		timerRef.current = setInterval(next, AUTOPLAY_MS);
 	}, [next]);
 
+	// ! old pauseAuto
 	const pauseAuto = () => clearInterval(timerRef.current);
-	const resumeAuto = () => {
-		timerRef.current = setInterval(next, 2000); //3500
+	// new pause auto
+	// const pauseAuto = useCallback(() => clearInterval(timerRef.current), []);
+
+	//! old resume
+	// const resumeAuto = () => {
+	// 	timerRef.current = setInterval(next, 2000); //3500
+	// };
+
+	useEffect(() => {
+		startAutoplay();
+		return () => clearInterval(timerRef.current);
+	}, [startAutoplay]);
+
+	// manual nav resets the autoplay clock so it can't collide with the next tick
+	const handleNext = () => {
+		next();
+		if (!pause) startAutoplay();
+	};
+
+	const handlePrev = () => {
+		prev();
+		if (!pause) startAutoplay();
+	};
+
+	const handlePauseToggle = () => {
+		if (pause) {
+			startAutoplay();
+			setPause(false);
+		} else {
+			pauseAuto();
+			setPause(true);
+		}
 	};
 
 	// const startStop = (pause) => {
@@ -96,9 +151,11 @@ function Banner({ screenWidth }) {
 							))}
 
 							<div className="stack-controls">
-								<button className="stack-btn" aria-label="previous" onClick={prev} />
-
-								<button
+								{/* old prev btn */}
+								{/* <button className="stack-btn" aria-label="previous" onClick={prev} /> */}
+								<button className="stack-btn" aria-label="previous" onClick={handlePrev} />
+								{/* old pause btn */}
+								{/* <button
 									className={`stack-btn stack-btn--pause ${pause ? "stack-btn--play" : ""}`}
 									aria-label={pause ? "Play" : "Pause"}
 									onClick={() => {
@@ -110,9 +167,13 @@ function Banner({ screenWidth }) {
 											setPause(true);
 										}
 									}}
-								/>
+								/> */}
 
-								<button className="stack-btn stack-btn--next" aria-label="next" onClick={next} />
+								<button className={`stack-btn stack-btn--pause ${pause ? "stack-btn--play" : ""}`} aria-label={pause ? "Play" : "Pause"} onClick={handlePauseToggle} />
+								{/* old next btn */}
+								{/* <button className="stack-btn stack-btn--next" aria-label="next" onClick={next} /> */}
+
+								<button className="stack-btn stack-btn--next" aria-label="next" onClick={handleNext} />
 							</div>
 						</section>
 
