@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/footer.css";
 import creditAplication from "../assets/webster_lock_credit_application.pdf";
 
 import email from "../assets/svgs/email-1573-svgrepo-com.svg";
 import linkedIn from "../assets/general/linkedin-svgrepo-com.svg";
 import yelp from "../assets/general/yelp-color-svgrepo-com.svg";
+import Modal from "./Modal";
 
-function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryClick, onProductsClick, onProductItemClick, onServiceItemClick }) {
+function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryClick, onProductsClick, onProductItemClick, onServiceItemClick, openModal, setOpenModal }) {
 	// you should  have a function that get the current year for the the copy rights section
 	// add the credit aplication  form
 
@@ -19,6 +20,12 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 	// TODO give indication with litle arrows that the uses can scroll to the left of right (make them be clickable)
 
 	// TODO fix the height of the footer so that is not soo big
+
+	// const [openModal, setOpenModal] = useState(false);
+
+	// const closeModal = () => {
+	// 	setOpenModal(false);
+	// };
 
 	return (
 		<div className="footer-container">
@@ -59,8 +66,13 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 										{/* type="application/pdf */}
 									</li>
 									{/* this is to give credit and let every body know where did i take the pictures and icons from  */}
-									<li>
-										<p>Attribution</p>
+									{/* <li onClick={() => {setOpenModal((prev) => !prev )}, console.log("is the modal open ?" ,openModal)}> */}
+									<li
+										onClick={() => {
+											setOpenModal(true);
+											console.log("is the modal open ?", openModal);
+										}}>
+										<p> Attribution</p>
 									</li>
 									{/* this should go un der the attribution section*/}
 									<li>
@@ -202,6 +214,8 @@ function Footer({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 				</div>
 				<h3>Webster Lock & Hardware Co. 2026 © All Rights Reserved</h3>
 			</div>
+			{/* {openModal == true && <Modal isOpen={openModal} onClose={closeModal} />} */}
+			{/* <Modal  /> */}
 		</div>
 	);
 }

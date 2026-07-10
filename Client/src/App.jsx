@@ -12,6 +12,7 @@ import { useEffect, useState, useRef } from "react";
 
 import calcClampBreakpoints from "../../min-max-calculator";
 import Filler from "./components/Filler";
+import Modal from "./components/Modal";
 
 function App() {
 	const [scrolled, setScrolled] = useState(false);
@@ -112,6 +113,12 @@ function App() {
 
 	// move the about section lower
 
+	const [openModal, setOpenModal] = useState(false);
+
+	const closeModal = () => {
+		setOpenModal(false);
+	};
+
 	return (
 		<>
 			<Routes>
@@ -185,10 +192,13 @@ function App() {
 											setExpandService(item);
 										}}
 										scrollToTop={scrollToTop}
+										openModal={openModal}
+										setOpenModal={openModal}
 									/>
 								</div>
 
 								{/* <Test /> */}
+								{openModal == true && <Modal isOpen={openModal} onClose={closeModal} />}
 							</div>
 						</div>
 					}
