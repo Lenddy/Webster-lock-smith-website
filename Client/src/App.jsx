@@ -193,7 +193,8 @@ function App() {
 										}}
 										scrollToTop={scrollToTop}
 										openModal={openModal}
-										setOpenModal={openModal}
+										// setOpenModal={openModal()}
+										setOpenModal={setOpenModal}
 									/>
 								</div>
 

@@ -1,3 +1,21 @@
+make the modal work when clicking the  adtributions on the footer and make it scrollable(i think it already is )
+
+
+put the title (of the attribution) in the middle 
+the name on the left  and the links bellow it 
+
+there sould be a section for the the title to the last atributor 
+
+now inside that section  there will be multiple smaller section   
+
+in that smaller section there will have 
+ the name as the header 
+    and the links as  the boddy 
+
+    the header will have a diferent background
+
+
+
 
 for the smaller viewport in the side bar make the settings be higher (on the browser the phones  have to scroll a little more  to hide the serchar bar and then the  settings options shows at the end ) 
 

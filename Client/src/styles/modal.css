@@ -1,3 +1,14 @@
+/*--lr: #c8102e;  logo-red*
+--dr: #8c0c1f;  Deep-Red *
+--kg: #d4a843;  key-gold *
+--dg: #b8922a;  dark-gold *
+--dgf: rgb(184, 146, 42, 0.6); * dark-gold faded*
+--lb: #1a1a1a;  logo-black *
+--ch: #2b2b2b;  Charcoal*
+--mg: #3d3d3d;  mid-gray*
+--lg: ##f5f5f5;  Light-Gray*
+--wh: ##ffffff; /* white-*/
+
 /*!modal */
 
 .modal-container {
@@ -7,13 +18,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 1000;
+	z-index: 99999999999;
 	/* background-color: red; */
 }
 
-.door-handing {
+/* .door-handing {
 	width: clamp(17.5rem, -1.25rem + 100vw, 43.75rem);
-}
+} */
 
 .modal-container h4 {
 	font-size: clamp(0.938rem, 0.563rem + 2vw, 1.563rem);
@@ -33,7 +44,12 @@
 .modal-wrapper {
 	position: relative;
 	width: clamp(18.75rem, 100vw, 50rem);
-	height: 60vh;
+	/* height: 60vh; */
+	/* height: 100vh; */
+	/* height: 700px; */
+	/* height: 500px; */
+	height: clamp(31.25rem, 23.214rem + 42.86vw, 50rem);
+
 	background: var(--slate-dark-gray);
 	border-radius: 12px;
 	display: flex; /* stack content + footer */
@@ -43,11 +59,10 @@
 }
 
 .modal-header {
-	/* border-bottom: solid 2px var(--black); */
-	border-bottom: solid 2px blue;
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	background-color: var(--ch);
 }
 
 .modal-close {
@@ -72,7 +87,8 @@
 	align-items: center;
 	width: 100%;
 	/* background-color: var(--slate-gray); */
-	background-color: gray;
+	/* background-color: gray; */
+	background-color: var(--mg);
 	color: var(--black);
 }
 
@@ -83,6 +99,23 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 30px;
+	background-color: darkolivegreen;
+}
+
+.modal-content-wrapper {
+	background-color: red;
+	width: 90%;
+}
+
+.attribution-info-contrainer {
+	background-color: blue;
+	width: 100%;
+	text-align: left;
+}
+
+.attribution-links-container {
+	display: flex;
+	flex-direction: column;
 }
 
 .modal-content-header {
@@ -93,12 +126,9 @@
 	width: 100%;
 	height: 80px;
 	width: clamp(18.75rem, 5.357rem + 71.43vw, 50rem);
-}
 
-.modal-content-top-info-id {
-	width: 100%;
-	text-align: left;
-	scale: 0.7;
+	/* background: var(--lb); */
+	/* background: var(--mg); */
 }
 
 .modal-content-top-info-title-wrapper {
@@ -109,63 +139,19 @@
 	width: 100%;
 }
 
-.modal-content-middle-info {
-	width: 100%;
-	font-size: 30px;
-	display: flex;
-	justify-content: space-around;
-	align-items: start;
-}
-
-.modal-content-middle-info-wrapper {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: column;
-}
-
-.modal-content-bottom-info {
-	width: 100%;
-	font-size: 30px;
-	display: flex;
-	justify-content: space-around;
-	align-items: start;
-	flex-wrap: wrap;
-}
-
-.modal-content-bottom-info-wrapper {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: column;
-	gap: 30px;
-}
-
-/* come here */
-.modal-content-bottom-info-wrapper ul {
-	/* background-color: red; */
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	/* gap: 5px; */
-	justify-items: center;
-	/* background-color: red; */
-	width: 100%;
-	padding: 0px;
-}
-
 .modal-bottom {
 	height: 80px;
 	width: 100%; /* 90% of modal-wrapper */
 	margin: 0 auto; /* center horizontally */
 	text-align: center;
 	/* border-top: 2px solid var(--black); */
-	border-top: 2px solid blue;
+	/* border-top: 2px solid blue; */
 	flex-shrink: 0;
 	padding: 0px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: var(--ch);
 }
 
 .model-bottom-wrapper {
@@ -197,55 +183,4 @@
 .model-bottom-wrapper span:hover {
 	cursor: pointer;
 	scale: 0.9;
-}
-
-/* .model-bottom-wrapper span:nth-child(1), */
-
-/* .model-bottom-wrapper span:nth-child(1), */
-.model-btn-view span {
-	background-color: var(--dark-green);
-}
-/* .model-bottom-wrapper span:nth-child(2), */
-.model-btn-update span {
-	background-color: var(--brass);
-}
-.model-btn-delete span {
-	background-color: var(--dark-red);
-}
-
-/** fix the modal btn */
-
-.model-bottom-wrapper a {
-	color: var(--white);
-}
-
-/* modal for update one material request */
-
-.modal-content-info-wrapper {
-	/* background-color: red; */
-	width: 90%;
-}
-
-.modal-content-item-info {
-	/* background-color: blue; */
-	margin-top: 5px;
-	border-bottom: solid 1px var(--white);
-}
-
-.modal-content-item-info-top,
-.modal-content-item-info-center {
-	/* background-color: white; */
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-}
-
-.modal-content-item-info-top div,
-.modal-content-item-info-center div,
-.modal-content-item-info-bottom div {
-	/* background-color: red; */
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	border-bottom: solid 1px var(--black);
 }

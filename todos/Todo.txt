@@ -1,10 +1,10 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-fix the atributions (modal btn ) you made a state that lives in the app component you sent it to the fotter and the modal component   the idea is that from the fotter you click atributions and oppens the modal in the app componnets
+fix the atributions (modal btn ) you made a state that lives in the app component you sent it to the footer and the modal component   the idea is that from the footer you click atributions and oppens the modal in the app componnets
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-make the fotter atributions be a modal whne click so the user can check the links of who made them   
+make the footer atributions be a modal whne click so the user can check the links of who made them   
 
-for the fottter
+for the footer
 
 
 
@@ -22,7 +22,7 @@ make the products and services tab on the top navbar have different dropdown (ha
 
 dinamicaly adjust the magring that there is between all the component
 
-
+for the book , see if you can have clicking on the whole page to turn it  (this was some how change when i was modifying it  to be able to  slide and have the tilting ) how it is now that you have to click the outer half of the page that you are turning too
 
 
 
@@ -71,139 +71,3 @@ about
 	// NOTE - is there a way to make the book be above the container ? be still have it in the container  (z-index ? position )
 
 
-
-
-
-
-
-
-Two separate things here — let's take them in order.
-1. Why it's stuck at the bottom instead of centered
-Looking at your CSS, .modal-container is already set up correctly to center its child:
-css.modal-container {
-	position: fixed;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	...
-}
-
-position: fixed + inset: 0 + flex centering should center the modal in the viewport regardless of where <Modal /> sits in your component tree. So if it's actually showing at the bottom, the classic cause is: some ancestor element has a transform, filter, perspective, or will-change property set on it.
-This matters because position: fixed is normally relative to the viewport — but the CSS spec says if any ancestor has one of those properties, that ancestor becomes the new positioning context instead of the viewport. So instead of centering in the whole screen, your modal ends up centering (or getting pushed) relative to that ancestor's box — which, if that ancestor is short or scrolled, can visually look like it's glued to the bottom.
-Since <Modal /> renders inside <Footer /> here, check:
-
-Does .footer-container or any parent (App wrapper, page transition wrapper, etc.) have transform, filter, or will-change anywhere in its CSS or inline styles?
-Any animation library (Framer Motion, etc.) applying a transform to a layout wrapper?
-
-The fix, if you find one, is usually to render the modal via a portal (createPortal into document.body) so it's never nested inside a transformed ancestor in the first place — that's the standard, most robust fix for this exact bug, more reliable than hunting down every transform in the app:
-jsximport { createPortal } from "react-dom";
-
-const Modal = ({ isOpen, onClose, data }) => {
-	return createPortal(
-		<div className="modal-container" onClick={onClose}>
-			{/* ...rest unchanged... */}
-		</div>,
-		document.body
-	);
-};
-This guarantees .modal-container's position: fixed is always relative to the real viewport, no matter what wraps it in the component tree.
-2. Cleaned-up CSS
-Comparing against your actual JSX, only these classes are used: modal-container, modal-wrapper, modal-header, modal-close, modal-content-header, modal-content-top-info-title-wrapper, modal-content, modal-bottom, model-bottom-wrapper. Everything else (door-handing, modal-content-info*, modal-content-middle-info*, modal-content-bottom-info*, model-btn-view/update/delete, modal-content-item-info*) looks like leftover cruft from a different modal (the "Material Request" one referenced in your comments) and isn't referenced anywhere in this file. I removed it, along with the stray debug background-color: red that was overriding your intended rgba overlay.
-One flag before you delete: if any other component in your app also imports modal.css and relies on those model-btn-view / modal-content-item-info classes for a different modal instance, deleting them here will break that other modal. Worth a quick project-wide search for those class names before committing this.
-css/* !modal */
-
-.modal-container {
-	position: fixed;
-	inset: 0;
-	background: rgba(0, 0, 0, 0.6);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 1000;
-}
-
-.modal-wrapper {
-	position: relative;
-	width: clamp(18.75rem, 100vw, 50rem);
-	height: 60vh;
-	background: var(--slate-dark-gray);
-	border-radius: 12px;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	box-shadow: 0 0px 30px rgba(0, 0, 0, 0.3);
-}
-
-.modal-header {
-	border-bottom: solid 2px var(--black);
-	display: flex;
-	justify-content: center;
-	width: 100%;
-}
-
-.modal-close {
-	position: absolute;
-	top: 12px;
-	right: 12px;
-	background: transparent;
-	border: none;
-	font-size: 18px;
-	cursor: pointer;
-}
-
-.modal-content-header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	width: clamp(18.75rem, 5.357rem + 71.43vw, 50rem);
-	height: 80px;
-}
-
-.modal-content-top-info-title-wrapper {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
-}
-
-.modal-content {
-	flex: 1;
-	overflow-y: auto;
-	overflow-x: auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	width: 100%;
-	background-color: var(--slate-gray);
-	color: var(--black);
-}
-
-.modal-bottom {
-	height: 80px;
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-	border-top: 2px solid var(--black);
-	flex-shrink: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.model-bottom-wrapper {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
-	height: 50%;
-	gap: 10px;
-}
-
-.model-bottom-wrapper a {
-	color: var(--white);
-}
-If you want, paste the JSX for whatever screen renders the fuller "Material Request" modal (the one with the view/update/delete buttons) and I can split that into its own stylesheet so you don't have two unrelated modals sharing one bloated CSS file going forward.
