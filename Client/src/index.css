@@ -22,9 +22,7 @@
 	--mg: #3d3d3d; /* mid-gray*/
 	--lg: ##f5f5f5; /* Light-Gray*/
 	--wh: ##ffffff; /* white-*/
-
-	/* background-color: #242424; */
-	background-color: var(--lb);
+	--lbe: #065997 /* logo-blue*/ /* background-color: #242424; */ background-color: var(--lb);
 }
 
 /* body {

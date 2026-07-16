@@ -1,5 +1,7 @@
 import "../styles/banner.css";
-import front from "../assets/banner/front-store-1.jpg";
+// import front from "../assets/banner/front-store-1.jpg";
+// import front from "../assets/banner/Webster-Front(1)-phone-edit.jpg";
+import front from "../assets/banner/front-store-edit.jpg";
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { bannerImages } from "../utilities/banner-section";

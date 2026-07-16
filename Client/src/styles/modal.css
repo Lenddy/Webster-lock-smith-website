@@ -99,23 +99,7 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 30px;
-	background-color: darkolivegreen;
-}
-
-.modal-content-wrapper {
-	background-color: red;
-	width: 90%;
-}
-
-.attribution-info-contrainer {
-	background-color: blue;
-	width: 100%;
-	text-align: left;
-}
-
-.attribution-links-container {
-	display: flex;
-	flex-direction: column;
+	/* background-color: darkolivegreen; */
 }
 
 .modal-content-header {
@@ -137,6 +121,39 @@
 	justify-content: space-around;
 	align-items: center;
 	width: 100%;
+}
+
+.modal-content-top-info-title-wrapper h4 {
+	color: var(--kg);
+}
+
+.modal-content-wrapper {
+	/* background-color: red; */
+	width: 90%;
+}
+
+.attrbution-title {
+	font-size: clamp(1rem, 0.667rem + 1.67vw, 1.5rem);
+}
+
+.attribution-info-contrainer {
+	/* background-color: blue; */
+	width: 100%;
+	text-align: left;
+}
+
+.attribution-links-container {
+	/* background-color: yellow; */
+	padding: 5px 5px 5px 20px;
+	border-bottom: solid 1px white;
+	/* border-bottom: solid 1px black; */
+}
+
+.attribution-links-container {
+	display: flex;
+	flex-direction: column;
+	/* background-color: purple; */
+	margin: 5px 0px;
 }
 
 .modal-bottom {
@@ -163,24 +180,16 @@
 	gap: 10px;
 }
 
-.model-bottom-wrapper span {
-	width: clamp(4.688rem, 0.426rem + 22.73vw, 12.5rem);
+.model-bottom-wrapper button {
+	background-color: red;
+	width: 125px;
 	height: 40px;
-	font-size: clamp(0.938rem, 0.75rem + 1vw, 1.25rem);
+	transition: background-color 1s;
 	border-radius: 10px;
-	border: 1px solid var(--white);
-	border-radius: 5px;
-	padding: 0 5px;
-	box-shadow: 0px 0px 15px var(--black);
-	color: var(--white);
-	font-weight: 600;
-	background-color: var(--dark-blue);
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	border: 0px;
 }
 
-.model-bottom-wrapper span:hover {
+.model-bottom-wrapper button:hover {
+	background-color: blue;
 	cursor: pointer;
-	scale: 0.9;
 }

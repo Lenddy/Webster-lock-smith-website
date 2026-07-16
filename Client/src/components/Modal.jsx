@@ -25,9 +25,9 @@ const Modal = ({ isOpen, onClose, data }) => {
 					<div className="modal-content-info">
 						{ATTRIBUTIONS.flatMap((a, i) => (
 							<div className="modal-content-wrapper" key={i}>
-								<h5 className="attrbution-title" key={a}>
+								<h4 className="attrbution-title" key={a}>
 									{a.title}
-								</h5>
+								</h4>
 								{a.attributions.flatMap((attribute, idx) => (
 									<div className="attribution-info-contrainer" key={idx}>
 										<h3 className="attribution-name">{attribute.name}</h3>
@@ -44,7 +44,7 @@ const Modal = ({ isOpen, onClose, data }) => {
 								a.attributions.map
 								
 								} */}
-								<p className="attrbution-title "> </p>
+								<p className="attrbution-title"> </p>
 							</div>
 						))}
 						{/* <p>"content"</p>
@@ -58,7 +58,7 @@ const Modal = ({ isOpen, onClose, data }) => {
 				<div className="modal-bottom">
 					<div className="model-bottom-wrapper">
 						{" "}
-						<button> close</button>
+						<button onClick={onClose}> close</button>
 					</div>
 				</div>
 			</div>
