@@ -34,7 +34,12 @@ const Modal = ({ isOpen, onClose, data }) => {
 										<ul className="attribution-links-container">
 											{attribute.links.map((link, linkIndex) => (
 												<li className="attribution-link" key={linkIndex}>
-													<p>{link}</p>
+													<p>
+														<a href={link} target="_blank">
+															{" "}
+															{link}
+														</a>
+													</p>
 												</li>
 											))}
 										</ul>

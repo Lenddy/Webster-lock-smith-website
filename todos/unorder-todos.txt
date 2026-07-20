@@ -1326,7 +1326,9 @@ tony favale
 stack scrolling images '
 Ana Tudor
 https://www.youtube.com/@anatudor
+
 https://codepen.io/thebabydino/pens/popular?cursor=ZD0xJm89MCZwPTEmdj0zNDA2
+
 https://codepen.io/thebabydino/pen/jENaPjd
 
 
@@ -1341,7 +1343,7 @@ https://codepen.io/thebabydino/pen/OEVgRx
 
 
 
-this would be use for the the footer or a new section like the one that yo want to put to put the logo with some keys moving around
+this would be use for the footer or a new section like the one that yo want to put to put the logo with some keys moving around
 https://codepen.io/PSBski/pen/raLwLqL
 
 
@@ -1360,17 +1362,11 @@ https://codepen.io/josetxu/pen/NWyZWoJ
 
 
 
-
-
-
 can use this for the products and services
 https://rebeccamdeprey.com/blog/view-transition-api
 
 you could use this for other images if you want to show them
 https://rebeccamdeprey.com/blog/view-transition-api
-
-
-
 
 
 
@@ -1387,8 +1383,6 @@ https://stackoverflow.com/questions/76972952/how-to-make-a-flip-page-effect-in-b
 https://stackoverflow.com/questions/73685602/create-a-pure-html-css-book-with-flipping-pages/79011802#79011802
 
 https://stackoverflow.com/questions/76972952/how-to-make-a-flip-page-effect-in-book-without-using-absolute-position-or-make/76978444#76978444
-
-
 
 
 

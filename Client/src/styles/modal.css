@@ -143,17 +143,19 @@
 }
 
 .attribution-links-container {
-	/* background-color: yellow; */
-	padding: 5px 5px 5px 20px;
-	border-bottom: solid 1px white;
-	/* border-bottom: solid 1px black; */
-}
-
-.attribution-links-container {
 	display: flex;
 	flex-direction: column;
 	/* background-color: purple; */
 	margin: 5px 0px;
+	padding: 5px 5px 5px 20px;
+	border-bottom: solid 1px white;
+	gap: 5px;
+}
+
+.attribution-links-container p,
+.attribution-links-container a {
+	color: var(--wh);
+	width: 100%;
 }
 
 .modal-bottom {

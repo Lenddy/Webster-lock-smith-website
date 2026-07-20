@@ -4,16 +4,16 @@
 
 export const ATTRIBUTIONS = [
 	{
-		title: "title 1", //images, boock, icons
+		title: "Icons",
 
 		attributions: [
 			{
-				name: "name 1", //the name of the creator if any
+				name: "name 1",
 
 				links: ["link", "link"],
 			},
 			{
-				name: "name 2", //the name of the creator if any
+				name: "name 2",
 
 				links: ["link", "link"],
 			},
@@ -21,24 +21,24 @@ export const ATTRIBUTIONS = [
 	},
 
 	{
-		title: "title 1", //images, boock, icons
+		title: "Card Stack",
 
 		attributions: [
 			{
-				name: "name 1", //the name of the creator if any
+				name: "Ana Tudor",
 
-				links: ["link", "link"],
+				links: ["https://codepen.io/thebabydino/pen/jENaPjd", "https://codepen.io/thebabydino/pens/popular?cursor=ZD0xJm89MCZwPTEmdj0zNDA2", "https://www.youtube.com/@anatudor"],
 			},
 		],
 	},
 	{
-		title: "title 1", //images, boock, icons
+		title: "Book",
 
 		attributions: [
 			{
-				name: "name 1", //the name of the creator if any
+				name: "Roko C. Buljan",
 
-				links: ["link", "link"],
+				links: ["https://github.com/rokobuljan/flipbook", "https://stackoverflow.com/users/383904/roko-c-buljan"],
 			},
 		],
 	},

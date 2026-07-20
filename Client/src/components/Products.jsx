@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { products } from "../utilities/products-services";
 
 import blankkeys from "../assets/general/blank-keys-on-wall.webp";
+import { Link } from "react-router-dom";
 
 export default function Products({ productRef, expandProduct }) {
 	const [openProduct, setOpenProduct] = useState(null);
@@ -73,7 +74,7 @@ export default function Products({ productRef, expandProduct }) {
 
 			<div className="products">
 				<ul>
-					{products.map((product, index) => (
+					{products.flatMap((product, index) => (
 						<li key={index} className={`slide-${index} ${openProduct === index ? "expanded" : ""} `} onClick={() => setOpenProduct(openProduct === index ? null : index)}>
 							<div className="item-header">
 								<h3>{product.name}</h3>
@@ -82,7 +83,25 @@ export default function Products({ productRef, expandProduct }) {
 							<div className="item-body">
 								<p>{product.description}</p>
 								{/* <div className="image-wrapper"> */}
-								<img src={blankkeys} alt="blankkeys" />
+								<div className="item-body-bottom">
+									{/*//!  make a media quarie that will make the item-body-bottom list be horisontal instead of vertical  when view port is bellow width 1400px */}
+									<ul>
+										{product?.links?.map((l) => (
+											// <li key={`${l.title} ${l.Link}`}>
+											<div className="item-body-bottom-li">
+												<li key={`${l.title}-${l.Link}`}>{l.title}</li>
+
+												<li className="item-body-bottom-link" key={`${l.title}-${l.Link}`}>
+													<a href={l.link} target="_blank">
+														h
+													</a>{" "}
+												</li>
+											</div>
+										))}
+									</ul>
+									<img src={blankkeys} alt="blankkeys" />
+								</div>
+
 								{/* </div> */}
 							</div>
 						</li>
