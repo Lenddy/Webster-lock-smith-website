@@ -257,16 +257,36 @@
 	align-items: top;
 	justify-content: center;
 	font-size: clamp(0.75rem, 0.729rem + 0.17vw, 1rem);
-	background-color: blue;
+	/* background-color: blue; */
 	gap: 8px;
 }
 
-/* trataria de estar hay entre las entre las 5:40 -6:40 pero que talvez tarde un poco mas    */
+/* trataria de estar hay entre las entre las 5:40 -6:40 pero que talvez tarde un poco mas 
+
+
+
+*/
+
+.item-body-bottom ul li {
+	border: none;
+}
 
 .item-body-bottom-li {
 	display: flex;
 	gap: 5px;
 	/* background-color: red; */
+	display: flex;
+	align-items: center;
+}
+
+.item-body-bottom-link a {
+	display: flex;
+}
+
+.new-tab {
+	/* fill: var(--wh); */
+	fill: var(--kg);
+	width: 20px;
 }
 
 @media (max-width: 1400px) {

@@ -69,10 +69,32 @@ export default function Services({ serviceRef, expandService }) {
 								<h3>{service.name}</h3>
 								<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
 							</div>
+
 							<div className="item-body">
 								<p>{service.description}</p>
-								<div>
-									<img src={blankkeys} alt="blankkeys" />
+
+								<div className="item-body-bottom">
+									<ul>
+										{/* //! make the link items not show if they are empty  */}
+
+										{service?.links?.map((l, idx) => (
+											// <li key={`${l.title} ${l.Link}`}>
+											<div key={idx} className="item-body-bottom-li">
+												<li key={`${l.title}-${l.Link}-${idx}`}>{l.title}</li>
+
+												<li className="item-body-bottom-link" key={`${l.title}-${idx}`}>
+													<a href={l.link} target="_blank">
+														h
+													</a>{" "}
+												</li>
+											</div>
+										))}
+									</ul>
+
+									{service?.links?.filter((imgs) => imgs.img)?.flatMap((imgs) => imgs?.img?.map((imgItem, idx) => <img key={`${idx}-${imgItem.alt}`} src={imgItem.src} alt={imgItem.alt} />))}
+
+									{/* <div> */}
+									{/* <img src={blankkeys} alt="blankkeys" /> */}
 								</div>
 							</div>
 						</li>

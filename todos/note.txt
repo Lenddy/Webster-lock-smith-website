@@ -1,13 +1,8 @@
-make the modal work when clicking the  adtributions on the footer and make it scrollable(i think it already is )
+
+for the modal find out why the links dont take the full width of the modal 
 
 
-put the title (of the attribution) in the middle 
-the name on the left  and the links bellow it 
-
-there sould be a section for the the title to the last atributor 
-
-now inside that section  there will be multiple smaller section   
-
+in the modal
 in that smaller section there will have 
  the name as the header 
     and the links as  the boddy 

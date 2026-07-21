@@ -38,7 +38,8 @@
 .modal-container p,
 .modal-container li {
 	font-size: clamp(0.813rem, 0.55rem + 1.4vw, 1.25rem);
-	display: inline;
+	/* //! display:  in line is preventing you from chageging the with of the p and li items in the modal ; */
+	display: block;
 }
 
 .modal-wrapper {
@@ -152,10 +153,23 @@
 	gap: 5px;
 }
 
-.attribution-links-container p,
+.attribution-links-container p {
+	color: var(--wh);
+	/* background-color: blue; */
+	width: 100%;
+}
+
 .attribution-links-container a {
 	color: var(--wh);
-	width: 100%;
+	/* width: 100%; */
+	width: 100px;
+	/* background-color: yellow; */
+}
+
+.attribution-link {
+	display: flex;
+	/* width: 100%; */
+	/* background-color: green; */
 }
 
 .modal-bottom {

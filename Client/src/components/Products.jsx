@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { products } from "../utilities/products-services";
 
-import blankkeys from "../assets/general/blank-keys-on-wall.webp";
 import { Link } from "react-router-dom";
 
 export default function Products({ productRef, expandProduct }) {
@@ -80,26 +79,39 @@ export default function Products({ productRef, expandProduct }) {
 								<h3>{product.name}</h3>
 								<span className="item-chevron">{openProduct === index ? "🔓" : "🔒"}</span>
 							</div>
+
 							<div className="item-body">
 								<p>{product.description}</p>
 								{/* <div className="image-wrapper"> */}
 								<div className="item-body-bottom">
 									{/*//!  make a media quarie that will make the item-body-bottom list be horisontal instead of vertical  when view port is bellow width 1400px */}
 									<ul>
-										{product?.links?.map((l) => (
-											// <li key={`${l.title} ${l.Link}`}>
-											<div className="item-body-bottom-li">
-												<li key={`${l.title}-${l.Link}`}>{l.title}</li>
+										{/* //! make the link items not show if they are empty  */}
 
-												<li className="item-body-bottom-link" key={`${l.title}-${l.Link}`}>
+										{product?.links?.map((l, idx) => (
+											// <li key={`${l.title} ${l.Link}`}>
+											<div key={idx} className="item-body-bottom-li">
+												<li key={`${l.title}-${l.Link}-${idx}`}>{l.title}</li>
+
+												<li className="item-body-bottom-link" key={`${l.title}-${idx}`}>
 													<a href={l.link} target="_blank">
-														h
-													</a>{" "}
+														{/* <div className="pop-up"> */}
+
+														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="new-tab">
+															<path fillRule="evenodd" d="M15.75 2.25H21a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.81L8.03 17.03a.75.75 0 0 1-1.06-1.06L19.19 3.75h-3.44a.75.75 0 0 1 0-1.5Zm-10.5 4.5a1.5 1.5 0 0 0-1.5 1.5v10.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V10.5a.75.75 0 0 1 1.5 0v8.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V8.25a3 3 0 0 1 3-3h8.25a.75.75 0 0 1 0 1.5H5.25Z" clipRule="evenodd" />
+														</svg>
+
+														{/* </div> */}
+													</a>
 												</li>
 											</div>
 										))}
 									</ul>
-									<img src={blankkeys} alt="blankkeys" />
+									{/* add an array of images that will be displayied for every porduct and services  if they have sub sections (for example whe use thris brand  there will b e a btn that can take you to see the images and anothers smaller btn that can take you to see the website of the manufacturer )*/}
+
+									{product?.links?.filter((imgs) => imgs.img)?.flatMap((imgs) => imgs?.img?.map((imgItem, idx) => <img key={`${idx}-${imgItem.alt}`} src={imgItem.src} alt={imgItem.alt} />))}
+
+									{/* <img src={blankkeys} alt="blankkeys" /> */}
 								</div>
 
 								{/* </div> */}

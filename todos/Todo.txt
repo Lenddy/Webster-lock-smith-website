@@ -1,3 +1,16 @@
+use one of the carousels to put on the products and services section  
+
+I thinks that now you should use this https://codepen.io/MDJAmin/pen/GgpdKPy to put in the products and services 
+
+make it rotate on its own  and also be control by the arrows normaly  (you will have to decide if you want to fill the entier colapsable menu) or about half 
+
+
+https://codepen.io/cbolson/pen/MYebgqj
+
+https://codepen.io/MDJAmin/pen/GgpdKPy
+
+https://codepen.io/cbolson/pen/LEENGmB
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 fix the atributions (modal btn ) you made a state that lives in the app component you sent it to the footer and the modal component   the idea is that from the footer you click atributions and oppens the modal in the app componnets
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
