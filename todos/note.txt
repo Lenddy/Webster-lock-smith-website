@@ -16,6 +16,11 @@ for the smaller viewport in the side bar make the settings be higher (on the bro
 
 making component appear:
 you might want to change the the show function from the app component to be in every individual component  (or find a way to send the information of being show (props)) so that you can have unique animations to show every sections
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 

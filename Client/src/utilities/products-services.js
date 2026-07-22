@@ -5,9 +5,9 @@ export const products = [
 		name: "Mailboxes",
 		description: "At Webster Locksmiths, we are experts on all types of mailbox systems. We supply and perform custom installations on thousands of different mailbox systems.For replacements on existing systems, we stock and install all vertical, horizontal, or cluster box units. For new installations on new buildings, The Postal Code requires the Auth Florence 4C and we stock and install those systems as well.",
 		links: [
-			{ title: "Auth Florence", link: "", img: [{ src: blankkeys, alt: "image-1" }] },
-			{ title: "Bommer", link: "", img: [{ src: blankkeys, alt: "image-2" }] },
-			{ title: "Salsbury Industries", link: "", img: [{ src: blankkeys, alt: "image-3" }] },
+			{ title: "Auth Florence", link: "http://localhost:5173/", img: [{ src: blankkeys, alt: "image-1" }] },
+			{ title: "Bommer", link: "http://localhost:5173/", img: [{ src: blankkeys, alt: "image-2" }] },
+			{ title: "Salsbury Industries", link: "http://localhost:5173/", img: [{ src: blankkeys, alt: "image-3" }] },
 		],
 	},
 	{
