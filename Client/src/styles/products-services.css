@@ -247,6 +247,10 @@
 	padding: 5px;
 }
 
+/*! start from here ! */
+/* !start from here ! */
+/* !start from here ! */
+
 .item-body-bottom {
 	padding: 0 14px 12px;
 	color: var(--lg);
@@ -288,8 +292,6 @@
 	fill: var(--kg);
 	width: 20px;
 }
-
-/* !!!here */
 
 .item-body-collapse {
 	display: grid;
@@ -522,7 +524,338 @@ li.expanded .item-body-collapse {
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-.container {
+/*  */
+
+/* !!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!! */
+
+/* dynamic-height collapse, unchanged from before */
+.item-body-collapse {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.4s ease;
+}
+li.expanded .item-body-collapse {
+	grid-template-rows: 1fr;
+}
+.item-body-collapse > .item-body {
+	overflow: hidden;
+	min-height: 0;
+}
+.item-header {
+	cursor: pointer;
+}
+
+/* ---- image carousel ---- */
+.carousel {
+	position: relative;
+	width: 100%;
+	height: 320px;
+	margin-top: 16px;
+	border-radius: 16px;
+	overflow: hidden;
+}
+.carousel-stack {
+	position: absolute;
+	inset: 0;
+}
+.ic-slide {
+	position: absolute;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-color: #2b2b2b;
+	border-radius: 16px;
+	box-shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
+	transition: all 0.5s ease;
+}
+
+/* !!old active */
+.ic-slide.slot-active,
+.ic-slide.slot-behind {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: translate(0, 0);
+}
+
+/* new in one instance it will show only 1 picture on the left and then when it rotates it will show 2  */
+/* .ic-slide.slot-active {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: translate(0, 0);
+	z-index: 3;
+} */
+
+/*!! the old active */
+.ic-slide.slot-active {
+	z-index: 2;
+}
+
+/* .ic-slide.slot-active {
+	z-index: 3;
+} */
+
+/* !this is new  */
+.ic-slide.slot-behind {
+	z-index: 1;
+}
+
+/* ! old active */
+.ic-slide.slot-1,
+.ic-slide.slot-2,
+.ic-slide.slot-3 {
+	top: 50%;
+	width: 160px;
+	height: 200px;
+	transform: translate(0, -50%);
+}
+
+/* !this is new */
+/* .ic-slide.slot-1,
+.ic-slide.slot-2,
+.ic-slide.slot-3 {
+	top: 50%;
+	width: 120px;
+	height: 160px;
+	transform: translate(0, -50%);
+} */
+
+/* .ic-slide.slot-1,
+.ic-slide.slot-2,
+.ic-slide.slot-3 {
+	top: 50%;
+	width: 140px;
+	height: 180px;
+	transform: translate(0, -50%);
+	z-index: 2;
+} */
+
+/* ! old active */
+.ic-slide.slot-1 {
+	left: 60%;
+	z-index: 5;
+	/* filter: blur(5px); */
+}
+
+/* !this is new */
+/* .ic-slide.slot-1 {
+	left: calc(100% - 150px);
+	z-index: 4;
+} */
+
+/* .ic-slide.slot-1 {
+	left: 55%;
+} */
+
+/* ! old active */
+.icX-slide.slot-2 {
+	left: calc(50% + 180px);
+	z-index: 4;
+}
+
+/*! this is new */
+/* .ic-slide.slot-2 {
+	left: calc(100% - 10px);
+	z-index: 3;
+} */
+
+/* .ic-slide.slot-2 {
+	left: calc(55% + 160px);
+} */
+
+/* ! old active */
+.ic-slide.slot-3 {
+	left: calc(55% + 360px);
+	z-index: 3;
+	filter: blur(50px);
+}
+
+/* .ic-slide.slot-3 {
+	left: calc(55% + 320px);
+} */
+
+/* ! old active */
+/* .ic-slide.slot-hidden {
+	top: 50%;
+	left: calc(50% + 540px);
+	width: 160px;
+	height: 200px;
+	transform: translate(0, -50%);
+	opacity: 0;
+	z-index: 0;
+} */
+
+/* .ic-slide.slot-hidden {
+	top: 50%;
+	left: calc(55% + 480px);
+	width: 140px;
+	height: 180px;
+	transform: translate(0, -50%);
+	opacity: 0;
+	pointer-events: none;
+	z-index: 0;
+} */
+
+/* this is new */
+.ic-slide.slot-hidden {
+	top: 50%;
+	left: calc(100% + 270px);
+	width: 140px;
+	height: 180px;
+	transform: translate(0, -50%);
+	opacity: 0;
+	pointer-events: none;
+	z-index: 1;
+}
+
+/* ! this is new */
+/* responsive thumbnail count — 3 → 2 → 1 */
+@media (max-width: 900px) {
+	.ic-slide.slot-3 {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+/*! this is new */
+@media (max-width: 600px) {
+	.ic-slide.slot-2,
+	.ic-slide.slot-3 {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+/*! this is new */
+.carousel-controls {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	z-index: 10;
+	display: flex;
+	gap: 8px;
+}
+
+/*! this is new */
+/* .carousel-pause {
+	width: 36px;
+	height: 32px;
+	border-radius: 8px;
+	border: 2px solid rgba(0, 0, 0, 0.4);
+	background: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+} */
+
+.carousel-info {
+	position: absolute;
+	left: 24px;
+	bottom: 24px;
+	z-index: 10;
+	max-width: 55%;
+	color: #f5f5f5;
+	font-family: system-ui;
+	pointer-events: none;
+}
+
+.carousel-info > * {
+	pointer-events: auto;
+}
+
+/* !this is the new  */
+.carousel-info-title {
+	font-size: 1.3rem;
+	font-weight: 700;
+	text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
+	opacity: 0;
+	animation: ic-rise-in 0.6s ease-in-out forwards;
+}
+
+.carousel-info-des {
+	margin-top: 6px;
+	font-size: 0.9rem;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+	opacity: 0;
+	animation: ic-rise-in 0.6s ease-in-out 0.15s forwards;
+}
+
+.carousel-info-link {
+	display: inline-block;
+	margin-top: 10px;
+	padding: 6px 14px;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.75);
+	color: #111;
+	text-decoration: none;
+	font-size: 0.85rem;
+	font-weight: 600;
+	opacity: 0;
+	animation: ic-rise-in 0.6s ease-in-out 0.3s forwards;
+}
+
+.carousel-info-link:hover {
+	background: #fff;
+}
+
+@keyframes ic-rise-in {
+	from {
+		opacity: 0;
+		transform: translateY(40px);
+		filter: blur(14px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+		filter: blur(0);
+	}
+}
+
+.carousel-controls {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	z-index: 10;
+	display: flex;
+	gap: 8px;
+}
+.carousel-controls button {
+	width: 36px;
+	height: 32px;
+	border-radius: 8px;
+	border: 2px solid rgba(0, 0, 0, 0.4);
+	background: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+	transition: 0.2s;
+}
+.carousel-controls button:hover {
+	background: #fff;
+	transform: scale(1.08);
+}
+
+.item-close {
+	margin-top: 12px;
+	background: none;
+	border: none;
+	color: inherit;
+	opacity: 0.7;
+	cursor: pointer;
+	font-size: 0.85rem;
+}
+.item-close:hover {
+	opacity: 1;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!! */
+
+/* !!!!!!!!!!!! */
+/* !!!!!!!!!!!! */
+/* !!!!!!!!!!!! */
+/* !!!!!!!!!!!! */
+/* !!!!!!!!!!!! */
+
+/* .container {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -666,4 +999,4 @@ li.expanded .item-body-collapse {
 }
 .prev {
 	padding: 0 3px 0 0;
-}
+} */

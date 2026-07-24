@@ -1,4 +1,23 @@
 
+for the products and services colapsable make sure that 
+1 on the carousel there is a btn to pause (for this just add it) 
+
+
+2 that the carousel is not changing (auto rotating ) if their current  collapsable is not open (not really nesesary )
+
+3 that there are at least 2-3 next imagest on the right for big viewport 
+and 1-2 for smaller viewport  (so at the start when i first started to use it  i was see it 2 images that would be next  now i onwly see 2 )
+(how this work in the original code there are 2 images on the right  when you go next the images that is on the left is the one that expands  and the image on the left moves smothlty to the left and on the right another pincture will show up , and for previouse  how it works is that  the images that is extended(or current) shrink and takes the spot on the left and moves the images that was on the left  to smothlty to the right and the image that was on the right fades out )
+
+
+4 dynamicaly show the see more promp if there are links for it to go outside of the page
+
+5 make sure that the carousel can be visible : some product/ services have longer description so that pushes the carousel beloow the visible  are (so the colapsable) might need to be made taller for those (the height of the colapsables should comabine the height of almost all the components inside of it )
+
+
+
+
+
 for the modal find out why the links dont take the full width of the modal 
 
 
