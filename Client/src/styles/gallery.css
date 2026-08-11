@@ -11,7 +11,7 @@
 .gallery-container {
 	width: 100%;
 	/* background-color: rgb(2, 33, 33); */
-	background-color: var(--lb);
+	/* background-color: var(--lb); */
 	display: flex;
 	justify-content: center;
 	/* margin-top: 25px; */
@@ -109,7 +109,7 @@
 /* ── WRAPPER ── */
 .gallery-wrapper {
 	width: 100%;
-	background-color: var(--lb);
+	/* background-color: var(--lb); */
 	padding-bottom: 4rem;
 	/* padding: 2rem 0px; */
 	display: flex;

@@ -22,7 +22,7 @@
 	--mg: #3d3d3d; /* mid-gray*/
 	--lg: ##f5f5f5; /* Light-Gray*/
 	--wh: ##ffffff; /* white-*/
-	--lbe: #065997 /* logo-blue*/ /* background-color: #242424; */ background-color: var(--lb);
+	--lbe: #065997 /* logo-blue*/ /* background-color: #242424; */ /* background-color: var(--lb); */ /* background-color: var(--lb); */;
 }
 
 /* body {
@@ -58,6 +58,11 @@ body {
 	/* scroll-behavior: smooth; */
 	/* overflow: hidden; */
 	/* overflow-x: hidden; */
+	/* background: #065997;
+	background: -webkit-linear-gradient(150deg, rgba(6, 89, 151, 1) 20%, rgba(26, 26, 26, 1) 60%);
+	background: -moz-linear-gradient(150deg, rgba(6, 89, 151, 1) 20%, rgba(26, 26, 26, 1) 60%);
+	background: linear-gradient(150deg, rgba(6, 89, 151, 1) 20%, rgba(26, 26, 26, 1) 60%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#065997", endColorstr="#1A1A1A", GradientType=0); */
 }
 
 /* Thin scrollbar starting below the navbar */

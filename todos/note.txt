@@ -16,8 +16,6 @@ and 1-2 for smaller viewport  (so at the start when i first started to use it  i
 
 
 
-
-
 for the modal find out why the links dont take the full width of the modal 
 
 
@@ -35,11 +33,14 @@ for the smaller viewport in the side bar make the settings be higher (on the bro
 
 making component appear:
 you might want to change the the show function from the app component to be in every individual component  (or find a way to send the information of being show (props)) so that you can have unique animations to show every sections
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+!!!!!!!!!
 
+for the right most shrunk images it could be better (when changing the z-index) puting it a little later so that i looks a little better (i am ok with leaving it like this but for it to look smother, the problem is that when going next the right most  shrunk image  somtime shinks behind  the left shrunk image and sometimes it goes in front  so is there is a way to make it shrinks but from the right so that it looks better or at least make it shrink brom the behind the  first image (left most shrunk image) )
+
+make the btn be disables when next or prev is click and also dont allow it to be click when the it is changeging outomaticlay like you did with the stack or cards  also when you maualy click next or  prev  the timer resets to go to the next 
+
+also make sure that you put a standart height for the the carousel  and make the colapsable sections  take that into acount so their height  increase dynamicaly depending on the amount of height from the other components (in other words make it fix so that the  heidh given  is sum to the height of the other components in the  colapsable)
+
+and make  the product and services  sectiokns  to for exmaple match in teh height for the  descriptions  and when they are open to not  make the other section push  show  match the height  or if on sention is onpen ther other one does not look wierd  (changes its height)

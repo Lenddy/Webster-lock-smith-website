@@ -7,13 +7,51 @@ export const products = [
 
 		links: [
 			// { title: "Auth Florence", link: "http://localhost:5173/", img: [{ src: blankkeys, alt: "image-1" }] },
-			{ title: "Auth Florence", link: "http://localhost:5173/", img: [{ src: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0", alt: "image-1" }] },
+			{
+				title: "Auth Florence",
+				link: "http://localhost:5173/",
+				img: [
+					{
+						src: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0",
+						alt: "image-1",
+					},
+				],
+			},
 
 			// { title: "Bommer", link: "http://localhost:5173/", img: [{ src: blankkeys, alt: "image-2" }] },
-			{ title: "Bommer", link: "http://localhost:5173/", img: [{ src: "https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0", alt: "image-2" }] },
+			{
+				title: "Bommer",
+				link: "http://localhost:5173/",
+				img: [
+					{
+						src: "https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0",
+						alt: "image-2",
+					},
+				],
+			},
 
 			// { title: "Salsbury Industries", link: "http://localhost:5173/", img: [{ src: blankkeys, alt: "image-3" }] },
-			{ title: "Salsbury Industries", link: "http://localhost:5173/", img: [{ src: "https://images.unsplash.com/photo-1483982258113-b72862e6cff6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0", alt: "image-3" }] },
+			{
+				title: "Salsbury Industries",
+				link: "http://localhost:5173/",
+				img: [
+					{
+						src: "https://images.unsplash.com/photo-1483982258113-b72862e6cff6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0",
+						alt: "image-3",
+					},
+				],
+			},
+
+			{
+				title: "Salsbury Industries",
+				link: "http://localhost:5173/",
+				img: [
+					{
+						src: "https://images.unsplash.com/photo-1483982258113-b72862e6cff6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0",
+						alt: "image-3",
+					},
+				],
+			},
 		],
 	},
 	{

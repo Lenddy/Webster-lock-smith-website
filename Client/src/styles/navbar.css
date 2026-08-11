@@ -11,20 +11,9 @@
 .sticky-header {
 	position: sticky;
 	top: 0;
-	animation: shrink-header linear forwards;
+	animation: shrink-header linear forward;
 	animation-timeline: scroll();
 	animation-range: 0px 200px;
-}
-
-@keyframes shrink-header {
-	from {
-		padding-block: 2rem;
-		font-size: 2rem;
-	}
-	to {
-		padding-block: 0.5rem;
-		font-size: 1.2rem;
-	}
 }
 
 /*? nav container */
@@ -845,6 +834,17 @@ h4 {
 		scale: 1;
 	}
 } */
+
+@keyframes shrink-header {
+	from {
+		padding-block: 2rem;
+		font-size: 2rem;
+	}
+	to {
+		padding-block: 0.5rem;
+		font-size: 1.2rem;
+	}
+}
 
 @keyframes expand-1 {
 	0% {

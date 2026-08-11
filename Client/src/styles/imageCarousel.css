@@ -1,0 +1,156 @@
+/* ---- image carousel ---- */
+.carousel {
+	position: relative;
+	width: 100%;
+	height: 340px;
+	border-radius: 16px;
+	overflow: hidden;
+	background: #1a1a1a;
+	margin-top: 16px;
+}
+
+.carousel-slide {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.carousel-item {
+	width: 160px;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	border-radius: 16px;
+	box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
+	background-position: 50% 50%;
+	background-size: cover;
+	background-color: #2b2b2b;
+	transition: all 0.5s ease;
+}
+
+/* one-shot boost: while a slide is shrinking from active into position 1 on
+   "prev", keep it rendered above the new active slide instead of underneath
+   it — otherwise it's invisible the whole time it's shrinking */
+
+/* .carousel-item.is-peeling {
+	z-index: 10;
+} */
+
+/* same box, both full-size — this pair is the whole trick */
+/* .carousel-item:nth-child(1),
+.carousel-item:nth-child(2) {
+	top: 0;
+	left: 0;
+	transform: translate(0, 0);
+	width: 100%;
+	height: 100%;
+	border-radius: 16px;
+}
+.carousel-item:nth-child(3) {
+	left: 55%;
+}
+.carousel-item:nth-child(4) {
+	left: calc(55% + 175px);
+}
+.carousel-item:nth-child(5) {
+	left: calc(55% + 350px);
+}
+.carousel-item:nth-child(n + 6) {
+	left: calc(55% + 525px);
+	opacity: 0;
+} */
+
+.carousel-content {
+	position: absolute;
+	left: 24px;
+	bottom: 24px;
+	max-width: 55%;
+	color: #f5f5f5;
+	font-family: system-ui;
+	display: none;
+}
+
+/* content only ever shows for the currently-active item, exactly like the original */
+
+/* .carousel-item:nth-child(2) .carousel-content {
+	display: block;
+} */
+
+/* content only ever shows for the currently-active item, exactly like the original */
+.carousel-item.is-active .carousel-content {
+	display: block;
+}
+
+.carousel-name {
+	font-size: 1.3rem;
+	font-weight: 700;
+	text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
+	opacity: 0;
+	animation: ic-rise-in 0.6s ease-in-out forwards;
+}
+
+.carousel-des {
+	margin-top: 6px;
+	font-size: 0.9rem;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+	opacity: 0;
+	animation: ic-rise-in 0.6s ease-in-out 0.15s forwards;
+}
+
+.carousel-see-more {
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.carousel-see-more button {
+	padding: 6px 14px;
+	border: none;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.75);
+	color: #111;
+	font-weight: 600;
+	cursor: pointer;
+	opacity: 0;
+	animation: ic-rise-in 0.6s ease-in-out 0.3s forwards;
+}
+
+.carousel-see-more button:hover {
+	background: #fff;
+}
+
+.carousel-controls {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	z-index: 10;
+	display: flex;
+	gap: 8px;
+}
+.carousel-controls button {
+	width: 36px;
+	height: 32px;
+	border-radius: 8px;
+	border: 2px solid rgba(0, 0, 0, 0.4);
+	background: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.carousel-controls button:hover {
+	background: #fff;
+	transform: scale(1.08);
+}
+
+@keyframes ic-rise-in {
+	from {
+		opacity: 0;
+		transform: translateY(40px);
+		filter: blur(14px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+		filter: blur(0);
+	}
+}
