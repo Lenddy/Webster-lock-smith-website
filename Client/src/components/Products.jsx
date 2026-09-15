@@ -5,14 +5,6 @@ import ImageCarousel from "./ImageCarousel";
 export default function Products({ productRef, expandProduct }) {
 	const [openProduct, setOpenProduct] = useState(null);
 
-	useEffect(() => {
-		if (expandProduct !== null) setOpenProduct(expandProduct);
-	}, [expandProduct]);
-
-	const toggleProduct = (index) => {
-		setOpenProduct((prev) => (prev === index ? null : index));
-	};
-
 	const [visibleSections, setVisibleSections] = useState({});
 
 	useEffect(() => {
@@ -30,6 +22,14 @@ export default function Products({ productRef, expandProduct }) {
 		if (productRef.current) observer.observe(productRef.current);
 		return () => observer.disconnect();
 	}, []);
+
+	useEffect(() => {
+		if (expandProduct !== null) setOpenProduct(expandProduct);
+	}, [expandProduct]);
+
+	const toggleProduct = (index) => {
+		setOpenProduct((prev) => (prev === index ? null : index));
+	};
 
 	return (
 		<div className={`products-container ${visibleSections.products ? "show" : ""} `} ref={productRef} id="products">

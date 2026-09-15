@@ -2,6 +2,7 @@ import React from "react";
 import { services } from "../utilities/products-services";
 import { useState, useEffect } from "react";
 import blankkeys from "../assets/general/blank-keys-on-wall.webp";
+import ImageCarousel from "./ImageCarousel";
 
 export default function Services({ serviceRef, expandService }) {
 	const [openService, setOpenService] = useState(null);
@@ -40,18 +41,21 @@ export default function Services({ serviceRef, expandService }) {
 		return () => observer.disconnect();
 	}, []);
 
-	useEffect(() => {
-		console.log("visibleSections from services updated:", visibleSections);
-	}, [visibleSections]);
+	// useEffect(() => {
+	// 	console.log("visibleSections from services updated:", visibleSections);
+	// }, [visibleSections]);
 
 	useEffect(() => {
 		if (expandService !== null) setOpenService(expandService);
 	}, [expandService]);
 
+	const toggleService = (index) => {
+		setOpenService((prev) => (prev === index ? null : index));
+	};
+
 	return (
 		<div className={`services-container ${visibleSections.services ? "show" : ""}`} ref={serviceRef} id="services">
 			<div className="services-title">
-				{" "}
 				<h2>Services</h2>
 			</div>
 			<div className="services-description">
@@ -61,46 +65,95 @@ export default function Services({ serviceRef, expandService }) {
 					Here is a list of our major service areas.!
 				</p>
 			</div>
+
 			<div className="services">
 				<ul>
-					{services.map((service, index) => (
-						<li key={index} className={`service-slide-${index} ${openService === index ? "expanded" : ""} `} onClick={() => setOpenService(openService === index ? null : index)}>
-							<div className="item-header">
-								<h3>{service.name}</h3>
-								<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
-							</div>
+					{services.map((service, index) => {
+						// make the changes that you made to the products tab here
 
-							<div className="item-body">
-								<p>{service.description}</p>
+						const isOpen = openService === index;
 
-								<div className="item-body-bottom">
-									<ul>
-										{/* //! make the link items not show if they are empty  */}
+						const carouselSlides = (service.links || [])
+							.filter((l) => l.title || l.link || l.img?.length)
+							.map((l, idx) => ({
+								id: `${index}-${l.title || "link"}-${idx}`,
+								title: l.title,
+								// destination: l.,
+								// des: "test",
+								// add this field in products-services.js later if you want per-image subtitles
+								image: l.img?.[0]?.src,
+								link: l.link,
+							}));
 
-										{service?.links?.map((l, idx) => (
-											// <li key={`${l.title} ${l.Link}`}>
-											<div key={idx} className="item-body-bottom-li">
-												<li key={`${l.title}-${l.Link}-${idx}`}>{l.title}</li>
-
-												<li className="item-body-bottom-link" key={`${l.title}-${idx}`}>
-													<a href={l.link} target="_blank">
-														h
-													</a>{" "}
-												</li>
-											</div>
-										))}
-									</ul>
-
-									{service?.links?.filter((imgs) => imgs.img)?.flatMap((imgs) => imgs?.img?.map((imgItem, idx) => <img key={`${idx}-${imgItem.alt}`} src={imgItem.src} alt={imgItem.alt} />))}
-
-									{/* <div> */}
-									{/* <img src={blankkeys} alt="blankkeys" /> */}
+						console.log("this is the carousel slides", carouselSlides);
+						return (
+							<li
+								key={index}
+								className={`slide-${index} ${isOpen ? "expanded" : ""} `}
+								//  onClick={() => setOpenService(openService === index ? null : index)}
+							>
+								<div className="item-header" onClick={() => toggleService(index)}>
+									<h3>{service.name}</h3>
+									<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
 								</div>
-							</div>
-						</li>
-					))}
+
+								{/* <div className="item-body-collapse">
+									<p>{service.description}</p> */}
+
+								<div className="item-body-collapse">
+									<div className="item-body">
+										<p>{service.description}</p>
+
+										{carouselSlides.length > 0 && <ImageCarousel slides={carouselSlides} isOpen={isOpen} intervalMs={4000} />}
+
+										<button type="button" className="item-close" onClick={() => toggleService(index)}>
+											▲ Close
+										</button>
+									</div>
+								</div>
+								{/* </div> */}
+							</li>
+						);
+
+						// )
+					})}
 				</ul>
 			</div>
 		</div>
 	);
 }
+
+// <li key={index} className={`service-slide-${index} ${openService === index ? "expanded" : ""} `} onClick={() => setOpenService(openService === index ? null : index)}>
+// 	<div className="item-header">
+// 		<h3>{service.name}</h3>
+// 		<span className="item-chevron">{openService === index ? "🔓" : "🔒"}</span>
+// 	</div>
+
+// 	<div className="item-body">
+// 		<p>{service.description}</p>
+
+// 		<div className="item-body-bottom">
+// 			<ul>
+// 				{/* //! make the link items not show if they are empty  */}
+
+// 				{service?.links?.map((l, idx) => (
+// 					// <li key={`${l.title} ${l.Link}`}>
+// 					<div key={idx} className="item-body-bottom-li">
+// 						<li key={`${l.title}-${l.Link}-${idx}`}>{l.title}</li>
+
+// 						<li className="item-body-bottom-link" key={`${l.title}-${idx}`}>
+// 							<a href={l.link} target="_blank">
+// 								h
+// 							</a>{" "}
+// 						</li>
+// 					</div>
+// 				))}
+// 			</ul>
+
+// 			{service?.links?.filter((imgs) => imgs.img)?.flatMap((imgs) => imgs?.img?.map((imgItem, idx) => <img key={`${idx}-${imgItem.alt}`} src={imgItem.src} alt={imgItem.alt} />))}
+
+// 			{/* <div> */}
+// 			{/* <img src={blankkeys} alt="blankkeys" /> */}
+// 		</div>
+// 	</div>
+// </li>
