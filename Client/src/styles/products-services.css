@@ -33,6 +33,7 @@
 	/* animation-delay: 1150ms; */
 	/* starts as logo begins shrinking */
 }
+
 .blink-2 {
 	opacity: 0;
 	animation: show-blink 1200ms ease-out 1000ms forwards;
@@ -43,6 +44,7 @@
 	animation: blink 1200ms ease-out 600ms forwards;
 	/* starts as logo begins shrinking */
 }
+
 .blink-4 {
 	opacity: 0;
 	animation: show-blink 1200ms ease-out 1200ms forwards;
@@ -148,6 +150,11 @@
 .slide-3 {
 	opacity: 0;
 	animation: slide-from-top 1000ms ease-out 550ms forwards;
+}
+
+.slide-4 {
+	opacity: 0;
+	animation: slide-from-top 1000ms ease-out 650ms forwards;
 }
 
 /* services */

@@ -33,9 +33,11 @@ import Services from "./Services";
 // 		setOpenService(openService === index ? null : index);
 // 	};
 
-function Product_services({ productRef, serviceRef, expandProduct, expandService }) {
+function Product_services({ productRef, serviceRef, expandProduct, expandService, isVisible }) {
 	const [openProduct, setOpenProduct] = useState(null);
 	const [openService, setOpenService] = useState(null);
+
+	console.log("this is the poduct and service container ", isVisible);
 
 	// when navbar dropdown item is clicked, open that item
 	useEffect(() => {
@@ -58,16 +60,16 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 		<div className="product-services-container">
 			<div className="products-services-title">
 				<h1>
-					<span className="blink">Our</span> <span className="blink-2"> Products</span> <span className="blink-3">And</span> <span className="blink-4">Services</span>{" "}
+					<span className={`${isVisible ? "blink" : ""}`}>Our</span> <span className={`${isVisible ? "blink-2" : ""}`}> Products</span> <span className={`${isVisible ? "blink-3" : ""}`}>And</span> <span className={`${isVisible ? "blink-4" : ""}`}>Services</span>{" "}
 				</h1>
 			</div>
 
 			<div className="products-services-wrapper">
 				{/* <div className="products" style={{ opacity: 0 }}> */}
-				<Products productRef={productRef} expandProduct={expandProduct} />
+				<Products productRef={productRef} expandProduct={expandProduct} isVisible={isVisible} />
 				{/* </div> */}
 				{/* <div className="services" style={{ opacity: 0 }}> */}
-				<Services serviceRef={serviceRef} expandService={expandService} />
+				<Services serviceRef={serviceRef} expandService={expandService} isVisible={isVisible} />
 				{/* </div> */}
 
 				{/* <div className="services-container" ref={serviceRef} id="service">

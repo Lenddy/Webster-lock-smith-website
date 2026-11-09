@@ -57,7 +57,7 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 
 					{/* nav items */}
 					<nav className="sidebar-nav">
-						<div className="sidebar-menu">
+						{/* <div className="sidebar-menu">
 							<button
 								className="sidebar-menu-title"
 								onClick={() => {
@@ -67,17 +67,17 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 								<span className="sidebar-icon">🏠</span>
 								<span className="sidebar-menu-label">Home</span>
 							</button>
-						</div>
+						</div> */}
 
 						<div className="sidebar-menu">
 							<button
 								className="sidebar-menu-title"
 								onClick={() => {
-									onAboutClick();
+									oneGalleryClick();
 									setHovered(false);
 								}}>
-								<span className="sidebar-icon">ℹ️</span>
-								<span className="sidebar-menu-label">About</span>
+								<span className="sidebar-icon">🖼️</span>
+								<span className="sidebar-menu-label">Gallery</span>
 							</button>
 						</div>
 
@@ -202,11 +202,11 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 							<button
 								className="sidebar-menu-title"
 								onClick={() => {
-									oneGalleryClick();
+									onAboutClick();
 									setHovered(false);
 								}}>
-								<span className="sidebar-icon">🖼️</span>
-								<span className="sidebar-menu-label">Gallery</span>
+								<span className="sidebar-icon">ℹ️</span>
+								<span className="sidebar-menu-label">About</span>
 							</button>
 						</div>
 					</nav>
@@ -239,23 +239,10 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 				<div className="nav-items">
 					<ul>
 						<li className="nav-left-2">
-							<h4 onClick={onHomeClick}>
-								Home <span className="chevron">▾</span>
-							</h4>
-							<div className="nav-dropdown-menu">
-								<a onClick={onHomeClick}>Overview</a>
-							</div>
-						</li>
-
-						<li className="nav-left-1">
-							<h4>
-								<span className="product-service-title-p" onClick={onProductsClick}>
-									Products
-								</span>{" "}
-								<span className="product-service-title-and">& </span>
-								<span className="product-service-title-s" onClick={onServicesClick}>
-									Services
-								</span>{" "}
+							{/* <h4 onClick={onHomeClick}    > */}
+							<h4 onClick={onProductsClick}>
+								{/* Home  */}
+								Products
 								<span className="chevron">▾</span>
 							</h4>
 							<div className="nav-dropdown-menu">
@@ -267,6 +254,23 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 									<a onClick={() => onProductItemClick(4)}> Security/Intercom</a>
 								</div>
 
+								{/* <a onClick={onHomeClick}>Overview</a> */}
+							</div>
+						</li>
+
+						<li className="nav-left-1">
+							<h4>
+								{/* you have to have products and service  */}
+								{/* <span className="product-service-title-p" onClick={onProductsClick}>
+									Products
+								</span>{" "}
+								<span className="product-service-title-and">& </span> */}
+								<span className="product-service-title-s" onClick={onServicesClick}>
+									Services
+								</span>{" "}
+								<span className="chevron">▾</span>
+							</h4>
+							<div className="nav-dropdown-menu">
 								<div>
 									<a onClick={() => onServiceItemClick(0)}>Automotive Security</a>
 									<a onClick={() => onServiceItemClick(1)}>Automotive Transponder Key</a>
@@ -340,18 +344,18 @@ function Navbar({ scrolled, scrollToTop, onHomeClick, onAboutClick, oneGalleryCl
 			{/* nav items */}
 			<nav className="sidebar-nav">
 				{/* Home */}
-				<div className="sidebar-menu">
+				{/* <div className="sidebar-menu">
 					<button className="sidebar-menu-title" onClick={onHomeClick}>
 						<span className="sidebar-icon">🏠</span>
 						<span className="sidebar-menu-label">Home</span>
 					</button>
-				</div>
+				</div> */}
 
 				{/* About */}
 				<div className="sidebar-menu">
-					<button className="sidebar-menu-title" onClick={onAboutClick}>
-						<span className="sidebar-icon">ℹ️</span>
-						<span className="sidebar-menu-label">About</span>
+					<button className="sidebar-menu-title" onClick={oneGalleryClick}>
+						<span className="sidebar-icon">🖼️</span>
+						<span className="sidebar-menu-label">Gallery</span>
 					</button>
 				</div>
 
@@ -416,9 +420,9 @@ Security/Intercom
 
 				{/* About */}
 				<div className="sidebar-menu">
-					<button className="sidebar-menu-title" onClick={oneGalleryClick}>
-						<span className="sidebar-icon">🖼️</span>
-						<span className="sidebar-menu-label">Gallery</span>
+					<button className="sidebar-menu-title" onClick={onAboutClick}>
+						<span className="sidebar-icon">ℹ️</span>
+						<span className="sidebar-menu-label">About</span>
 					</button>
 				</div>
 			</nav>

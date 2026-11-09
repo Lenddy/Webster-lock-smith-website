@@ -156,12 +156,15 @@ function App() {
 									<Banner screenWidth={screenWidth} />
 								</div>
 
-								<div ref={galleryRef} id="gallery" className={`outer-container ${visibleSections.gallery ? "show" : ""}`}>
-									<Gallery />
+								<div ref={galleryRef} id="gallery" className={`outer-container ${visibleSections.gallery ? "show-from-top" : ""}`}>
+									{/*show /  show-from-top */}
+									<Gallery isVisible={visibleSections.gallery} />
 								</div>
 
+								{/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!on products the products_services section iis visible is giving undefine (why ??? ) */}
+
 								<div ref={products_servicesRef} id="products_services" className={`outer-container ${visibleSections.products_services ? "show" : ""}`}>
-									<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} />
+									<Product_services productRef={productRef} serviceRef={serviceRef} expandProduct={expandProduct} expandService={expandService} isVisible={visibleSections.products_services} />
 								</div>
 
 								<div ref={aboutRef} id="about" className={`outer-container ${visibleSections.about ? "show" : ""}`}>

@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { products } from "../utilities/products-services";
 import ImageCarousel from "./ImageCarousel";
 
-export default function Products({ productRef, expandProduct }) {
+export default function Products({ productRef, expandProduct, isvisible }) {
 	const [openProduct, setOpenProduct] = useState(null);
+
+	console.log("this is visible from the products components", isvisible);
 
 	const [visibleSections, setVisibleSections] = useState({});
 
@@ -68,8 +70,9 @@ export default function Products({ productRef, expandProduct }) {
 
 						console.log("this is the carousel slides", carouselSlides);
 
+						// className={`slide-${index} ${isOpen ? "expanded" : ""}`}
 						return (
-							<li key={index} className={`slide-${index} ${isOpen ? "expanded" : ""}`}>
+							<li key={index} className={`${isvisible ? `slide-${index}` : ""} ${isOpen ? "expanded" : ""}`}>
 								{/* only this row toggles open/close now — buttons and links
 								    inside the body can never bubble up into it */}
 								<div className="item-header" onClick={() => toggleProduct(index)}>

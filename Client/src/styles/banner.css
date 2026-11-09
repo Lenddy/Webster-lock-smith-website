@@ -86,6 +86,10 @@
 	/* transition: gap 500ms ease; */
 }
 
+.banner-foreground {
+	animation: slide-from-bottom 1800ms ease-out forwards;
+}
+
 /* ── LEFT PANEL (picture) ── */
 
 /* ── RIGHT PANEL (stack column) ── */

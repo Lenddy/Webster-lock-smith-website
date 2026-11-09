@@ -92,7 +92,7 @@ body {
 }
 
 .outer-container {
-	margin-bottom: 100px;
+	margin-bottom: clamp(4.688rem, 2.569rem + 10.59vw, 12.5rem);
 }
 
 /* section reveal */
@@ -185,5 +185,25 @@ body {
 		/* margin-right: 64px; */
 		margin-right: 0px;
 		transition: margin 300ms ease;
+	}
+}
+/*! for gallerty (sliding from the top ) */
+.show-from-top {
+	animation: slide-from-top 1500ms ease-out forwards;
+}
+
+/*! make the other animations for the other components  go to the notes and the microsoft to do list for the site */
+
+/* ! you got to fix the animation error for the  carrousel  that are in the products and services */
+
+@keyframes slide-from-top {
+	0% {
+		transform: translateY(-400px);
+		opacity: 0;
+		z-index: 2;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
 	}
 }

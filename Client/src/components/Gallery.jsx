@@ -104,6 +104,8 @@ function Gallery({ isVisible }) {
 	const pause = () => clearInterval(timerRef.current);
 	const resume = () => startTimer();
 
+	// console.log("is the prop working ?  ", isVisible, "!!!!!!!!!!!!!!!!!");
+
 	return (
 		<div className={`gallery-wrapper ${isVisible ? "show" : ""}`}>
 			<div className="gallery-header">

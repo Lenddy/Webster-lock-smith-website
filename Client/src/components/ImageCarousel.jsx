@@ -43,6 +43,9 @@ export default function ImageCarousel({ slides: initialSlides, isOpen, intervalM
 	const orderRef = useRef(initialSlides.map((s) => s.id));
 	const count = items.length;
 
+	const [cycle, setCycle] = useState(0);
+	const restartTimer = () => setCycle((c) => c + 1);
+
 	useEffect(() => {
 		setItems(initialSlides);
 		orderRef.current = initialSlides.map((s) => s.id);
@@ -67,7 +70,7 @@ export default function ImageCarousel({ slides: initialSlides, isOpen, intervalM
 		const id = setInterval(handleNext, intervalMs);
 		return () => clearInterval(id);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isOpen, isPaused, count, intervalMs]);
+	}, [isOpen, isPaused, count, intervalMs, cycle]);
 
 	if (count === 0) return null;
 
@@ -105,13 +108,25 @@ export default function ImageCarousel({ slides: initialSlides, isOpen, intervalM
 
 			{count > 1 && (
 				<div className="carousel-controls">
-					<button type="button" className="carousel-prev" onClick={handlePrev}>
+					<button
+						type="button"
+						className="carousel-prev"
+						onClick={() => {
+							handlePrev();
+							restartTimer();
+						}}>
 						◁
 					</button>
 					<button type="button" className="carousel-pause" onClick={() => setIsPaused((p) => !p)} aria-label={isPaused ? "Play" : "Pause"}>
 						{isPaused ? "▶" : "⏸"}
 					</button>
-					<button type="button" className="carousel-next" onClick={handleNext}>
+					<button
+						type="button"
+						className="carousel-next"
+						onClick={() => {
+							handleNext();
+							restartTimer();
+						}}>
 						▷
 					</button>
 				</div>
