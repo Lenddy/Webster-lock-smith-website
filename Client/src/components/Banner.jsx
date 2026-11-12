@@ -16,7 +16,7 @@ function Banner({ screenWidth }) {
 	const timerRef = useRef(null);
 	const isAnimatingRef = useRef(false);
 
-	const AUTOPLAY_MS = 2000;
+	const AUTOPLAY_MS = 2500;
 	// const ANIMATION_MS = 600; //! match this to the actual CSS transition/animation duration
 
 	// allows call mid tranctition

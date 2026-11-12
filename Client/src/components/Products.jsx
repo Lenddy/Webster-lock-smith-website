@@ -2,10 +2,8 @@ import { useState, useEffect } from "react";
 import { products } from "../utilities/products-services";
 import ImageCarousel from "./ImageCarousel";
 
-export default function Products({ productRef, expandProduct, isvisible }) {
+export default function Products({ productRef, expandProduct }) {
 	const [openProduct, setOpenProduct] = useState(null);
-
-	console.log("this is visible from the products components", isvisible);
 
 	const [visibleSections, setVisibleSections] = useState({});
 
@@ -21,6 +19,7 @@ export default function Products({ productRef, expandProduct, isvisible }) {
 			},
 			{ threshold: 0.4 }
 		);
+
 		if (productRef.current) observer.observe(productRef.current);
 		return () => observer.disconnect();
 	}, []);
@@ -68,11 +67,16 @@ export default function Products({ productRef, expandProduct, isvisible }) {
 								link: l.link,
 							}));
 
-						console.log("this is the carousel slides", carouselSlides);
+						// console.log("this is the carousel slides", carouselSlides);
 
-						// className={`slide-${index} ${isOpen ? "expanded" : ""}`}
+						// className={`${isvisible ? `slide-${index}` : ""} ${isOpen ? "expanded" : ""}`}
+
+						//TODO what i want to do
+						//TODO i want to play the animation of the sliding  when the view port if 30% over the view port
+						//TODO i have to find out why the is visible is sending a undefine value ?
+
 						return (
-							<li key={index} className={`${isvisible ? `slide-${index}` : ""} ${isOpen ? "expanded" : ""}`}>
+							<li key={index} className={`slide-${visibleSections?.products ? index : null} ${isOpen ? "expanded" : ""}`}>
 								{/* only this row toggles open/close now — buttons and links
 								    inside the body can never bubble up into it */}
 								<div className="item-header" onClick={() => toggleProduct(index)}>
@@ -84,7 +88,7 @@ export default function Products({ productRef, expandProduct, isvisible }) {
 									<div className="item-body">
 										<p>{product.description}</p>
 
-										{carouselSlides.length > 0 && <ImageCarousel slides={carouselSlides} isOpen={isOpen} intervalMs={4000} />}
+										{carouselSlides.length > 0 && <ImageCarousel slides={carouselSlides} isOpen={isOpen} intervalMs={2500} />}
 
 										<button type="button" className="item-close" onClick={() => toggleProduct(index)}>
 											▲ Close

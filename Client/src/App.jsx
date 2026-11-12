@@ -1,4 +1,6 @@
 import "./App.css";
+
+import { useEffect, useState, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
@@ -8,7 +10,6 @@ import Services from "./components/Services";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import Test from "./components/Test";
-import { useEffect, useState, useRef } from "react";
 
 import calcClampBreakpoints from "../../min-max-calculator";
 import Filler from "./components/Filler";
@@ -119,6 +120,8 @@ function App() {
 		setOpenModal(false);
 	};
 
+	console.log("this is what visivle section is !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", visibleSections);
+
 	return (
 		<>
 			<Routes>
@@ -170,7 +173,7 @@ function App() {
 								<div ref={aboutRef} id="about" className={`outer-container ${visibleSections.about ? "show" : ""}`}>
 									<About
 										// isVisible={visibleSections.about}
-										isVisible={false}
+										isVisible={visibleSections.about}
 										screenWidth={screenWidth}
 									/>
 								</div>

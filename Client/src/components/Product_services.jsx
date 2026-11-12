@@ -37,8 +37,6 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 	const [openProduct, setOpenProduct] = useState(null);
 	const [openService, setOpenService] = useState(null);
 
-	console.log("this is the poduct and service container ", isVisible);
-
 	// when navbar dropdown item is clicked, open that item
 	useEffect(() => {
 		if (expandProduct !== null) setOpenProduct(expandProduct);
@@ -55,6 +53,8 @@ function Product_services({ productRef, serviceRef, expandProduct, expandService
 	const toggleService = (index) => {
 		setOpenService(openService === index ? null : index);
 	};
+
+	console.log("this is the poduct and service container ", "\n", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "\n", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", isVisible, "\n", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "\n", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 	return (
 		<div className="product-services-container">

@@ -110,7 +110,7 @@
 	transition: translate 0.8s ease;
 	/* shift right when open so spine stays centered */
 	/* animation: book-fall 1500ms ease-in forwards; */
-	animation: book-fall 1500ms ease-in;
+
 	/* animation: book-transition 1500ms ease-in forwards; */
 	/* translate: calc(min(var(--c), 1) * 50%) 0%; */
 	/* translate: calc((min(var(--c), 1) - max(var(--c) - var(--n) + 1, 0)) * 50%) 0%; */
@@ -121,6 +121,10 @@
 	border-radius: 10px; */
 	rotate: 1 0 0 25deg;
 	/* rotate: 0 -5 50 90deg; */
+}
+
+.book-fall {
+	animation: book-fall 1500ms ease-in;
 }
 
 /*

@@ -113,7 +113,7 @@ export default function About({ isVisible, screenWidth }) {
 
 				<div className="book-scene">
 					<div
-						className="book"
+						className={`book ${isVisible ? "book-fall" : ""}`}
 						style={{
 							"--c": current,
 							"--n": N,

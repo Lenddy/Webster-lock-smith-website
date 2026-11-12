@@ -89,7 +89,7 @@ export default function Services({ serviceRef, expandService }) {
 						return (
 							<li
 								key={index}
-								className={`slide-${index} ${isOpen ? "expanded" : ""} `}
+								className={`slide-${visibleSections?.services ? index : null} ${isOpen ? "expanded" : ""} `}
 								//  onClick={() => setOpenService(openService === index ? null : index)}
 							>
 								<div className="item-header" onClick={() => toggleService(index)}>
