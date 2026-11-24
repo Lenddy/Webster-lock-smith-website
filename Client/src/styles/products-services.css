@@ -20,10 +20,20 @@
 	justify-content: start;
 	align-items: center;
 	min-height: 450px;
+	/* min-height: 500px; */
 }
 
 .products-services-title h1 {
-	font-size: clamp(1.625rem, 1.593rem + 0.25vw, 2rem);
+	/* font-size: clamp(1.625rem, 1.593rem + 0.25vw, 2rem); */
+	/* font-size: clamp(1.625rem, 1.593rem + 0.25vw, 2rem); */
+
+	/* font-size: clamp(1.2rem, 1rem + 1vw, 2rem); */
+	/* font-size: clamp(1.25rem, 1.016rem + 1.17vw, 2.188rem); */
+	/* font-size: clamp(1.25rem, 0.938rem + 1.56vw, 2.5rem); */
+
+	/* font-size: clamp(1.563rem, 1.406rem + 0.78vw, 2.188rem); */
+	font-size: var(--section-title-font);
+
 	color: var(--kg);
 }
 
@@ -111,7 +121,13 @@
 
 .products-title h2,
 .services-title h2 {
-	font-size: clamp(1.188rem, 1.161rem + 0.21vw, 1.5rem);
+	/* font-size: clamp(1.188rem, 1.161rem + 0.21vw, 1.5rem); */
+
+	/* font-size: clamp(1.25rem, 1.094rem + 0.78vw, 1.875rem); */
+	font-size: clamp(1.25rem, 1.094rem + 0.78vw, 1.875rem);
+
+	font-size: var(--section-sub-title-font);
+
 	color: var(--lbe);
 }
 
@@ -122,13 +138,18 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 200px;
+	/* height: 200px; */
+	min-height: 200px;
 }
+
+/* !!!!!!! see if you want to put the description to be smaller  so the products and services aling */
 
 .products-description p,
 .services-description p {
-	font-size: clamp(0.75rem, 0.729rem + 0.17vw, 1rem);
-	max-width: 800px;
+	/* font-size: clamp(0.75rem, 0.729rem + 0.17vw, 1rem); */
+	font-size: var(--section-description-font);
+
+	max-width: 850px;
 	/* min-height: 150px; */
 	padding: 10px;
 }
@@ -171,7 +192,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 200px;
+	/* height: 200px; */
+	min-height: 200px;
 }
 
 .service-slide-0 {
@@ -436,7 +458,16 @@ li.expanded .item-body-collapse {
 	.products-description p,
 	.services-description p {
 		padding: 10px 5px;
+		/* font-size: clamp(0.75rem, 0.643rem + 0.86vw, 1.125rem); */
+		font-size: clamp(0.75rem, 0.607rem + 1.14vw, 1.25rem);
 	}
+}
+
+@media (min-width: 900px) and (max-width: 1600px) {
+	/* .products-description p,
+	.services-description p {
+		font-size: ;
+	} */
 }
 
 @keyframes slide-from-top {

@@ -86,7 +86,7 @@ export default function Products({ productRef, expandProduct }) {
 
 								<div className="item-body-collapse">
 									<div className="item-body">
-										<p>{product.description}</p>
+										<p className="">{product.description}</p>
 
 										{carouselSlides.length > 0 && <ImageCarousel slides={carouselSlides} isOpen={isOpen} intervalMs={2500} />}
 

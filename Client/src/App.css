@@ -16,6 +16,26 @@
 	--lg: ##f5f5f5; /* Light-Gray*/
 	--wh: ##ffffff; /* white-*/
 	--lbe: #065997 /* logo-blue*/;
+
+	/* you need to fix the font size of the contact in the banner */
+
+	--banner-description-font: clamp(0.938rem, 0.386rem + 0.74vw, 1.563rem);
+	--banner-sub-tittle-font: clamp(1rem, 0.199rem + 1.28vw, 2.25rem);
+
+	--section-title-font: clamp(1.563rem, 1.406rem + 0.78vw, 2.188rem);
+	--section-sub-title-font: clamp(1.25rem, 1.094rem + 0.78vw, 1.875rem);
+	/* --section-description-font: clamp(0.938rem, 0.781rem + 0.78vw, 1.563rem); */
+	/* --section-description-font: clamp(0.938rem, 0.813rem + 0.63vw, 1.438rem); */
+	/* --section-description-font: clamp(0.938rem, 0.828rem + 0.55vw, 1.375rem); */
+	/* --section-description-font: clamp(0.938rem, 0.859rem + 0.39vw, 1.25rem); */
+
+	/* --section-description-font: clamp(0.813rem, 0.703rem + 0.55vw, 1.25rem); */
+	/* --section-description-font: clamp(0.75rem, 0.648rem + 0.51vw, 1.125rem); */
+	/* --section-description-font: clamp(0.75rem, 0.665rem + 0.42vw, 1.063rem); */
+	/* --section-description-font: clamp(0.75rem, 0.191rem + 1vw, 1.125rem); */
+	--section-description-font: clamp(0.844rem, 0.424rem + 0.75vw, 1.125rem);
+
+	/* --section-description-font: clamp(0.813rem, 0.625rem + 0.94vw, 1.563rem); */
 }
 
 .light-theme {

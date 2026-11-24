@@ -194,7 +194,7 @@ function Banner({ screenWidth }) {
 								{/* <h2>(718) 733-2200</h2> */}
 								<div className="banner-contact">
 									<h3>(718)733-2200</h3>
-									<h3>service@websterlock.com</h3>
+									<h3>Service@websterlock.com</h3>
 								</div>
 								{/* <br /> */}
 
@@ -239,7 +239,7 @@ function Banner({ screenWidth }) {
 						{/* <h2>(718) 733-2200</h2> */}
 						<div className="banner-contact">
 							<h3>(718)733-2200</h3>
-							<h3>service@websterlock.com</h3>
+							<h3>Service@websterlock.com</h3>
 						</div>
 						{/* <br /> */}
 
