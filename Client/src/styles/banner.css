@@ -588,7 +588,8 @@
 
 	.banner-about-panel p {
 		/* font-size: clamp(0.938rem, 0.386rem + 0.74vw, 1.563rem); */
-		font-size: clamp(0.75rem, 0.625rem + 1vw, 1.25rem);
+		/* font-size: clamp(0.75rem, 0.625rem + 1vw, 1.25rem); */
+		font-size: clamp(0.938rem, 0.781rem + 1.25vw, 1.563rem);
 	}
 
 	.banner-about-list li {

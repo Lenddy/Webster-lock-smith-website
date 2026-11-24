@@ -21,6 +21,7 @@
 
 	--banner-description-font: clamp(0.938rem, 0.386rem + 0.74vw, 1.563rem);
 	--banner-sub-tittle-font: clamp(1rem, 0.199rem + 1.28vw, 2.25rem);
+	/* --banner-sub-tittle-font: clamp(0.938rem, 0.781rem + 1.25vw, 1.563rem); */
 
 	--section-title-font: clamp(1.563rem, 1.406rem + 0.78vw, 2.188rem);
 	--section-sub-title-font: clamp(1.25rem, 1.094rem + 0.78vw, 1.875rem);

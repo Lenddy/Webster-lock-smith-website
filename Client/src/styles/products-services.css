@@ -459,7 +459,8 @@ li.expanded .item-body-collapse {
 	.services-description p {
 		padding: 10px 5px;
 		/* font-size: clamp(0.75rem, 0.643rem + 0.86vw, 1.125rem); */
-		font-size: clamp(0.75rem, 0.607rem + 1.14vw, 1.25rem);
+		/* font-size: clamp(0.75rem, 0.607rem + 1.14vw, 1.25rem); */
+		font-size: clamp(0.938rem, 0.781rem + 1.25vw, 1.563rem);
 	}
 }
 
